@@ -158,9 +158,12 @@ function PortfolioPage() {
         onNavigate={scrollTo}
       />
 
-      <main className={presenting ? "pt-24 pb-28" : "pt-24"}>
+      <main className={presenting ? "h-[100svh] overflow-hidden pt-24 pb-24" : "pt-24"}>
         {presenting ? (
-          <div key={current} className="reveal reveal-in animate-in fade-in duration-500">
+          <div
+            key={current}
+            className="animate-in fade-in h-full duration-500 [&_section]:h-full [&_section]:min-h-0 [&_section]:justify-center [&_section]:overflow-y-auto [&_section]:py-6"
+          >
             {chapterNodes[current]}
           </div>
         ) : (
