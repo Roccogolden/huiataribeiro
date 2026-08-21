@@ -319,11 +319,6 @@
 
 /* --- Modo apresentação: cada capítulo ocupa exatamente uma tela ---------- */
 
-.presenting {
-  height: 100svh;
-  overflow: hidden;
-}
-
 .presenting section {
   min-height: 0 !important;
   height: 100%;
