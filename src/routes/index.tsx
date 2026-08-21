@@ -160,10 +160,7 @@ function PortfolioPage() {
 
       <main className={presenting ? "h-[100svh] overflow-hidden pt-24 pb-24" : "pt-24"}>
         {presenting ? (
-          <div
-            key={current}
-            className="animate-in fade-in h-full duration-500 [&_section]:h-full [&_section]:min-h-0 [&_section]:justify-center [&_section]:overflow-y-auto [&_section]:py-6"
-          >
+          <div key={current} className="presenting animate-in fade-in h-full duration-500">
             {chapterNodes[current]}
           </div>
         ) : (
