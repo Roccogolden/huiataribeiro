@@ -48,7 +48,7 @@ export function Reveal({
   );
 }
 
-export interface SectionShellProps extends ComponentProps<"section"> {
+export interface SectionShellProps extends Omit<ComponentProps<"section">, "title"> {
   readonly id: string;
   readonly index: string;
   readonly eyebrow?: string;
