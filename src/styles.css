@@ -316,3 +316,27 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* --- Modo apresentação: cada capítulo ocupa exatamente uma tela ---------- */
+
+.presenting {
+  height: 100svh;
+  overflow: hidden;
+}
+
+.presenting section {
+  min-height: 0 !important;
+  height: 100%;
+  overflow-y: auto;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.presenting figure {
+  max-height: 42svh;
+}
+
+.presenting img {
+  max-height: 42svh;
+  object-fit: cover;
+}
