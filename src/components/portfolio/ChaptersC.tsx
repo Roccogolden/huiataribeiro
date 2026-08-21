@@ -1,0 +1,294 @@
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Mail, Github, Linkedin, MessageCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+  aiAreas,
+  contactLinks,
+  education,
+  futureSteps,
+  metrics,
+  profile,
+  testimonials,
+} from "@/data/portfolio";
+import { PendingContent, PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
+import { ResumeButton } from "./ChaptersA";
+
+export function EducationTechChapter() {
+  return (
+    <SectionShell
+      id="educacao"
+      index="09"
+      eyebrow="Educação + Tecnologia"
+      title={
+        <>
+          Mais do que ensinar tecnologia.
+          <br />
+          <span className="text-brand-gradient">
+            Eu crio experiências para ensinar tecnologia.
+          </span>
+        </>
+      }
+    >
+      <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+        <ul className="flex flex-wrap gap-3">
+          {[
+            "Aulas práticas",
+            "Projetos",
+            "Programação",
+            "Redes",
+            "Desenvolvimento",
+            "Gamificação",
+            "Inteligência artificial",
+            "Atividades práticas",
+          ].map((item, i) => (
+            <Reveal key={item} delay={i * 70}>
+              <li className="surface-glass rounded-full px-6 py-3 text-lg md:text-2xl">{item}</li>
+            </Reveal>
+          ))}
+        </ul>
+        <div className="grid grid-cols-2 gap-5">
+          {["Sala de aula", "Com estudantes", "Projeto em aula", "Registro espontâneo"].map(
+            (label, i) => (
+              <Reveal key={label} delay={i * 90}>
+                <PhotoPlaceholder label={label} ratio="landscape" />
+              </Reveal>
+            ),
+          )}
+        </div>
+      </div>
+    </SectionShell>
+  );
+}
+
+export function AiChapter() {
+  return (
+    <SectionShell id="ia" index="10" eyebrow="Inteligência Artificial">
+      <div className="max-w-5xl">
+        <Reveal>
+          <p className="text-3xl font-semibold md:text-5xl">A tecnologia mudou.</p>
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="mt-4 text-3xl font-semibold text-muted-foreground md:text-5xl">
+            A educação também.
+          </p>
+        </Reveal>
+        <Reveal delay={320}>
+          <p className="text-brand-gradient mt-8 text-4xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
+            Inteligência Artificial
+          </p>
+        </Reveal>
+      </div>
+      <ul className="mt-14 grid gap-5 md:grid-cols-3 lg:grid-cols-5">
+        {aiAreas.map((area, i) => (
+          <Reveal key={area} delay={i * 90}>
+            <li className="surface-glass rounded-2xl p-7 text-xl font-semibold md:text-2xl">
+              {area}
+            </li>
+          </Reveal>
+        ))}
+      </ul>
+    </SectionShell>
+  );
+}
+
+export function FormationChapter() {
+  return (
+    <SectionShell id="formacao" index="11" eyebrow="Formação" title={<>Formação</>}>
+      {education.length === 0 ? (
+        <PendingContent>
+          Espaço reservado para graduação, pós-graduações, MBA/GMBA, cursos e certificações. Envie os
+          dados do currículo e eles serão exibidos aqui em uma timeline acadêmica.
+        </PendingContent>
+      ) : (
+        <ol className="grid gap-6 md:grid-cols-2">
+          {education.map((item, i) => (
+            <Reveal key={item.title} delay={i * 80}>
+              <li className="surface-glass rounded-2xl p-8">
+                <h3 className="text-2xl font-semibold md:text-3xl">{item.title}</h3>
+                <p className="mt-3 text-base text-muted-foreground md:text-lg">{item.description}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+      )}
+    </SectionShell>
+  );
+}
+
+/** Conta de 0 até o número final quando o elemento entra na tela. */
+function CountUp({ value }: { value: string }) {
+  const target = Number(value.replace(/\D/g, ""));
+  const prefix = value.startsWith("+") ? "+" : "";
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const [display, setDisplay] = useState(Number.isFinite(target) ? 0 : null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || !Number.isFinite(target) || typeof IntersectionObserver === "undefined") return;
+    let frame = 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        observer.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / 1400, 1);
+          setDisplay(Math.round(target * (1 - Math.pow(1 - progress, 3))));
+          if (progress < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [target]);
+
+  return (
+    <span ref={ref}>
+      {display === null ? value : `${prefix}${display}`}
+    </span>
+  );
+}
+
+export function ImpactChapter() {
+  return (
+    <SectionShell id="impacto" index="12" eyebrow="Impacto" title={<>Impacto</>}>
+      <div className="grid gap-8 md:grid-cols-2">
+        {metrics.map((metric, i) => (
+          <Reveal key={metric.label} delay={i * 120}>
+            <div className="surface-glass rounded-2xl p-10">
+              <p className="text-brand-gradient text-6xl leading-none font-semibold md:text-8xl">
+                <CountUp value={metric.value} />
+              </p>
+              <p className="mt-5 text-lg text-muted-foreground md:text-2xl">{metric.label}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+export function TestimonialsChapter() {
+  const [index, setIndex] = useState(0);
+  const total = testimonials.length;
+
+  return (
+    <SectionShell id="depoimentos" index="13" eyebrow="Depoimentos" title={<>Depoimentos</>}>
+      {total === 0 ? (
+        <PendingContent>
+          Área preparada para depoimentos reais. Envie as mensagens (com nome e relação profissional
+          autorizados) e elas aparecerão neste carrossel.
+        </PendingContent>
+      ) : (
+        <div className="surface-glass rounded-2xl p-10">
+          <blockquote className="text-2xl leading-snug md:text-4xl">
+            “{testimonials[index]!.quote}”
+          </blockquote>
+          <p className="mt-8 text-lg font-semibold md:text-xl">{testimonials[index]!.author}</p>
+          {testimonials[index]!.relation ? (
+            <p className="text-base text-muted-foreground">{testimonials[index]!.relation}</p>
+          ) : null}
+          <div className="mt-8 flex gap-3">
+            <button
+              type="button"
+              aria-label="Depoimento anterior"
+              onClick={() => setIndex((i) => (i - 1 + total) % total)}
+              className="rounded-full border border-border p-3 hover:bg-secondary"
+            >
+              <ChevronLeft className="size-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              aria-label="Próximo depoimento"
+              onClick={() => setIndex((i) => (i + 1) % total)}
+              className="rounded-full border border-border p-3 hover:bg-secondary"
+            >
+              <ChevronRight className="size-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      )}
+    </SectionShell>
+  );
+}
+
+export function FutureChapter() {
+  return (
+    <SectionShell id="futuro" index="14" eyebrow="Futuro" title={<>E agora?</>}>
+      <ol className="grid gap-4">
+        {futureSteps.map((step, i) => (
+          <Reveal key={step} delay={i * 110}>
+            <li
+              className={cn(
+                "text-3xl leading-tight font-semibold uppercase md:text-5xl lg:text-6xl",
+                i === futureSteps.length - 1 ? "text-brand-gradient" : "text-muted-foreground",
+              )}
+            >
+              {step}
+            </li>
+          </Reveal>
+        ))}
+      </ol>
+    </SectionShell>
+  );
+}
+
+const contactIcons = {
+  LinkedIn: Linkedin,
+  GitHub: Github,
+  WhatsApp: MessageCircle,
+  "E-mail": Mail,
+} as const;
+
+export function ContactChapter() {
+  return (
+    <SectionShell id="contato" index="15" eyebrow="Contato" className="bg-tech-grid">
+      <div className="text-center">
+        <Reveal>
+          <p className="text-5xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
+            <span className="text-brand-gradient">Huiatã Ribeiro</span>
+          </p>
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="eyebrow mt-6">Tecnologia • Educação • Inteligência Artificial</p>
+        </Reveal>
+        <Reveal delay={200}>
+          <p className="mx-auto mt-10 max-w-4xl text-xl leading-snug md:text-3xl">
+            {profile.closing}
+          </p>
+        </Reveal>
+        <Reveal delay={280}>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+            {contactLinks.map((link) => {
+              const Icon = contactIcons[link.label as keyof typeof contactIcons] ?? Mail;
+              const disabled = !link.url;
+              return (
+                <a
+                  key={link.label}
+                  href={link.url ?? "#contato"}
+                  aria-disabled={disabled}
+                  title={disabled ? `Link do ${link.label} a ser fornecido` : link.label}
+                  target={link.url ? "_blank" : undefined}
+                  rel={link.url ? "noreferrer" : undefined}
+                  className={cn(
+                    "inline-flex items-center gap-3 rounded-full border border-border px-7 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg",
+                    disabled && "text-muted-foreground",
+                  )}
+                >
+                  <Icon className="size-5" aria-hidden="true" />
+                  {link.label}
+                </a>
+              );
+            })}
+            <ResumeButton />
+          </div>
+        </Reveal>
+      </div>
+    </SectionShell>
+  );
+}
