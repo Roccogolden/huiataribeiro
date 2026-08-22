@@ -8,6 +8,7 @@ import {
   resumeUrl,
   timeline,
 } from "@/data/portfolio";
+import { photos } from "@/data/photos";
 import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
 
 export function IntroChapter({ onNext }: { onNext: () => void }) {
@@ -56,7 +57,8 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
         </div>
         <Reveal delay={200}>
           <PhotoPlaceholder
-            label="Fotografia profissional principal"
+            photo={photos.hero}
+            label="Instrutor de Informática — SENAI FIEG"
             className="float-soft mx-auto w-full max-w-md"
           />
         </Reveal>
@@ -99,7 +101,7 @@ export function AboutChapter() {
     >
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
         <Reveal>
-          <PhotoPlaceholder label="Fotografia profissional secundária" ratio="square" />
+          <PhotoPlaceholder photo={photos.about} label="Docência, tecnologia e educação" ratio="square" />
         </Reveal>
         <ul className="grid gap-4">
           {aboutPoints.map((point, i) => (

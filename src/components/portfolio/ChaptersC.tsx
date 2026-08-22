@@ -10,7 +10,16 @@ import {
   profile,
   testimonials,
 } from "@/data/portfolio";
+import { photos } from "@/data/photos";
 import { PendingContent, PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
+
+/** Registros reais de sala de aula e eventos. */
+const classroomPhotos = [
+  { label: "Sala de aula", photo: photos.teaching },
+  { label: "Com estudantes", photo: photos.candid },
+  { label: "Projeto em aula", photo: photos.mentoring },
+  { label: "Registro espontâneo", photo: photos.perspective },
+] as const;
 import { ResumeButton } from "./ChaptersA";
 
 export function EducationTechChapter() {
@@ -47,13 +56,11 @@ export function EducationTechChapter() {
           ))}
         </ul>
         <div className="grid grid-cols-2 gap-5">
-          {["Sala de aula", "Com estudantes", "Projeto em aula", "Registro espontâneo"].map(
-            (label, i) => (
-              <Reveal key={label} delay={i * 90}>
-                <PhotoPlaceholder label={label} ratio="landscape" />
-              </Reveal>
-            ),
-          )}
+          {classroomPhotos.map(({ label, photo }, i) => (
+            <Reveal key={label} delay={i * 90}>
+              <PhotoPlaceholder photo={photo} label={label} ratio="landscape" />
+            </Reveal>
+          ))}
         </div>
       </div>
     </SectionShell>

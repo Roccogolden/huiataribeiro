@@ -2,7 +2,19 @@ import { useState } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { doingWords, projects, skills } from "@/data/portfolio";
+import { photos } from "@/data/photos";
 import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
+
+/** Registros usados como capa dos projetos. */
+const projectPhotos = [photos.award, photos.classroom, photos.event] as const;
+
+/** Grade "tecnologia na prática". */
+const practicePhotos = [
+  { label: "Projetos", photo: photos.award },
+  { label: "Aulas práticas", photo: photos.classroom },
+  { label: "Tecnologia", photo: photos.mentoring },
+  { label: "Experiências reais", photo: photos.academy },
+] as const;
 
 export function DoingChapter() {
   const [active, setActive] = useState(0);
@@ -100,7 +112,8 @@ export function ProjectsChapter() {
           <Reveal key={project.name} delay={i * 100}>
             <article className="surface-glass group h-full overflow-hidden rounded-2xl">
               <PhotoPlaceholder
-                label={`Imagem / mockup — ${project.name}`}
+                photo={projectPhotos[i % projectPhotos.length]}
+                label={project.name}
                 ratio="landscape"
                 className="rounded-none border-0 border-b border-border shadow-none"
               />
@@ -166,9 +179,9 @@ export function PracticeChapter() {
           </Reveal>
         </div>
         <div className="grid grid-cols-2 gap-5">
-          {["Projetos", "Aulas práticas", "Tecnologia", "Experiências reais"].map((label, i) => (
+          {practicePhotos.map(({ label, photo }, i) => (
             <Reveal key={label} delay={i * 100}>
-              <PhotoPlaceholder label={label} ratio="square" />
+              <PhotoPlaceholder photo={photo} label={label} ratio="square" />
             </Reveal>
           ))}
         </div>
