@@ -110,20 +110,50 @@ export function SectionShell({
 }
 
 /**
- * Espaço reservado para fotografias reais.
- * Nunca exibe rostos genéricos — apenas geometria abstrata.
+ * Exibe uma fotografia real quando `photo` é fornecida.
+ * Sem foto, mantém um espaço reservado abstrato (nunca rostos genéricos).
  */
 export function PhotoPlaceholder({
   label,
   className,
   ratio = "portrait",
+  photo,
 }: {
   label: string;
   className?: string;
   ratio?: "portrait" | "landscape" | "square";
+  photo?: { readonly src: string; readonly alt: string; readonly position?: string };
 }) {
   const ratioClass =
     ratio === "portrait" ? "aspect-[3/4]" : ratio === "square" ? "aspect-square" : "aspect-video";
+
+  if (photo) {
+    return (
+      <figure
+        className={cn(
+          "surface-glass group relative overflow-hidden rounded-2xl",
+          ratioClass,
+          className,
+        )}
+      >
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          loading="lazy"
+          decoding="async"
+          style={{ objectPosition: photo.position ?? "50% 30%" }}
+          className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent"
+          aria-hidden="true"
+        />
+        <figcaption className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium text-foreground/90 md:text-base">
+          {label}
+        </figcaption>
+      </figure>
+    );
+  }
 
   return (
     <figure
@@ -144,6 +174,7 @@ export function PhotoPlaceholder({
     </figure>
   );
 }
+
 
 /** Aviso honesto de conteúdo ainda não fornecido (evita dados inventados). */
 export function PendingContent({ children }: { children: ReactNode }) {
