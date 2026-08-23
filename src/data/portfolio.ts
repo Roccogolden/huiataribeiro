@@ -309,7 +309,7 @@ export interface ContactLink {
 }
 
 export const contactLinks: readonly ContactLink[] = [
-  { label: "LinkedIn" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/huiataribeiro" },
   { label: "WhatsApp", url: "https://wa.me/5562986184295" },
   { label: "E-mail", url: "mailto:huiataribeiro@gmail.com" },
   { label: "Telefone", url: "tel:+5562986184295" },

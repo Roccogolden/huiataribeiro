@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ArrowRight, Download } from "lucide-react";
+import { ArrowDown, ArrowRight, Download, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   aboutPoints,
@@ -52,6 +52,15 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
                 <ArrowRight className="size-5" aria-hidden="true" />
               </button>
               <ResumeButton />
+              <a
+                href="https://www.linkedin.com/in/huiataribeiro"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg"
+              >
+                <Linkedin className="size-5" aria-hidden="true" />
+                LinkedIn
+              </a>
             </div>
           </Reveal>
         </div>
