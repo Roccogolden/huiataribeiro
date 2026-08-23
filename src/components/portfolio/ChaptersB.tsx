@@ -112,7 +112,7 @@ export function ProjectsChapter() {
           <Reveal key={project.name} delay={i * 100}>
             <article className="surface-glass group h-full overflow-hidden rounded-2xl">
               <PhotoPlaceholder
-                photo={projectPhotos[i % projectPhotos.length]}
+                photo={projectPhotos[i % projectPhotos.length]!}
                 label={project.name}
                 ratio="landscape"
                 className="rounded-none border-0 border-b border-border shadow-none"
