@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ArrowRight, Download } from "lucide-react";
+import { ArrowDown, ArrowRight, Download, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   aboutPoints,
