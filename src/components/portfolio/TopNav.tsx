@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, Monitor, ScrollText, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ResumeButton } from "./ChaptersA";
 
 const menu = [
   { id: "sobre", label: "Sobre" },
@@ -66,12 +65,8 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
             ) : (
               <Monitor className="size-4" aria-hidden="true" />
             )}
-            {presenting ? "Modo portfólio" : "Modo apresentação"}
+          {presenting ? "Modo portfólio" : "Modo apresentação"}
           </button>
-
-          <div className="hidden md:block">
-            <ResumeButton className="px-6 py-3 text-sm md:text-base" />
-          </div>
 
           {!presenting ? (
             <button
@@ -109,7 +104,6 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
               {item.label}
             </button>
           ))}
-          <ResumeButton className="mt-2 justify-center text-base" />
         </nav>
       ) : null}
     </header>
