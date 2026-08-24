@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ArrowRight, Download, Linkedin } from "lucide-react";
+import { ArrowDown, ArrowRight, Download, Linkedin, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   aboutPoints,
@@ -10,6 +10,18 @@ import {
 } from "@/data/portfolio";
 import { photos } from "@/data/photos";
 import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
+
+const whatsappUrl = `https://wa.me/55${profile.phone.replace(/\D/g, "")}`;
+
+const ctaBase =
+  "inline-flex h-14 min-h-[56px] w-full items-center justify-center gap-2 rounded-full px-6 text-base font-semibold whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:px-8 md:text-lg";
+
+const ctaPrimary = cn(
+  ctaBase,
+  "glow-brand bg-primary text-primary-foreground hover:scale-[1.03]",
+);
+
+const ctaSecondary = cn(ctaBase, "border border-border hover:bg-secondary");
 
 export function IntroChapter({ onNext }: { onNext: () => void }) {
   return (
@@ -42,28 +54,48 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
             <p className="mt-6 max-w-2xl text-xl leading-snug md:text-3xl">{profile.tagline}</p>
           </Reveal>
           <Reveal delay={320}>
-            <div className="mt-12 flex flex-col gap-4 xl:flex-row xl:flex-wrap xl:items-center">
-              <button
-                type="button"
-                onClick={onNext}
-                className="glow-brand inline-flex items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-transform hover:scale-[1.03] md:text-lg"
-              >
-                Conheça minha trajetória
-                <ArrowRight className="size-5" aria-hidden="true" />
-              </button>
-              <div className="flex flex-wrap items-center gap-4">
-                <ResumeButton />
-                <a
-                  href="https://www.linkedin.com/in/huiataribeiro"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg"
-                >
-                  <Linkedin className="size-5" aria-hidden="true" />
-                  LinkedIn
-                </a>
-              </div>
-            </div>
+            <nav aria-label="Ações principais" className="mt-12">
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <li className="sm:col-span-2">
+                  <button
+                    type="button"
+                    onClick={onNext}
+                    className={ctaPrimary}
+                    aria-label="Conheça minha trajetória — ir para a próxima seção"
+                  >
+                    Conheça minha trajetória
+                    <ArrowRight className="size-5" aria-hidden="true" />
+                  </button>
+                </li>
+                <li>
+                  <ResumeButton className={ctaSecondary} aria-label="Baixar currículo em PDF" />
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/huiataribeiro"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={ctaSecondary}
+                    aria-label="Visitar perfil LinkedIn de Huiatã Ribeiro (abre em nova aba)"
+                  >
+                    <Linkedin className="size-5" aria-hidden="true" />
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={ctaSecondary}
+                    aria-label="Iniciar conversa no WhatsApp com Huiatã Ribeiro (abre em nova aba)"
+                  >
+                    <MessageCircle className="size-5" aria-hidden="true" />
+                    WhatsApp
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </Reveal>
         </div>
         <Reveal delay={200}>
@@ -81,15 +113,22 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
   );
 }
 
-export function ResumeButton({ className }: { className?: string }) {
+export function ResumeButton({
+  className,
+  "aria-label": ariaLabel,
+}: {
+  className?: string;
+  "aria-label"?: string;
+}) {
   const disabled = !resumeUrl;
   return (
     <a
       href={resumeUrl ?? "#contato"}
       aria-disabled={disabled}
+      aria-label={ariaLabel ?? (disabled ? "Currículo em PDF ainda não fornecido" : "Baixar currículo em PDF")}
       title={disabled ? "Currículo em PDF ainda não fornecido" : "Baixar currículo"}
       className={cn(
-        "inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg",
+        "inline-flex items-center gap-2 rounded-full border border-border px-6 py-4 text-base font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background hover:bg-secondary md:px-8 md:text-lg",
         disabled && "text-muted-foreground",
         className,
       )}
