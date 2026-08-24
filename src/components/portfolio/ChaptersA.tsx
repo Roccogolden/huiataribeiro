@@ -42,25 +42,27 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
             <p className="mt-6 max-w-2xl text-xl leading-snug md:text-3xl">{profile.tagline}</p>
           </Reveal>
           <Reveal delay={320}>
-            <div className="mt-12 flex flex-wrap gap-4">
+            <div className="mt-12 flex flex-col gap-4 xl:flex-row xl:flex-wrap xl:items-center">
               <button
                 type="button"
                 onClick={onNext}
-                className="glow-brand inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-transform hover:scale-[1.03] md:text-lg"
+                className="glow-brand inline-flex items-center justify-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-transform hover:scale-[1.03] md:text-lg"
               >
                 Conheça minha trajetória
                 <ArrowRight className="size-5" aria-hidden="true" />
               </button>
-              <ResumeButton />
-              <a
-                href="https://www.linkedin.com/in/huiataribeiro"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg"
-              >
-                <Linkedin className="size-5" aria-hidden="true" />
-                LinkedIn
-              </a>
+              <div className="flex flex-wrap items-center gap-4">
+                <ResumeButton />
+                <a
+                  href="https://www.linkedin.com/in/huiataribeiro"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg"
+                >
+                  <Linkedin className="size-5" aria-hidden="true" />
+                  LinkedIn
+                </a>
+              </div>
             </div>
           </Reveal>
         </div>
