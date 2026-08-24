@@ -14,7 +14,7 @@ import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
 const whatsappUrl = `https://wa.me/55${profile.phone.replace(/\D/g, "")}`;
 
 const ctaBase =
-  "inline-flex h-14 min-h-[56px] w-full items-center justify-center gap-2 rounded-full px-6 text-base font-semibold whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:px-8 md:text-lg";
+  "inline-flex h-14 min-h-[56px] w-full items-center justify-center gap-2 rounded-full px-6 text-base font-semibold whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:px-8 md:text-lg lg:w-auto";
 
 const ctaPrimary = cn(
   ctaBase,
