@@ -7,7 +7,7 @@
  * para que a interface exiba um espaço reservado.
  */
 
-import resumeAsset from "@/assets/curriculo.pdf.asset.json";
+import resumeAsset from "@/assets/Huiata-Ribeiro-Curriculo-2026.pdf?url";
 
 export interface Chapter {
   readonly id: string;
@@ -316,4 +316,4 @@ export const contactLinks: readonly ContactLink[] = [
 ];
 
 /** Currículo em PDF publicado como asset do projeto. */
-export const resumeUrl: string | undefined = resumeAsset.url;
+export const resumeUrl: string | undefined = resumeAsset;
