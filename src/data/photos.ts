@@ -12,6 +12,7 @@ import foto7 from "@/assets/foto-7.jpg.asset.json";
 import foto8 from "@/assets/foto-8.jpg.asset.json";
 import foto9 from "@/assets/foto-9.jpg.asset.json";
 import foto10 from "@/assets/foto-10.jpg.asset.json";
+import fotoHeroPrincipal from "@/assets/foto-hero-principal.jpg.asset.json";
 
 export interface PhotoRef {
   readonly src: string;
@@ -22,9 +23,9 @@ export interface PhotoRef {
 
 export const photos = {
   hero: {
-    src: foto9.url,
+    src: fotoHeroPrincipal.url,
     alt: "Huiatã Ribeiro com camiseta da Academia de Neurodocência do SENAI",
-    position: "50% 25%",
+    position: "50% 15%",
   },
   about: {
     src: foto10.url,
