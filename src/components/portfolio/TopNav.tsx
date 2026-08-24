@@ -65,7 +65,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
             ) : (
               <Monitor className="size-4" aria-hidden="true" />
             )}
-          {presenting ? "Modo portfólio" : "Modo apresentação"}
+            {presenting ? "Modo portfólio" : "Modo apresentação"}
           </button>
 
           {!presenting ? (
