@@ -421,6 +421,30 @@ export const testimonials: readonly Testimonial[] = [
     author: "Jordana",
     relation: "1º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
+  {
+    quote:
+      "Entrei no curso técnico em Desenvolvimento de Sistemas no primeiro ano, e hoje já no segundo ano, posso dizer que foi uma das melhores experiências que já tive. Durante esse tempo, aprendi muito mais do que programação e tecnologia. Aprendi a acreditar mais em mim e a enxergar que sou capaz de ir muito além do que imaginava. Grande parte disso eu devo ao professor Huiatã Ribeiro. Ele é um professor incrível, daqueles que realmente se importam com os alunos. Pra mim, ele foi muito mais do que um professor, foi como um pai em vários momentos, sempre incentivando, apoiando e mostrando que eu era capaz de enfrentar qualquer desafio. Sou muito grata por tudo que aprendi nesse curso e por ter tido a oportunidade de conhecer um profissional e ser humano tão especial. Tenho muito carinho e admiração pelo professor Huiatã e pelo curso, que marcaram minha vida de uma forma que vou levar pra sempre.",
+    author: "Adrielly",
+    relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "E o Huiatã não preciso nem falar... O tanto que fez o possível e o impossível, somos eternamente gratos por tudo, por ter nos apoiado, nos ter confiado essa responsabilidade que levava também o seu nome em jogo, nosso professor e paizão, muito obrigada Huiatã, por dar sempre o seu máximo por nós! O carinho que eu e todos temos por você nunca vai mudar! Obrigada por ser um grande professor, amigo e parceiro!",
+    author: "Bianca",
+    relation: "Aluna · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Obrigado pela dedicação, pela paciência e por sempre nos incentivar a dar o nosso melhor. Suas aulas vão muito além do conteúdo — elas nos ensinam responsabilidade, trabalho em equipe e confiança. Se não fosse pelo seu apoio, incentivo e confiança em nossa turma, nada disso teria acontecido da mesma forma.",
+    author: "Anna Beatriz",
+    relation: "Aluna · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Agradeço muito a você, professor! Se não fosse pela sua orientação e pelo que nos ensinou, nada disso teria dado certo. Muito obrigado por tudo!",
+    author: "Nara",
+    relation: "Aluna · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
 ];
 
 export const futureSteps: readonly string[] = [
