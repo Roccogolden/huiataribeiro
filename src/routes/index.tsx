@@ -17,6 +17,7 @@ import {
 } from "@/components/portfolio/ChaptersB";
 import {
   AiChapter,
+  ClassroomDynamicsChapter,
   ContactChapter,
   EducationTechChapter,
   FormationChapter,
@@ -142,6 +143,7 @@ function PortfolioPage() {
     <ProjectsChapter key="projetos" />,
     <PracticeChapter key="pratica" />,
     <EducationTechChapter key="educacao" />,
+    <ClassroomDynamicsChapter key="dinamicas" />,
     <AiChapter key="ia" />,
     <FormationChapter key="formacao" />,
     <ImpactChapter key="impacto" />,

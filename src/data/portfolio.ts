@@ -25,12 +25,13 @@ export const chapters: readonly Chapter[] = [
   { id: "projetos", index: "07", label: "PROJETOS" },
   { id: "pratica", index: "08", label: "PRÁTICA" },
   { id: "educacao", index: "09", label: "EDUCAÇÃO" },
-  { id: "ia", index: "10", label: "IA" },
-  { id: "formacao", index: "11", label: "FORMAÇÃO" },
-  { id: "impacto", index: "12", label: "IMPACTO" },
-  { id: "depoimentos", index: "13", label: "DEPOIMENTOS" },
-  { id: "futuro", index: "14", label: "FUTURO" },
-  { id: "contato", index: "15", label: "CONTATO" },
+  { id: "dinamicas", index: "10", label: "DINÂMICAS" },
+  { id: "ia", index: "11", label: "IA" },
+  { id: "formacao", index: "12", label: "FORMAÇÃO" },
+  { id: "impacto", index: "13", label: "IMPACTO" },
+  { id: "depoimentos", index: "14", label: "DEPOIMENTOS" },
+  { id: "futuro", index: "15", label: "FUTURO" },
+  { id: "contato", index: "16", label: "CONTATO" },
 ];
 
 export const profile = {
@@ -230,16 +231,56 @@ export interface Project {
 
 export const projects: readonly Project[] = [
   {
-    name: "Desafio R$ 2",
-    summary: "Projeto educacional gamificado conduzido com as turmas.",
+    name: "Desafio dos R$ 2,00",
+    summary: "Aplicativo gamificado de educação financeira e empreendedorismo criado com as turmas.",
+    problem:
+      "Ensinar educação financeira e empreendedorismo de forma prática para as turmas do 2º ano do Técnico em Desenvolvimento de Sistemas, na disciplina Projeto de Vida.",
+    solution:
+      "Aplicativo web gamificado (Ago–Nov): cada dupla recebe um capital inicial de R$ 2,00 e precisa transformá-lo em algo maior através de metas mensais progressivas, lançamentos auditados, sistema de XP e ranking ao vivo entre as turmas 2º TDS A e 2º TDS B. Em menos de 3 semanas, o patrimônio total das equipes já havia ultrapassado R$ 1.200.",
+    tech: ["Lovable"],
+    url: "https://desafio2reais.lovable.app/",
   },
   {
     name: "Cápsula do Tempo",
-    summary: "Projeto digital relacionado à experiência educacional.",
+    summary: "Cápsula do Tempo — Upgrade 3.0: uma reflexão guiada sobre evolução pessoal ao longo do tempo.",
+    problem:
+      "Ajudar os alunos a fazer um diagnóstico honesto de si mesmos hoje — reflexões e planos — para comparar com quem eles serão no futuro.",
+    solution:
+      "Dinâmica estruturada como Upgrade 3.0: cada aluno registra um diagnóstico, reflexões e planos como 'eu de hoje' (agosto/2026), guardados em uma cápsula do tempo digital para serem reabertos como 'eu do futuro' em novembro de 2027. A regra central: não é sobre ser perfeito, é sobre perceber o quanto é possível evoluir.",
+    tech: ["Lovable"],
+    url: "https://upgrade3.lovable.app/",
   },
   {
     name: "Personal Lindy",
-    summary: "Projeto de presença digital e desenvolvimento de solução web.",
+    summary: "Landing page para a Personal Lindy, personal trainer online, com captação de clientes via WhatsApp.",
+    problem:
+      "Dar presença digital profissional a um serviço de personal trainer online, com uma landing page que apresente os treinos personalizados e facilite o contato direto com clientes.",
+    solution:
+      "Página estruturada no Lovable, com código versionado no GitHub, deploy contínuo na Vercel e também com repositório Git local no PC. Domínio próprio (personallindy.com.br) configurado pela Hostinger. Desenvolvimento apoiado por Claude Code, VS Code (Python) e Antigravity.",
+    tech: ["Lovable", "GitHub", "Vercel", "Hostinger", "Claude Code", "VS Code", "Python", "Antigravity"],
+    url: "https://personallindy.com.br/",
+  },
+  {
+    name: "Reserva Lab",
+    summary:
+      "Sistema de reserva do laboratório de informática do CEPI Elberto Alves, desenvolvido pelos alunos do 2º ano A e B.",
+    problem:
+      "O laboratório de informática do CEPI Elberto Alves era reservado em papel, dificultando o controle e gerando conflitos de agenda.",
+    solution:
+      "Sistema digital de reserva de laboratório, desenvolvido pelas turmas do 2º ano A e B do Técnico em Desenvolvimento de Sistemas como projeto das disciplinas de Projetos e Programação de Aplicativos, substituindo o controle em papel por um fluxo digital.",
+    tech: ["Lovable"],
+    url: "https://reserva-lab.lovable.app/",
+  },
+  {
+    name: "Top Burguer",
+    summary:
+      "Simulação de hamburgueria inteligente — projeto de culminância do Técnico em Desenvolvimento de Sistemas.",
+    problem:
+      "Simular, na prática, como a tecnologia resolve os gargalos do atendimento tradicional: filas e espera, erros de comunicação entre atendimento e cozinha, gestão sem dados em tempo real e processos manuais.",
+    solution:
+      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves, turmas do 2º ano A e B), sob responsabilidade dos professores Huiatã Ribeiro e Maurício: uma hamburgueria simulada 100% digital, com cardápio e pedidos via QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando metodologias como Design Thinking, Brainstorming e Business Model Canvas.",
+    tech: ["Lovable"],
+    url: "https://topburguer.lovable.app/",
   },
 ];
 
@@ -249,6 +290,38 @@ export const aiAreas: readonly string[] = [
   "Apoio ao AVA",
   "Capacitação docente",
   "Gestão e produtividade",
+];
+
+/**
+ * Dinâmicas de sala de aula — extraídas do material "Experiências Práticas nas aulas
+ * do Curso Técnico em Desenvolvimento de Sistemas (Senai)", turmas do 1º ano A e B.
+ */
+export const classroomDynamics: readonly string[] = [
+  "Montagem de Computador",
+  "Desafios de Lógica",
+  "Simulações em Grupo",
+  "Segurança da Informação",
+  "Simulação de Prototipagem de Aplicativo",
+  "Montagem de Mini Rede LAN",
+  "Introdução à Internet das Coisas (IoT)",
+  "Conceito dos 3R's",
+  "Aplicando os 5S",
+  "Programação em Blocos com Scratch e Robótica",
+  "Simulação de Consultoria",
+  "Árvores da Vida",
+  "Estágio, Jovem Aprendiz e Simulação de Entrevista",
+  "Simulação de Comunicação",
+  "Introdução a Banco de Dados",
+  "Programando um Robô Humano",
+  "Gestão e Descarte de Resíduos na Escola",
+  "Lógica de Programação com Python",
+];
+
+/** Resultados observados com as dinâmicas práticas, conforme o mesmo material. */
+export const classroomResults: readonly Metric[] = [
+  { value: "85%", label: "Maior participação durante as aulas práticas" },
+  { value: "3x", label: "Mais perguntas e dúvidas em sala — sinal de interesse genuíno" },
+  { value: "70%", label: "Autonomia crescente: alunos buscando desafios extras" },
 ];
 
 /** Formação acadêmica — conforme currículo. */
@@ -293,7 +366,62 @@ export interface Testimonial {
 }
 
 /** Depoimentos: somente mensagens reais fornecidas pelo usuário. */
-export const testimonials: readonly Testimonial[] = [];
+export const testimonials: readonly Testimonial[] = [
+  {
+    quote:
+      "Fazer o curso de Desenvolvimento de Sistemas tem sido uma experiência muito boa. Mesmo sem toda a estrutura que o curso precisa, a gente consegue aprender bastante. O professor Huiatã Ribeiro sempre prepara as aulas e ajuda a gente a desenvolver novas habilidades. Nesse tempo de curso, aprendi muitas coisas que vão me ajudar no futuro e na minha entrada no mercado de trabalho.",
+    author: "Nivia Vitória",
+    relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Durante o curso aprendi várias coisas que não fazia ideia que conseguia, com o auxílio do professor Huiatã Ribeiro aprendemos não só a lidar com os desafios dentro de sala de aula, mais também com os desafios da vida, vou sempre levar comigo a certeza de que fazer o curso foi a minha melhor escolha.",
+    author: "Izabelly Ramos",
+    relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Ter a oportunidade de fazer o curso de Desenvolvimento de Sistemas juntamente ao professor Huiatã Ribeiro não foi somente um aprendizado escolar, mas são lições que eu vou levar para vida, ele não é apenas um professor para nossa turma, mas também é um pai. Ele ensina, educa, pega no pé sempre que necessário e é nosso amigo que sempre estará ali caso a gente precise de apoio ou qualquer ajuda. Ter a oportunidade de ter um professor igual a ele foi a melhor coisa que me aconteceu, sou muito grata por tudo.",
+    author: "Isadora Gomes Lima",
+    relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Fazer parte do curso de Desenvolvimento de Sistemas está sendo uma experiência muito especial para mim. Além dos conhecimentos que estou aprendendo, também estou aprendendo lições que vou levar para a vida. O professor Huiatã não ensina apenas a matéria, ele se preocupa com cada aluno, incentiva, orienta e sempre procura o melhor para todos nós. Quando precisamos de ajuda, ele está disposto a ouvir e apoiar, e quando é necessário, também nos corrige para que possamos crescer e evoluir. Sua dedicação, paciência e carinho com a turma faz toda a diferença. Sou muito grata pela oportunidade de aprender com um professor tão especial e por tudo o que esse curso está me ensinando.",
+    author: "Thárcila da Silva Dias",
+    relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Quando comecei o curso Técnico em Desenvolvimento de Sistemas, não imaginava o quanto essa experiência iria contribuir para o meu crescimento. Ao longo dessa jornada, aprendi muito sobre tecnologia, programação e trabalho em equipe, desenvolvendo habilidades que levarei para a vida toda. Além das aulas, tivemos experiências incríveis, como as visitas técnicas aos data centers, que nos permitiram conhecer na prática como funciona a área de tecnologia e ampliar nossa visão sobre o mercado de trabalho. Também gostaria de agradecer ao professor Huiatã Ribeiro, que sempre nos incentivou a buscar mais conhecimento, enfrentar desafios e acreditar no nosso potencial. Sua dedicação fez toda a diferença na nossa formação. Hoje tenho a certeza de que escolher esse curso foi uma decisão muito importante para o meu futuro, e sou grata por todas as oportunidades, aprendizados e experiências que vivi durante essa trajetória.",
+    author: "Ana Beatriz dos Santos Filgueiras",
+    relation: "2º Ano B · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Ter a oportunidade de ser aluno do professor Huiatã foi um privilégio. Seu impacto vai muito além do conteúdo do curso, pois ele contribui diretamente para a formação de pessoas melhores e mais preparadas para o futuro. Sou extremamente grato por tudo o que aprendi e tenho certeza de que essa experiência marcará minha vida para sempre.",
+    author: "Samuel Vitor Alves Silva",
+    relation: "2º Ano B · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Achei que programação seria difícil demais, mas, em um curso que estava fazendo fora da escola, o professor começou a explicar sobre programação. Na hora, lembrei das aulas do curso técnico no SENAI e consegui fazer alguns comandos. O professor ficou impressionado e me elogiou bastante! Foi muito gratificante ver que realmente aprendi.",
+    author: "Bryan",
+    relation: "1º Ano B · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "A aula em que desmontamos e montamos um computador foi incrível! Nunca imaginei que tinha tanta coisa dentro. Agora entendo melhor como tudo funciona junto.",
+    author: "Pablo",
+    relation: "1º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+  {
+    quote:
+      "Na aula prática de entrevista de emprego, recebi vários feedbacks sobre meu currículo e minha postura. Segui todas as orientações, ajustei meu currículo e comecei a me candidatar a vagas. Pouco tempo depois, recebi duas propostas de trabalho! Essa experiência me mostrou o quanto essas aulas práticas fazem diferença de verdade.",
+    author: "Jordana",
+    relation: "1º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
+  },
+];
 
 export const futureSteps: readonly string[] = [
   "Educação Profissional",
@@ -317,3 +445,7 @@ export const contactLinks: readonly ContactLink[] = [
 
 /** Currículo em PDF publicado como asset do projeto. */
 export const resumeUrl: string | undefined = resumeAsset;
+
+/** Pasta compartilhada com os registros das aulas do Técnico em Desenvolvimento de Sistemas (SENAI). */
+export const classroomDriveUrl =
+  "https://drive.google.com/drive/folders/1Wv8JwaqaLX1Awhp_HPAC_hjb1Pz1YBPu?usp=drive_link";

@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Mail, Github, Linkedin, MessageCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Mail, Github, Linkedin, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   aiAreas,
+  classroomDriveUrl,
+  classroomDynamics,
+  classroomResults,
   contactLinks,
   education,
   futureSteps,
@@ -55,13 +58,65 @@ export function EducationTechChapter() {
             </Reveal>
           ))}
         </ul>
-        <div className="grid grid-cols-2 gap-5">
-          {classroomPhotos.map(({ label, photo }, i) => (
-            <Reveal key={label} delay={i * 90}>
-              <PhotoPlaceholder photo={photo} label={label} ratio="landscape" />
-            </Reveal>
-          ))}
+        <div>
+          <div className="grid grid-cols-2 gap-5">
+            {classroomPhotos.map(({ label, photo }, i) => (
+              <Reveal key={label} delay={i * 90}>
+                <PhotoPlaceholder photo={photo} label={label} ratio="landscape" />
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={360}>
+            <a
+              href={classroomDriveUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="surface-glass mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold hover:bg-secondary"
+              aria-label="Ver todos os registros das aulas no Google Drive (abre em nova aba)"
+            >
+              Ver todos os registros das aulas
+              <ExternalLink className="size-4" aria-hidden="true" />
+            </a>
+          </Reveal>
         </div>
+      </div>
+    </SectionShell>
+  );
+}
+
+export function ClassroomDynamicsChapter() {
+  return (
+    <SectionShell
+      id="dinamicas"
+      index="10"
+      eyebrow="Dinâmicas em Sala"
+      title={
+        <>
+          Pequenas mudanças em sala,
+          <br />
+          <span className="text-brand-gradient">grandes transformações.</span>
+        </>
+      }
+      lead="Dinâmicas e atividades que têm engajado os alunos e transformado a aprendizagem — turmas do 1º ano do Ensino Médio Técnico, com celulares pessoais, Chromebooks compartilhados e muita criatividade."
+    >
+      <ul className="flex flex-wrap gap-3">
+        {classroomDynamics.map((item, i) => (
+          <Reveal key={item} delay={i * 40}>
+            <li className="surface-glass rounded-full px-5 py-2.5 text-base md:text-lg">{item}</li>
+          </Reveal>
+        ))}
+      </ul>
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {classroomResults.map((result, i) => (
+          <Reveal key={result.label} delay={i * 120}>
+            <div className="surface-glass rounded-2xl p-8">
+              <p className="text-brand-gradient text-5xl leading-none font-semibold md:text-7xl">
+                <CountUp value={result.value} />
+              </p>
+              <p className="mt-4 text-base text-muted-foreground md:text-lg">{result.label}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </SectionShell>
   );
@@ -69,7 +124,7 @@ export function EducationTechChapter() {
 
 export function AiChapter() {
   return (
-    <SectionShell id="ia" index="10" eyebrow="Inteligência Artificial">
+    <SectionShell id="ia" index="11" eyebrow="Inteligência Artificial">
       <div className="max-w-5xl">
         <Reveal>
           <p className="text-3xl font-semibold md:text-5xl">A tecnologia mudou.</p>
@@ -100,7 +155,7 @@ export function AiChapter() {
 
 export function FormationChapter() {
   return (
-    <SectionShell id="formacao" index="11" eyebrow="Formação" title={<>Formação</>}>
+    <SectionShell id="formacao" index="12" eyebrow="Formação" title={<>Formação</>}>
       {education.length === 0 ? (
         <PendingContent>
           Espaço reservado para graduação, pós-graduações, MBA/GMBA, cursos e certificações. Envie os
@@ -163,7 +218,7 @@ function CountUp({ value }: { value: string }) {
 
 export function ImpactChapter() {
   return (
-    <SectionShell id="impacto" index="12" eyebrow="Impacto" title={<>Impacto</>}>
+    <SectionShell id="impacto" index="13" eyebrow="Impacto" title={<>Impacto</>}>
       <div className="grid gap-8 md:grid-cols-2">
         {metrics.map((metric, i) => (
           <Reveal key={metric.label} delay={i * 120}>
@@ -185,7 +240,7 @@ export function TestimonialsChapter() {
   const total = testimonials.length;
 
   return (
-    <SectionShell id="depoimentos" index="13" eyebrow="Depoimentos" title={<>Depoimentos</>}>
+    <SectionShell id="depoimentos" index="14" eyebrow="Depoimentos" title={<>Depoimentos</>}>
       {total === 0 ? (
         <PendingContent>
           Área preparada para depoimentos reais. Envie as mensagens (com nome e relação profissional
@@ -226,7 +281,7 @@ export function TestimonialsChapter() {
 
 export function FutureChapter() {
   return (
-    <SectionShell id="futuro" index="14" eyebrow="Futuro" title={<>E agora?</>}>
+    <SectionShell id="futuro" index="15" eyebrow="Futuro" title={<>E agora?</>}>
       <ol className="grid gap-4">
         {futureSteps.map((step, i) => (
           <Reveal key={step} delay={i * 110}>
@@ -254,7 +309,7 @@ const contactIcons = {
 
 export function ContactChapter() {
   return (
-    <SectionShell id="contato" index="15" eyebrow="Contato" className="bg-tech-grid">
+    <SectionShell id="contato" index="16" eyebrow="Contato" className="bg-tech-grid">
       <div className="text-center">
         <Reveal>
           <p className="text-5xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
