@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
 import { chapters } from "@/data/portfolio";
+import ogImage from "@/assets/foto-hero-principal.jpg";
 import { TopNav } from "@/components/portfolio/TopNav";
 import { ProgressBar } from "@/components/portfolio/ProgressBar";
 import {
@@ -26,6 +27,7 @@ import {
   TestimonialsChapter,
 } from "@/components/portfolio/ChaptersC";
 
+const SITE_URL = "https://huiataribeiro-portfolio.vercel.app";
 const TITLE = "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial";
 const DESCRIPTION =
   "Portfólio profissional interativo de Huiatã Ribeiro — instrutor de tecnologia, desenvolvimento de sistemas e inteligência artificial. Trajetória, projetos e competências em formato de apresentação.";
@@ -38,9 +40,12 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "profile" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: `${SITE_URL}${ogImage}` },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: `${SITE_URL}${ogImage}` },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: SITE_URL }],
     scripts: [
       {
         type: "application/ld+json",

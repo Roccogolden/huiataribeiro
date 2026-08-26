@@ -10,8 +10,6 @@ import foto5 from "@/assets/foto-5.jpg";
 import foto6 from "@/assets/foto-6.jpg";
 import foto7 from "@/assets/foto-7.jpg";
 import foto8 from "@/assets/foto-8.jpg";
-import foto9 from "@/assets/foto-9.jpg";
-import foto10 from "@/assets/foto-10.jpg";
 import fotoHeroPrincipal from "@/assets/foto-hero-principal.jpg";
 import capaDesafio2Reais from "@/assets/capa-desafio-2reais.jpg";
 import capaPersonalLindy from "@/assets/capa-personal-lindy.jpg";
@@ -33,8 +31,8 @@ export const photos = {
     position: "50% 15%",
   },
   about: {
-    src: foto10,
-    alt: "Huiatã Ribeiro com credencial do Sistema FIEG",
+    src: foto6,
+    alt: "Huiatã Ribeiro em mirante de vidro com reflexo da paisagem",
     position: "50% 30%",
   },
   classroom: {

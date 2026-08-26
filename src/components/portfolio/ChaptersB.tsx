@@ -143,12 +143,6 @@ export function ProjectsChapter() {
                       {project.solution ?? "A ser preenchido com a descrição real."}
                     </dd>
                   </div>
-                  <div>
-                    <dt className="eyebrow text-[0.65rem]">Tecnologias</dt>
-                    <dd className="text-muted-foreground">
-                      {project.tech?.length ? project.tech.join(" · ") : "A confirmar."}
-                    </dd>
-                  </div>
                 </dl>
 
                 {project.url ? (

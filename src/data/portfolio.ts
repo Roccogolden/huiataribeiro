@@ -278,7 +278,7 @@ export const projects: readonly Project[] = [
     problem:
       "Simular, na prática, como a tecnologia resolve os gargalos do atendimento tradicional: filas e espera, erros de comunicação entre atendimento e cozinha, gestão sem dados em tempo real e processos manuais.",
     solution:
-      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves, turmas do 2º ano A e B), sob responsabilidade dos professores Huiatã Ribeiro e Maurício: uma hamburgueria simulada 100% digital, com cardápio e pedidos via QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando metodologias como Design Thinking, Brainstorming e Business Model Canvas.",
+      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves, turmas do 2º ano A e B), sob responsabilidade do professor Huiatã Ribeiro: uma hamburgueria simulada 100% digital, com cardápio e pedidos via QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando metodologias como Design Thinking, Brainstorming e Business Model Canvas.",
     tech: ["Lovable"],
     url: "https://topburguer.lovable.app/",
   },
