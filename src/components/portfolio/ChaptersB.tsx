@@ -11,6 +11,7 @@ const projectPhotos = [photos.award, photos.classroom, photos.event] as const;
 /** Capas reais de projetos específicos, quando disponíveis. */
 const projectCovers: Partial<Record<string, (typeof photos)[keyof typeof photos]>> = {
   "Desafio dos R$ 2,00": photos.desafio2Reais,
+  "Personal Lindy": photos.personalLindy,
 };
 
 /** Grade "tecnologia na prática". */

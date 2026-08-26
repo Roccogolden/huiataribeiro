@@ -14,6 +14,7 @@ import foto9 from "@/assets/foto-9.jpg";
 import foto10 from "@/assets/foto-10.jpg";
 import fotoHeroPrincipal from "@/assets/foto-hero-principal.jpg";
 import capaDesafio2Reais from "@/assets/capa-desafio-2reais.jpg";
+import capaPersonalLindy from "@/assets/capa-personal-lindy.jpg";
 
 export interface PhotoRef {
   readonly src: string;
@@ -77,5 +78,10 @@ export const photos = {
     src: capaDesafio2Reais,
     alt: "Placar ao vivo do Desafio dos R$ 2,00, com o comparativo entre turmas e o pódio das equipes",
     position: "50% 50%",
+  },
+  personalLindy: {
+    src: capaPersonalLindy,
+    alt: "Página inicial do site Personal Lindy, personal trainer online",
+    position: "50% 20%",
   },
 } as const satisfies Record<string, PhotoRef>;
