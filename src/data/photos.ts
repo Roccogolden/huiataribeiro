@@ -13,6 +13,7 @@ import foto8 from "@/assets/foto-8.jpg";
 import foto9 from "@/assets/foto-9.jpg";
 import foto10 from "@/assets/foto-10.jpg";
 import fotoHeroPrincipal from "@/assets/foto-hero-principal.jpg";
+import capaDesafio2Reais from "@/assets/capa-desafio-2reais.jpg";
 
 export interface PhotoRef {
   readonly src: string;
@@ -71,5 +72,10 @@ export const photos = {
     src: foto8,
     alt: "Huiatã ao lado do painel da Academia de Neurodocência SENAI FIEG",
     position: "50% 20%",
+  },
+  desafio2Reais: {
+    src: capaDesafio2Reais,
+    alt: "Placar ao vivo do Desafio dos R$ 2,00, com o comparativo entre turmas e o pódio das equipes",
+    position: "50% 50%",
   },
 } as const satisfies Record<string, PhotoRef>;

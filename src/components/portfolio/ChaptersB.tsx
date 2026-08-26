@@ -5,8 +5,13 @@ import { doingWords, projects, skills } from "@/data/portfolio";
 import { photos } from "@/data/photos";
 import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
 
-/** Registros usados como capa dos projetos. */
+/** Registros usados como capa dos projetos (fallback quando não há captura real do projeto). */
 const projectPhotos = [photos.award, photos.classroom, photos.event] as const;
+
+/** Capas reais de projetos específicos, quando disponíveis. */
+const projectCovers: Partial<Record<string, (typeof photos)[keyof typeof photos]>> = {
+  "Desafio dos R$ 2,00": photos.desafio2Reais,
+};
 
 /** Grade "tecnologia na prática". */
 const practicePhotos = [
@@ -112,7 +117,7 @@ export function ProjectsChapter() {
           <Reveal key={project.name} delay={i * 100}>
             <article className="surface-glass group h-full overflow-hidden rounded-2xl">
               <PhotoPlaceholder
-                photo={projectPhotos[i % projectPhotos.length]!}
+                photo={projectCovers[project.name] ?? projectPhotos[i % projectPhotos.length]!}
                 label={project.name}
                 ratio="landscape"
                 className="rounded-none border-0 border-b border-border shadow-none"
