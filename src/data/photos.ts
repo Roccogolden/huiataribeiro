@@ -17,6 +17,7 @@ import capaDesafio2Reais from "@/assets/capa-desafio-2reais.jpg";
 import capaPersonalLindy from "@/assets/capa-personal-lindy.jpg";
 import capaTopBurguer from "@/assets/capa-top-burguer.jpg";
 import capaCapsulaDoTempo from "@/assets/capa-capsula-do-tempo.jpg";
+import capaReservaLab from "@/assets/capa-reserva-lab.jpg";
 
 export interface PhotoRef {
   readonly src: string;
@@ -95,5 +96,10 @@ export const photos = {
     src: capaCapsulaDoTempo,
     alt: "Case metálico usado para guardar a cápsula do tempo física da turma",
     position: "50% 40%",
+  },
+  reservaLab: {
+    src: capaReservaLab,
+    alt: "Tela do sistema de reserva do laboratório de informática do CEPI Elberto Alves",
+    position: "50% 20%",
   },
 } as const satisfies Record<string, PhotoRef>;

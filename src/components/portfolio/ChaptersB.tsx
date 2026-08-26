@@ -14,6 +14,7 @@ const projectCovers: Partial<Record<string, (typeof photos)[keyof typeof photos]
   "Personal Lindy": photos.personalLindy,
   "Top Burguer": photos.topBurguer,
   "Cápsula do Tempo": photos.capsulaDoTempo,
+  "Reserva Lab": photos.reservaLab,
 };
 
 /** Grade "tecnologia na prática". */
