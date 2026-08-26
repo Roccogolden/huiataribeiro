@@ -246,7 +246,7 @@ export const projects: readonly Project[] = [
     problem:
       "Ajudar os alunos a fazer um diagnóstico honesto de si mesmos hoje — reflexões e planos — para comparar com quem eles serão no futuro.",
     solution:
-      "Dinâmica estruturada como Upgrade 3.0: cada aluno registra um diagnóstico, reflexões e planos como 'eu de hoje' (agosto/2026), guardados em uma cápsula do tempo digital para serem reabertos como 'eu do futuro' em novembro de 2027. A regra central: não é sobre ser perfeito, é sobre perceber o quanto é possível evoluir.",
+      "Dinâmica estruturada como Upgrade 3.0: cada aluno registra um diagnóstico, reflexões e planos como 'eu de hoje' (agosto/2026), guardados em uma cápsula do tempo digital para serem reabertos como 'eu do futuro' em novembro de 2027. A experiência também ganhou uma versão física: uma cápsula real, assinada pelos alunos, lacrada em um case reforçado para ser reaberta só no futuro. A regra central: não é sobre ser perfeito, é sobre perceber o quanto é possível evoluir.",
     tech: ["Lovable"],
     url: "https://upgrade3.lovable.app/",
   },

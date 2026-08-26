@@ -16,6 +16,7 @@ import fotoHeroPrincipal from "@/assets/foto-hero-principal.jpg";
 import capaDesafio2Reais from "@/assets/capa-desafio-2reais.jpg";
 import capaPersonalLindy from "@/assets/capa-personal-lindy.jpg";
 import capaTopBurguer from "@/assets/capa-top-burguer.jpg";
+import capaCapsulaDoTempo from "@/assets/capa-capsula-do-tempo.jpg";
 
 export interface PhotoRef {
   readonly src: string;
@@ -89,5 +90,10 @@ export const photos = {
     src: capaTopBurguer,
     alt: "Tela inicial do sistema Top Burguer: \"Do toque à chapa em segundos\", com pedidos em tempo real",
     position: "50% 20%",
+  },
+  capsulaDoTempo: {
+    src: capaCapsulaDoTempo,
+    alt: "Case metálico usado para guardar a cápsula do tempo física da turma",
+    position: "50% 40%",
   },
 } as const satisfies Record<string, PhotoRef>;

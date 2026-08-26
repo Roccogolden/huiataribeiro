@@ -13,6 +13,7 @@ const projectCovers: Partial<Record<string, (typeof photos)[keyof typeof photos]
   "Desafio dos R$ 2,00": photos.desafio2Reais,
   "Personal Lindy": photos.personalLindy,
   "Top Burguer": photos.topBurguer,
+  "Cápsula do Tempo": photos.capsulaDoTempo,
 };
 
 /** Grade "tecnologia na prática". */
