@@ -16,6 +16,13 @@ import capaPersonalLindy from "@/assets/capa-personal-lindy.jpg";
 import capaTopBurguer from "@/assets/capa-top-burguer.jpg";
 import capaCapsulaDoTempo from "@/assets/capa-capsula-do-tempo.jpg";
 import capaReservaLab from "@/assets/capa-reserva-lab.jpg";
+import fotoSalaManutencao from "@/assets/foto-sala-manutencao.jpg";
+import fotoSalaSelfie from "@/assets/foto-sala-selfie.jpg";
+import fotoSalaDestaque from "@/assets/foto-sala-destaque.jpg";
+import fotoSalaKahoot from "@/assets/foto-sala-kahoot.jpg";
+import fotoJornalCepiNews from "@/assets/foto-jornal-cepi-news.jpg";
+import fotoPalestraNeurodocencia from "@/assets/foto-palestra-neurodocencia.jpg";
+import fotoPalestraPlateia from "@/assets/foto-palestra-plateia.jpg";
 
 export interface PhotoRef {
   readonly src: string;
@@ -99,5 +106,40 @@ export const photos = {
     src: capaReservaLab,
     alt: "Tela do sistema de reserva do laboratório de informática do CEPI Elberto Alves",
     position: "50% 20%",
+  },
+  salaManutencao: {
+    src: fotoSalaManutencao,
+    alt: "Huiatã e estudantes fazendo manutenção prática de um notebook em sala de aula",
+    position: "50% 25%",
+  },
+  salaSelfie: {
+    src: fotoSalaSelfie,
+    alt: "Huiatã em selfie com a turma completa durante a aula",
+    position: "50% 55%",
+  },
+  salaDestaque: {
+    src: fotoSalaDestaque,
+    alt: "Huiatã com estudantes segurando certificados de Destaque por Desempenho em sala de aula",
+    position: "50% 35%",
+  },
+  salaKahoot: {
+    src: fotoSalaKahoot,
+    alt: "Estudante reagindo ao resultado de um quiz Kahoot sobre hardware e software durante a aula",
+    position: "50% 30%",
+  },
+  jornalCepiNews: {
+    src: fotoJornalCepiNews,
+    alt: "Matéria do jornal CEPI News sobre o curso Técnico em Desenvolvimento de Sistemas, assinada pelo professor Huiatã Ribeiro",
+    position: "50% 30%",
+  },
+  palestraNeurodocencia: {
+    src: fotoPalestraNeurodocencia,
+    alt: "Huiatã palestrando no encerramento da Academia de Neurodocência do SENAI, com o telão \"Da Enxada ao Everest\"",
+    position: "30% 40%",
+  },
+  palestraPlateia: {
+    src: fotoPalestraPlateia,
+    alt: "Huiatã palestrando para a plateia de professores da rede estadual de Goiás na Academia de Neurodocência do SENAI",
+    position: "20% 45%",
   },
 } as const satisfies Record<string, PhotoRef>;

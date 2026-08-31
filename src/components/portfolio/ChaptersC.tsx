@@ -18,10 +18,10 @@ import { PendingContent, PhotoPlaceholder, Reveal, SectionShell } from "./primit
 
 /** Registros reais de sala de aula e eventos. */
 const classroomPhotos = [
-  { label: "Sala de aula", photo: photos.teaching },
-  { label: "Com estudantes", photo: photos.candid },
-  { label: "Projeto em aula", photo: photos.mentoring },
-  { label: "Registro espontâneo", photo: photos.perspective },
+  { label: "Sala de aula", photo: photos.salaManutencao },
+  { label: "Com estudantes", photo: photos.salaSelfie },
+  { label: "Projeto em aula", photo: photos.salaDestaque },
+  { label: "Registro espontâneo", photo: photos.salaKahoot },
 ] as const;
 import { ResumeButton } from "./ChaptersA";
 
@@ -216,20 +216,35 @@ function CountUp({ value }: { value: string }) {
   );
 }
 
+/** Provas reais que sustentam os números do impacto. */
+const impactProofs = [
+  { label: "Matéria no CEPI News", photo: photos.jornalCepiNews },
+  { label: "Palestra na Academia de Neurodocência", photo: photos.palestraPlateia },
+] as const;
+
 export function ImpactChapter() {
   return (
     <SectionShell id="impacto" index="13" eyebrow="Impacto" title={<>Impacto</>}>
-      <div className="grid gap-8 md:grid-cols-2">
-        {metrics.map((metric, i) => (
-          <Reveal key={metric.label} delay={i * 120}>
-            <div className="surface-glass rounded-2xl p-10">
-              <p className="text-brand-gradient text-6xl leading-none font-semibold md:text-8xl">
-                <CountUp value={metric.value} />
-              </p>
-              <p className="mt-5 text-lg text-muted-foreground md:text-2xl">{metric.label}</p>
-            </div>
-          </Reveal>
-        ))}
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div className="grid gap-8 sm:grid-cols-2">
+          {metrics.map((metric, i) => (
+            <Reveal key={metric.label} delay={i * 120}>
+              <div className="surface-glass rounded-2xl p-10">
+                <p className="text-brand-gradient text-6xl leading-none font-semibold md:text-8xl">
+                  <CountUp value={metric.value} />
+                </p>
+                <p className="mt-5 text-lg text-muted-foreground md:text-2xl">{metric.label}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+          {impactProofs.map(({ label, photo }, i) => (
+            <Reveal key={label} delay={480 + i * 120}>
+              <PhotoPlaceholder photo={photo} label={label} ratio="landscape" />
+            </Reveal>
+          ))}
+        </div>
       </div>
     </SectionShell>
   );

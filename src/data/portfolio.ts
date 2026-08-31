@@ -51,7 +51,8 @@ export const aboutPoints: readonly string[] = [
   "Instrutor de Informática no SENAI, no Curso Técnico em Desenvolvimento de Sistemas.",
   "Técnico em TI com mais de 10 anos em suporte, hardware e infraestrutura de redes.",
   "Docente Mentor de mais de 70 professores da rede estadual (Profissionaliza Goiás).",
-  "Palestrante convidado no encerramento da Academia de Neurodocência do SENAI (2025).",
+  "Palestrante convidado no encerramento da Academia de Neurodocência do SENAI (2025), para mais de 200 professores da rede estadual de Goiás.",
+  "Convidado, em 2025 e 2026, como palestrante motivacional para os alunos do 3º ano do Ensino Médio.",
   "Cursando MBA em Inteligência Artificial com ênfase em Inovação e Negócios (IPOG).",
   "Registrado no CRT-01, com mais de 65 certificações na UniIndústria SENAI.",
 ];
