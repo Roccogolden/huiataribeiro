@@ -376,7 +376,7 @@ export const testimonials: readonly Testimonial[] = [
   },
   {
     quote:
-      "Durante o curso aprendi várias coisas que não fazia ideia que conseguia, com o auxílio do professor Huiatã Ribeiro aprendemos não só a lidar com os desafios dentro de sala de aula, mais também com os desafios da vida, vou sempre levar comigo a certeza de que fazer o curso foi a minha melhor escolha.",
+      "Durante o curso aprendi várias coisas que não fazia ideia que conseguia, com o auxílio do professor Huiatã Ribeiro aprendemos não só a lidar com os desafios dentro de sala de aula, mas também com os desafios da vida, vou sempre levar comigo a certeza de que fazer o curso foi a minha melhor escolha.",
     author: "Izabelly Ramos",
     relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
