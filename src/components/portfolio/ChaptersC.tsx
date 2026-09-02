@@ -108,9 +108,9 @@ export function ClassroomDynamicsChapter() {
       </ul>
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {classroomResults.map((result, i) => (
-          <Reveal key={result.label} delay={i * 120}>
-            <div className="surface-glass rounded-2xl p-8">
-              <p className="text-brand-gradient text-5xl leading-none font-semibold md:text-7xl">
+          <Reveal key={result.label} delay={i * 120} className="min-w-0">
+            <div className="surface-glass min-w-0 rounded-2xl p-8">
+              <p className="text-brand-gradient text-5xl leading-none font-semibold text-nowrap md:text-7xl">
                 <CountUp value={result.value} />
               </p>
               <p className="mt-4 text-base text-muted-foreground md:text-lg">{result.label}</p>
@@ -177,10 +177,20 @@ export function FormationChapter() {
   );
 }
 
-/** Conta de 0 até o número final quando o elemento entra na tela. */
+/**
+ * Conta de 0 até o número final quando o elemento entra na tela.
+ * Preserva prefixo (+), casas decimais com vírgula (ex.: "3,50") e
+ * sufixo (ex.: "%", "x") — o valor exibido ao final é idêntico ao original.
+ */
 function CountUp({ value }: { value: string }) {
-  const target = Number(value.replace(/\D/g, ""));
-  const prefix = value.startsWith("+") ? "+" : "";
+  const match = value.match(/^(\+?)(\d+)(?:,(\d+))?(.*)$/);
+  const prefix = match?.[1] ?? "";
+  const intPart = match?.[2] ?? "";
+  const decimalDigits = match?.[3];
+  const suffix = match?.[4] ?? "";
+  const decimals = decimalDigits?.length ?? 0;
+  const target = match ? Number(`${intPart}${decimalDigits ? `.${decimalDigits}` : ""}`) : NaN;
+
   const ref = useRef<HTMLSpanElement | null>(null);
   const [display, setDisplay] = useState(Number.isFinite(target) ? 0 : null);
 
@@ -195,8 +205,9 @@ function CountUp({ value }: { value: string }) {
         const start = performance.now();
         const tick = (now: number) => {
           const progress = Math.min((now - start) / 1400, 1);
-          setDisplay(Math.round(target * (1 - Math.pow(1 - progress, 3))));
+          setDisplay(target * (1 - Math.pow(1 - progress, 3)));
           if (progress < 1) frame = requestAnimationFrame(tick);
+          else setDisplay(target);
         };
         frame = requestAnimationFrame(tick);
       },
@@ -209,9 +220,16 @@ function CountUp({ value }: { value: string }) {
     };
   }, [target]);
 
+  const formatted =
+    display === null
+      ? value
+      : decimals > 0
+        ? display.toFixed(decimals).replace(".", ",")
+        : String(Math.round(display));
+
   return (
     <span ref={ref}>
-      {display === null ? value : `${prefix}${display}`}
+      {display === null ? value : `${prefix}${formatted}${suffix}`}
     </span>
   );
 }
@@ -228,9 +246,9 @@ export function ImpactChapter() {
       <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <div className="grid gap-8 sm:grid-cols-2">
           {metrics.map((metric, i) => (
-            <Reveal key={metric.label} delay={i * 120}>
-              <div className="surface-glass rounded-2xl p-10">
-                <p className="text-brand-gradient text-6xl leading-none font-semibold md:text-8xl">
+            <Reveal key={metric.label} delay={i * 120} className="min-w-0">
+              <div className="surface-glass min-w-0 rounded-2xl p-10">
+                <p className="text-brand-gradient text-nowrap text-6xl leading-none font-semibold md:text-8xl">
                   <CountUp value={metric.value} />
                 </p>
                 <p className="mt-5 text-lg text-muted-foreground md:text-2xl">{metric.label}</p>
@@ -238,10 +256,10 @@ export function ImpactChapter() {
             </Reveal>
           ))}
         </div>
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid min-w-0 gap-5 sm:grid-cols-2">
           {impactProofs.map(({ label, photo }, i) => (
-            <Reveal key={label} delay={480 + i * 120}>
-              <PhotoPlaceholder photo={photo} label={label} ratio="landscape" />
+            <Reveal key={label} delay={480 + i * 120} className="min-w-0">
+              <PhotoPlaceholder photo={photo} label={label} ratio="square" />
             </Reveal>
           ))}
         </div>

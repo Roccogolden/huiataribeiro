@@ -14,7 +14,7 @@ import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
 const whatsappUrl = `https://wa.me/55${profile.phone.replace(/\D/g, "")}`;
 
 const ctaBase =
-  "inline-flex h-14 min-h-[56px] w-full items-center justify-center gap-2 rounded-full px-6 text-base font-semibold whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:px-8 md:text-lg lg:w-auto";
+  "inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-base font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:px-8 md:text-lg lg:w-auto";
 
 const ctaPrimary = cn(
   ctaBase,
@@ -56,7 +56,7 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
           <Reveal delay={320}>
             <nav aria-label="Ações principais" className="mt-12">
               <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                <li className="sm:col-span-2">
+                <li className="min-w-0 sm:col-span-2">
                   <button
                     type="button"
                     onClick={onNext}
@@ -64,13 +64,13 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
                     aria-label="Conheça minha trajetória — ir para a próxima seção"
                   >
                     Conheça minha trajetória
-                    <ArrowRight className="size-5" aria-hidden="true" />
+                    <ArrowRight className="size-5 shrink-0" aria-hidden="true" />
                   </button>
                 </li>
-                <li>
+                <li className="min-w-0">
                   <ResumeButton className={ctaSecondary} aria-label="Baixar currículo em PDF" />
                 </li>
-                <li>
+                <li className="min-w-0">
                   <a
                     href="https://www.linkedin.com/in/huiataribeiro"
                     target="_blank"
@@ -78,11 +78,11 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
                     className={ctaSecondary}
                     aria-label="Visitar perfil LinkedIn de Huiatã Ribeiro (abre em nova aba)"
                   >
-                    <Linkedin className="size-5" aria-hidden="true" />
+                    <Linkedin className="size-5 shrink-0" aria-hidden="true" />
                     LinkedIn
                   </a>
                 </li>
-                <li>
+                <li className="min-w-0">
                   <a
                     href={whatsappUrl}
                     target="_blank"
@@ -90,7 +90,7 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
                     className={ctaSecondary}
                     aria-label="Iniciar conversa no WhatsApp com Huiatã Ribeiro (abre em nova aba)"
                   >
-                    <MessageCircle className="size-5" aria-hidden="true" />
+                    <MessageCircle className="size-5 shrink-0" aria-hidden="true" />
                     WhatsApp
                   </a>
                 </li>
@@ -149,7 +149,7 @@ export function AboutChapter() {
       title={<>Quem sou eu?</>}
       lead="Atuo onde a tecnologia encontra a educação: ensino, desenvolvo e aplico inteligência artificial em projetos práticos."
     >
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start">
         <Reveal>
           <PhotoPlaceholder photo={photos.about} label="Docência, tecnologia e educação" ratio="square" />
         </Reveal>

@@ -130,7 +130,7 @@ export const photos = {
   jornalCepiNews: {
     src: fotoJornalCepiNews,
     alt: "Matéria do jornal CEPI News sobre o curso Técnico em Desenvolvimento de Sistemas, assinada pelo professor Huiatã Ribeiro",
-    position: "50% 30%",
+    position: "50% 15%",
   },
   palestraNeurodocencia: {
     src: fotoPalestraNeurodocencia,
