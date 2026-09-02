@@ -352,71 +352,77 @@ const contactIcons = {
   Telefone: Phone,
 } as const;
 
+/** Mensagem pré-preenchida para quem inicia a conversa pelo QR Code do fechamento. */
+const qrWhatsappMessage = encodeURIComponent("Olá Huiatã! Vi sua apresentação e quero conversar.");
+
 export function ContactChapter() {
   const whatsappLink = contactLinks.find((link) => link.label === "WhatsApp");
+  const qrWhatsappUrl = whatsappLink?.url ? `${whatsappLink.url}?text=${qrWhatsappMessage}` : undefined;
 
   return (
     <SectionShell id="contato" index="16" eyebrow="Contato" className="bg-tech-grid">
-      <div className="text-center">
-        <Reveal>
-          <p className="glow-brand rounded-full text-5xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
-            <span className="text-brand-gradient">Huiatã Ribeiro</span>
-          </p>
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="eyebrow mt-6">Tecnologia • Educação • Inteligência Artificial</p>
-        </Reveal>
-        <Reveal delay={200}>
-          <p className="mx-auto mt-10 max-w-4xl text-xl leading-snug md:text-3xl">
-            {profile.closing}
-          </p>
-        </Reveal>
-        <Reveal delay={260}>
-          <p className="text-brand-gradient mt-6 text-2xl font-semibold uppercase md:text-4xl">
-            Vamos conversar?
-          </p>
-        </Reveal>
-        <Reveal delay={320}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            {contactLinks.map((link) => {
-              const Icon = contactIcons[link.label as keyof typeof contactIcons] ?? Mail;
-              const disabled = !link.url;
-              return (
-                <a
-                  key={link.label}
-                  href={link.url ?? "#contato"}
-                  aria-disabled={disabled}
-                  title={disabled ? `Link do ${link.label} a ser fornecido` : link.label}
-                  target={link.url ? "_blank" : undefined}
-                  rel={link.url ? "noreferrer" : undefined}
-                  className={cn(
-                    "inline-flex items-center gap-3 rounded-full border border-border px-7 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg",
-                    disabled && "text-muted-foreground",
-                  )}
-                >
-                  <Icon className="size-5" aria-hidden="true" />
-                  {link.label}
-                </a>
-              );
-            })}
-            <ResumeButton />
-          </div>
-        </Reveal>
-        {whatsappLink?.url ? (
+      <div className="grid items-center gap-10 text-center lg:grid-cols-[1.3fr_0.7fr] lg:text-left">
+        <div>
+          <Reveal>
+            <p className="glow-brand rounded-full text-5xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
+              <span className="text-brand-gradient">Huiatã Ribeiro</span>
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="eyebrow mt-5">Tecnologia • Educação • Inteligência Artificial</p>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="mx-auto mt-6 max-w-4xl text-xl leading-snug md:text-3xl lg:mx-0">
+              {profile.closing}
+            </p>
+          </Reveal>
+          <Reveal delay={260}>
+            <p className="text-brand-gradient mt-4 text-2xl font-semibold uppercase md:text-4xl">
+              Vamos conversar?
+            </p>
+          </Reveal>
+          <Reveal delay={320}>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              {contactLinks.map((link) => {
+                const Icon = contactIcons[link.label as keyof typeof contactIcons] ?? Mail;
+                const disabled = !link.url;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.url ?? "#contato"}
+                    aria-disabled={disabled}
+                    title={disabled ? `Link do ${link.label} a ser fornecido` : link.label}
+                    target={link.url ? "_blank" : undefined}
+                    rel={link.url ? "noreferrer" : undefined}
+                    className={cn(
+                      "inline-flex items-center gap-3 rounded-full border border-border px-7 py-4 text-base font-semibold transition-colors hover:bg-secondary md:text-lg",
+                      disabled && "text-muted-foreground",
+                    )}
+                  >
+                    <Icon className="size-5" aria-hidden="true" />
+                    {link.label}
+                  </a>
+                );
+              })}
+              <ResumeButton />
+            </div>
+          </Reveal>
+        </div>
+        {qrWhatsappUrl ? (
           <Reveal delay={400}>
             <a
-              href={whatsappLink.url}
+              href={qrWhatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="glow-brand mx-auto mt-14 flex w-fit flex-col items-center gap-4 rounded-3xl bg-white p-6 transition-transform hover:scale-[1.02] md:p-8"
+              className="glow-brand mx-auto flex w-fit flex-col items-center gap-3 rounded-3xl bg-white p-5 transition-transform hover:scale-[1.02] md:p-6"
               aria-label="Escanear QR Code para iniciar uma conversa no WhatsApp (abre em nova aba)"
             >
               <img
                 src={qrWhatsapp}
                 alt="QR Code que leva direto para uma conversa no WhatsApp com Huiatã Ribeiro"
-                className="size-36 md:size-44"
+                className="size-28 md:size-36"
               />
-              <p className="text-sm font-semibold text-[#0F1420] md:text-base">
+              <p className="text-center text-sm font-semibold text-[#0F1420]">
                 Aponte a câmera e fale comigo agora
               </p>
             </a>
