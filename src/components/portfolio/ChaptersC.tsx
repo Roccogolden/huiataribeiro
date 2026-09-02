@@ -14,6 +14,7 @@ import {
   testimonials,
 } from "@/data/portfolio";
 import { photos } from "@/data/photos";
+import qrWhatsapp from "@/assets/qr-whatsapp.png";
 import { PendingContent, PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
 
 /** Registros reais de sala de aula e eventos. */
@@ -243,7 +244,7 @@ const impactProofs = [
 export function ImpactChapter() {
   return (
     <SectionShell id="impacto" index="13" eyebrow="Impacto" title={<>Impacto</>}>
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start">
         <div className="grid gap-8 sm:grid-cols-2">
           {metrics.map((metric, i) => (
             <Reveal key={metric.label} delay={i * 120} className="min-w-0">
@@ -256,12 +257,22 @@ export function ImpactChapter() {
             </Reveal>
           ))}
         </div>
-        <div className="grid min-w-0 gap-5 sm:grid-cols-2">
-          {impactProofs.map(({ label, photo }, i) => (
-            <Reveal key={label} delay={480 + i * 120} className="min-w-0">
-              <PhotoPlaceholder photo={photo} label={label} ratio="square" />
-            </Reveal>
-          ))}
+        <div className="min-w-0">
+          <Reveal delay={420}>
+            <p className="eyebrow text-[0.65rem]">Provas reais, não só números</p>
+          </Reveal>
+          <div className="mt-4 grid min-w-0 gap-5 sm:grid-cols-2">
+            {impactProofs.map(({ label, photo }, i) => (
+              <Reveal key={label} delay={480 + i * 120} className="min-w-0">
+                <PhotoPlaceholder
+                  photo={photo}
+                  label={label}
+                  ratio="square"
+                  className="ring-primary/50 glow-brand ring-2"
+                />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </SectionShell>
@@ -342,11 +353,13 @@ const contactIcons = {
 } as const;
 
 export function ContactChapter() {
+  const whatsappLink = contactLinks.find((link) => link.label === "WhatsApp");
+
   return (
     <SectionShell id="contato" index="16" eyebrow="Contato" className="bg-tech-grid">
       <div className="text-center">
         <Reveal>
-          <p className="text-5xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
+          <p className="glow-brand rounded-full text-5xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
             <span className="text-brand-gradient">Huiatã Ribeiro</span>
           </p>
         </Reveal>
@@ -358,8 +371,13 @@ export function ContactChapter() {
             {profile.closing}
           </p>
         </Reveal>
-        <Reveal delay={280}>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <Reveal delay={260}>
+          <p className="text-brand-gradient mt-6 text-2xl font-semibold uppercase md:text-4xl">
+            Vamos conversar?
+          </p>
+        </Reveal>
+        <Reveal delay={320}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             {contactLinks.map((link) => {
               const Icon = contactIcons[link.label as keyof typeof contactIcons] ?? Mail;
               const disabled = !link.url;
@@ -384,6 +402,26 @@ export function ContactChapter() {
             <ResumeButton />
           </div>
         </Reveal>
+        {whatsappLink?.url ? (
+          <Reveal delay={400}>
+            <a
+              href={whatsappLink.url}
+              target="_blank"
+              rel="noreferrer"
+              className="glow-brand mx-auto mt-14 flex w-fit flex-col items-center gap-4 rounded-3xl bg-white p-6 transition-transform hover:scale-[1.02] md:p-8"
+              aria-label="Escanear QR Code para iniciar uma conversa no WhatsApp (abre em nova aba)"
+            >
+              <img
+                src={qrWhatsapp}
+                alt="QR Code que leva direto para uma conversa no WhatsApp com Huiatã Ribeiro"
+                className="size-36 md:size-44"
+              />
+              <p className="text-sm font-semibold text-[#0F1420] md:text-base">
+                Aponte a câmera e fale comigo agora
+              </p>
+            </a>
+          </Reveal>
+        ) : null}
       </div>
     </SectionShell>
   );
