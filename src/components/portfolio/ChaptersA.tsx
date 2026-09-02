@@ -153,10 +153,10 @@ export function AboutChapter() {
         <Reveal>
           <PhotoPlaceholder photo={photos.about} label="Docência, tecnologia e educação" ratio="square" />
         </Reveal>
-        <ul className="grid gap-4">
+        <ul className="grid gap-4 lg:grid-cols-2">
           {aboutPoints.map((point, i) => (
             <Reveal key={point} delay={i * 90}>
-              <li className="surface-glass flex items-start gap-4 rounded-2xl p-6 text-lg md:text-2xl">
+              <li className="surface-glass flex h-full items-start gap-4 rounded-2xl p-6 text-lg md:text-2xl">
                 <span className="mt-2 size-2.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
                 {point}
               </li>

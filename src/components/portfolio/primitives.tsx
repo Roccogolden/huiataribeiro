@@ -118,11 +118,14 @@ export function PhotoPlaceholder({
   className,
   ratio = "portrait",
   photo,
+  hideCaption = false,
 }: {
   label: string;
   className?: string;
   ratio?: "portrait" | "landscape" | "square";
   photo?: { readonly src: string; readonly alt: string; readonly position?: string };
+  /** Oculta a legenda sobreposta — use quando o nome já aparece em um título logo abaixo. */
+  hideCaption?: boolean;
 }) {
   const ratioClass =
     ratio === "portrait" ? "aspect-[3/4]" : ratio === "square" ? "aspect-square" : "aspect-video";
@@ -144,13 +147,17 @@ export function PhotoPlaceholder({
           style={{ objectPosition: photo.position ?? "50% 30%" }}
           className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
         />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent"
-          aria-hidden="true"
-        />
-        <figcaption className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium text-foreground/90 md:text-base">
-          {label}
-        </figcaption>
+        {hideCaption ? null : (
+          <>
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent"
+              aria-hidden="true"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium text-foreground/90 md:text-base">
+              {label}
+            </figcaption>
+          </>
+        )}
       </figure>
     );
   }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink, Mail, Github, Linkedin, MessageCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Mail, Github, Linkedin, MessageCircle, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   aiAreas,
@@ -238,7 +238,7 @@ export function ImpactChapter() {
             </Reveal>
           ))}
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="grid gap-5 sm:grid-cols-2">
           {impactProofs.map(({ label, photo }, i) => (
             <Reveal key={label} delay={480 + i * 120}>
               <PhotoPlaceholder photo={photo} label={label} ratio="landscape" />
@@ -320,6 +320,7 @@ const contactIcons = {
   GitHub: Github,
   WhatsApp: MessageCircle,
   "E-mail": Mail,
+  Telefone: Phone,
 } as const;
 
 export function ContactChapter() {

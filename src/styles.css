@@ -325,6 +325,10 @@
   overflow-y: auto;
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
+  /* Quando o conteúdo é mais alto que a tela, alinha ao topo em vez de
+   * centralizar — do contrário o título fica escondido acima da área
+   * visível (atrás do cabeçalho), exigindo rolar para cima para achá-lo. */
+  justify-content: flex-start !important;
 }
 
 .presenting figure {

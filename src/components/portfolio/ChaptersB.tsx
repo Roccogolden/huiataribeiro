@@ -79,7 +79,7 @@ export function SkillsChapter() {
         </>
       }
     >
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {skills.map((group, i) => (
           <Reveal key={group.category} delay={i * 90}>
             <article className="surface-glass h-full rounded-2xl p-8">
@@ -124,6 +124,7 @@ export function ProjectsChapter() {
                 photo={projectCovers[project.name] ?? projectPhotos[i % projectPhotos.length]!}
                 label={project.name}
                 ratio="landscape"
+                hideCaption
                 className="rounded-none border-0 border-b border-border shadow-none"
               />
               <div className="p-8">
