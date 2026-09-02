@@ -352,12 +352,15 @@ const contactIcons = {
   Telefone: Phone,
 } as const;
 
-/** Mensagem pré-preenchida para quem inicia a conversa pelo QR Code do fechamento. */
+/**
+ * Mensagem pré-preenchida para quem inicia a conversa pelo QR Code do fechamento.
+ * Usa api.whatsapp.com (não wa.me): em vários aparelhos, o wa.me é aberto como
+ * app link direto pelo sistema e o parâmetro de texto acaba sendo descartado.
+ */
 const qrWhatsappMessage = encodeURIComponent("Olá Huiatã! Vi sua apresentação e quero conversar.");
 
 export function ContactChapter() {
-  const whatsappLink = contactLinks.find((link) => link.label === "WhatsApp");
-  const qrWhatsappUrl = whatsappLink?.url ? `${whatsappLink.url}?text=${qrWhatsappMessage}` : undefined;
+  const qrWhatsappUrl = `https://api.whatsapp.com/send?phone=55${profile.phone.replace(/\D/g, "")}&text=${qrWhatsappMessage}`;
 
   return (
     <SectionShell id="contato" index="16" eyebrow="Contato" className="bg-tech-grid">
@@ -408,26 +411,24 @@ export function ContactChapter() {
             </div>
           </Reveal>
         </div>
-        {qrWhatsappUrl ? (
-          <Reveal delay={400}>
-            <a
-              href={qrWhatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="glow-brand mx-auto flex w-fit flex-col items-center gap-3 rounded-3xl bg-white p-5 transition-transform hover:scale-[1.02] md:p-6"
-              aria-label="Escanear QR Code para iniciar uma conversa no WhatsApp (abre em nova aba)"
-            >
-              <img
-                src={qrWhatsapp}
-                alt="QR Code que leva direto para uma conversa no WhatsApp com Huiatã Ribeiro"
-                className="size-28 md:size-36"
-              />
-              <p className="text-center text-sm font-semibold text-[#0F1420]">
-                Aponte a câmera e fale comigo agora
-              </p>
-            </a>
-          </Reveal>
-        ) : null}
+        <Reveal delay={400}>
+          <a
+            href={qrWhatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="glow-brand mx-auto flex w-fit flex-col items-center gap-3 rounded-3xl bg-white p-5 transition-transform hover:scale-[1.02] md:p-6"
+            aria-label="Escanear QR Code para iniciar uma conversa no WhatsApp (abre em nova aba)"
+          >
+            <img
+              src={qrWhatsapp}
+              alt="QR Code que leva direto para uma conversa no WhatsApp com Huiatã Ribeiro"
+              className="size-28 md:size-36"
+            />
+            <p className="text-center text-sm font-semibold text-[#0F1420]">
+              Aponte a câmera e fale comigo agora
+            </p>
+          </a>
+        </Reveal>
       </div>
     </SectionShell>
   );
