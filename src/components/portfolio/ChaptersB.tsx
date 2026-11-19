@@ -15,6 +15,8 @@ const projectCovers: Partial<Record<string, (typeof photos)[keyof typeof photos]
   "Top Burguer": photos.topBurguer,
   "Cápsula do Tempo": photos.capsulaDoTempo,
   "Reserva Lab": photos.reservaLab,
+  "Lógica Quest": photos.logicaQuest,
+  "Laboratório de Lógica": photos.laboratorioLogica,
 };
 
 /** Grade "tecnologia na prática" (modo apresentação). */
@@ -112,9 +114,9 @@ export function ProjectsChapter() {
       <p className="-mt-4 mb-5 text-sm text-muted-foreground md:hidden">
         Arraste para o lado para ver os {projects.length} projetos.
       </p>
-      <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
+      <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-4 md:mx-0 md:grid md:snap-none md:grid-flow-row-dense md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
         {projects.map((project, i) => {
-          const featured = i === 0;
+          const featured = project.featured === true;
           return (
             <Reveal
               as="article"

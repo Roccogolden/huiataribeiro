@@ -11,6 +11,7 @@ import {
   TimelineChapter,
 } from "@/components/portfolio/ChaptersA";
 import { AwardChapter } from "@/components/portfolio/AwardChapter";
+import { WebDesignChapter } from "@/components/portfolio/WebDesignChapter";
 import {
   DoingChapter,
   PracticeChapter,
@@ -80,7 +81,7 @@ export const Route = createFileRoute("/")({
             addressRegion: "GO",
             addressCountry: "BR",
           },
-          sameAs: ["https://www.linkedin.com/in/huiataribeiro"],
+          sameAs: ["https://www.linkedin.com/in/huiataribeiro", "https://huiataribeiro.dev"],
           knowsAbout: [
             "Desenvolvimento de Sistemas",
             "Inteligência Artificial",
@@ -196,6 +197,7 @@ function PortfolioPage() {
     atuacao: <DoingChapter key="atuacao" />,
     tecnologias: <SkillsChapter key="tecnologias" />,
     projetos: <ProjectsChapter key="projetos" />,
+    webdesign: <WebDesignChapter key="webdesign" />,
     pratica: <PracticeChapter key="pratica" />,
     educacao: <EducationTechChapter key="educacao" />,
     dinamicas: <ClassroomDynamicsChapter key="dinamicas" />,

@@ -7,6 +7,7 @@ const menu = [
   { id: "sobre", label: "Sobre" },
   { id: "premio", label: "Prêmio" },
   { id: "projetos", label: "Projetos" },
+  { id: "webdesign", label: "Web design" },
   { id: "educacao", label: "Em sala" },
   { id: "experiencia", label: "Experiência" },
   { id: "formacao", label: "Formação" },

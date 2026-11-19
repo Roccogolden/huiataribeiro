@@ -83,6 +83,16 @@ export const photos = {
     alt: "Case metálico usado para guardar a cápsula do tempo física da turma",
     position: "50% 40%",
   },
+  logicaQuest: {
+    ...webImage("capa-logica-quest"),
+    alt: "Tela inicial do jogo Lógica Quest, com as 10 fases, do Vale dos Padrões ao Núcleo do Sistema",
+    position: "50% 30%",
+  },
+  laboratorioLogica: {
+    ...webImage("capa-laboratorio-logica"),
+    alt: "Missão do jogo Laboratório de Lógica, em que o aluno monta uma sequência de comandos",
+    position: "50% 40%",
+  },
   reservaLab: {
     ...webImage("capa-reserva-lab"),
     alt: "Tela do sistema de reserva do laboratório de informática do CEPI Elberto Alves",

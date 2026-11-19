@@ -45,6 +45,7 @@ export const webChapterIds: readonly string[] = [
   "sobre",
   "premio",
   "projetos",
+  "webdesign",
   "educacao",
   "dinamicas",
   "impacto",
@@ -98,6 +99,55 @@ export const award = {
     {
       label: "Prêmio",
       text: "Missão internacional à Itália em 2027, com visitas técnicas a instituições de educação básica, profissional e superior e à indústria e tecnologia.",
+    },
+  ],
+} as const;
+
+/**
+ * Trabalho particular como web designer e desenvolvedor.
+ * Fonte: huiataribeiro.dev (serviços sempre nesta ordem e clientes com site no ar).
+ */
+export const webDesign = {
+  url: "https://huiataribeiro.dev",
+  lead: "Fora da sala de aula, sou web designer e desenvolvedor em Senador Canedo – GO. Faço sites, landing pages, aplicativos e sistemas para negócios, cada um com a identidade da própria marca.",
+  services: [
+    {
+      title: "Sites",
+      text: "Para barbearia, clínica, estúdio, loja e outros negócios locais. O site mostra os serviços, as fotos e as avaliações e leva o cliente até o contato.",
+    },
+    {
+      title: "Landing pages",
+      text: "Para quem anuncia no Instagram ou no Google: uma página com um objetivo só, como vender um serviço, divulgar um lançamento ou receber contatos.",
+    },
+    {
+      title: "Aplicativos",
+      text: "Para atender o cliente pelo celular, direto no navegador e sem instalar nada: pedidos, agendamentos e acompanhamento.",
+    },
+    {
+      title: "Sistemas",
+      text: "Para organizar a rotina da equipe: painéis, agendas, cadastros e relatórios que funcionam no computador e no celular.",
+    },
+  ],
+  clients: [
+    {
+      name: "Fino Trato Barbearia",
+      kind: "Site · Barbearia",
+      url: "https://barbearia-finotrato.vercel.app",
+    },
+    {
+      name: "Mood Store",
+      kind: "Site · Loja de produtos Apple",
+      url: "https://mood-store.lovable.app",
+    },
+    {
+      name: "Personal Lindy",
+      kind: "Landing page · Personal trainer",
+      url: "https://personallindy.com.br",
+    },
+    {
+      name: "Vitalle Pilates e Fisioterapia",
+      kind: "Site · Pilates e fisioterapia",
+      url: "https://vitallepilatesefisio.com",
     },
   ],
 } as const;
@@ -283,6 +333,8 @@ export interface Project {
   readonly category: string;
   /** O resultado concreto, que abre o card. */
   readonly result: string;
+  /** Card largo na grade do computador. */
+  readonly featured?: boolean;
   readonly summary: string;
   readonly problem?: string;
   readonly solution?: string;
@@ -293,6 +345,7 @@ export interface Project {
 export const projects: readonly Project[] = [
   {
     name: "Desafio dos R$ 2,00",
+    featured: true,
     category: "App gamificado · Educação financeira",
     result: "Em menos de 3 semanas, o patrimônio das equipes passou de R$ 1.200.",
     summary:
@@ -303,6 +356,55 @@ export const projects: readonly Project[] = [
       "Aplicativo web gamificado (Ago–Nov): cada dupla recebe um capital inicial de R$ 2,00 e precisa transformá-lo em algo maior através de metas mensais progressivas, lançamentos auditados, sistema de XP e ranking ao vivo entre as turmas 2º TDS A e 2º TDS B. Em menos de 3 semanas, o patrimônio total das equipes já havia ultrapassado R$ 1.200.",
     tech: ["Lovable"],
     url: "https://desafio2reais.lovable.app/",
+  },
+  {
+    name: "Top Burguer",
+    category: "Sistema · Projeto de culminância",
+    result: "Pedido pelo QR Code da mesa e painel da cozinha em tempo real.",
+    summary:
+      "Simulação de hamburgueria inteligente — projeto de culminância do Técnico em Desenvolvimento de Sistemas.",
+    problem:
+      "Simular, na prática, como a tecnologia resolve os gargalos do atendimento tradicional: filas e espera, erros de comunicação entre atendimento e cozinha, gestão sem dados em tempo real e processos manuais.",
+    solution:
+      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves, turmas do 2º ano A e B), sob responsabilidade do professor Huiatã Ribeiro: uma hamburgueria simulada 100% digital, com cardápio e pedidos via QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando metodologias como Design Thinking, Brainstorming e Business Model Canvas.",
+    tech: ["Lovable"],
+    url: "https://topburguer.lovable.app/",
+  },
+  {
+    name: "Lógica Quest",
+    featured: true,
+    category: "Jogo · Lógica de programação",
+    result:
+      "10 fases e 124 desafios. Depois de cada resposta, o aluno vê o mesmo programa em 21 linguagens.",
+    summary:
+      "Jogo de plataforma para praticar raciocínio lógico e lógica de programação, criado com os estudantes do Técnico em Desenvolvimento de Sistemas.",
+    problem:
+      "Lógica de programação é a porta de entrada da área. A ideia foi transformar o conteúdo em jogo: cada conceito vira um obstáculo, e para passar é preciso raciocinar como programador.",
+    solution:
+      "O robô Bit atravessa 10 fases, do Vale dos Padrões ao Núcleo do Sistema. Cada portão abre com um desafio em Portugol (114 de lógica em 10 temas e 10 de segurança digital), com explicação na hora e o mesmo programa em Python, Java, C, Lua e outras linguagens. Tem ranking por código de turma, painel do professor com os temas em que a turma mais erra e modo apresentação para feiras. Roda no navegador e instala como aplicativo. Projeto dos estudantes do 1º ano A (matutino) do Colégio João Carneiro, SENAI Senador Canedo, preparado para o Evento de Ciências e Tecnologia de novembro de 2026.",
+    tech: ["JavaScript (Canvas 2D)", "HTML e CSS", "GSAP", "PWA", "Vercel", "Supabase"],
+    url: "https://logica-quest-liart.vercel.app/",
+  },
+  {
+    name: "Laboratório de Lógica",
+    category: "Jogo · Algoritmos",
+    result:
+      "O aluno aprende algoritmos montando sequências de comandos, resolvendo labirintos e enfrentando um chefão no final.",
+    summary: "Jogo de lógica para a sala de aula, com missões interativas e ranking.",
+    url: "https://jogodelogica.com.br/",
+  },
+  {
+    name: "Reserva Lab",
+    category: "Sistema · Feito pelas turmas",
+    result: "A reserva do laboratório saiu do papel e virou um fluxo digital.",
+    summary:
+      "Sistema de reserva do laboratório de informática do CEPI Elberto Alves, desenvolvido pelos alunos do 2º ano A e B.",
+    problem:
+      "O laboratório de informática do CEPI Elberto Alves era reservado em papel, dificultando o controle e gerando conflitos de agenda.",
+    solution:
+      "Sistema digital de reserva de laboratório, desenvolvido pelas turmas do 2º ano A e B do Técnico em Desenvolvimento de Sistemas como projeto das disciplinas de Projetos e Programação de Aplicativos, substituindo o controle em papel por um fluxo digital.",
+    tech: ["Lovable"],
+    url: "https://reserva-lab.lovable.app/",
   },
   {
     name: "Cápsula do Tempo",
@@ -339,32 +441,6 @@ export const projects: readonly Project[] = [
       "Antigravity",
     ],
     url: "https://personallindy.com.br/",
-  },
-  {
-    name: "Reserva Lab",
-    category: "Sistema · Feito pelas turmas",
-    result: "A reserva do laboratório saiu do papel e virou um fluxo digital.",
-    summary:
-      "Sistema de reserva do laboratório de informática do CEPI Elberto Alves, desenvolvido pelos alunos do 2º ano A e B.",
-    problem:
-      "O laboratório de informática do CEPI Elberto Alves era reservado em papel, dificultando o controle e gerando conflitos de agenda.",
-    solution:
-      "Sistema digital de reserva de laboratório, desenvolvido pelas turmas do 2º ano A e B do Técnico em Desenvolvimento de Sistemas como projeto das disciplinas de Projetos e Programação de Aplicativos, substituindo o controle em papel por um fluxo digital.",
-    tech: ["Lovable"],
-    url: "https://reserva-lab.lovable.app/",
-  },
-  {
-    name: "Top Burguer",
-    category: "Sistema · Projeto de culminância",
-    result: "Pedido pelo QR Code da mesa e painel da cozinha em tempo real.",
-    summary:
-      "Simulação de hamburgueria inteligente — projeto de culminância do Técnico em Desenvolvimento de Sistemas.",
-    problem:
-      "Simular, na prática, como a tecnologia resolve os gargalos do atendimento tradicional: filas e espera, erros de comunicação entre atendimento e cozinha, gestão sem dados em tempo real e processos manuais.",
-    solution:
-      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves, turmas do 2º ano A e B), sob responsabilidade do professor Huiatã Ribeiro: uma hamburgueria simulada 100% digital, com cardápio e pedidos via QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando metodologias como Design Thinking, Brainstorming e Business Model Canvas.",
-    tech: ["Lovable"],
-    url: "https://topburguer.lovable.app/",
   },
 ];
 
