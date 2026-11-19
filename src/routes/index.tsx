@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback, useEffect, useState } from "react";
-import { chapters } from "@/data/portfolio";
-import ogImage from "@/assets/foto-hero-principal.jpg";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import Lenis from "lenis";
+import { chapters, webChapterIds } from "@/data/portfolio";
 import { TopNav } from "@/components/portfolio/TopNav";
 import { ProgressBar } from "@/components/portfolio/ProgressBar";
 import {
@@ -28,10 +28,16 @@ import {
   TestimonialsChapter,
 } from "@/components/portfolio/ChaptersC";
 
-const SITE_URL = "https://huiataribeiro-portfolio.vercel.app";
+/** Endereço oficial. Os outros (sem www e .vercel.app) apontam para ele. */
+const SITE_URL = "https://www.huiataribeiro.com.br";
+/** Prévia do link (1200 × 630). Troque o ?v= sempre que a imagem mudar. */
+const OG_IMAGE = `${SITE_URL}/og-image.jpg?v=20261119`;
 const TITLE = "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial";
 const DESCRIPTION =
   "Portfólio profissional de Huiatã Ribeiro — instrutor de tecnologia do SENAI premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás). Trajetória, projetos e competências em formato de apresentação.";
+
+/** Distância entre o topo da tela e o início do capítulo ao navegar pelo menu. */
+const NAV_OFFSET = -32;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,12 +47,20 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "profile" },
-      { property: "og:url", content: SITE_URL },
-      { property: "og:image", content: `${SITE_URL}${ogImage}` },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Huiatã Ribeiro, instrutor de tecnologia do SENAI, Docente TOP 10 2026/2027",
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: `${SITE_URL}${ogImage}` },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: SITE_URL }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [
       {
         type: "application/ld+json",
@@ -54,8 +68,19 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Huiatã Ribeiro",
-          jobTitle: "Instrutor de Tecnologia",
-          award: "Docente TOP 10 — 6ª edição, ciclo 2026/2027 (Programa Valorização Docente, SESI SENAI Goiás)",
+          url: `${SITE_URL}/`,
+          image: OG_IMAGE,
+          jobTitle: "Instrutor de Informática",
+          worksFor: { "@type": "Organization", name: "SENAI Goiás" },
+          award:
+            "Docente TOP 10 — 6ª edição, ciclo 2026/2027 (Programa Valorização Docente, SESI SENAI Goiás)",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Senador Canedo",
+            addressRegion: "GO",
+            addressCountry: "BR",
+          },
+          sameAs: ["https://www.linkedin.com/in/huiataribeiro"],
           knowsAbout: [
             "Desenvolvimento de Sistemas",
             "Inteligência Artificial",
@@ -72,6 +97,7 @@ export const Route = createFileRoute("/")({
 function PortfolioPage() {
   const [presenting, setPresenting] = useState(false);
   const [current, setCurrent] = useState(0);
+  const lenisRef = useRef<Lenis | null>(null);
 
   const go = useCallback((index: number) => {
     setCurrent(Math.min(Math.max(index, 0), chapters.length - 1));
@@ -79,6 +105,18 @@ function PortfolioPage() {
 
   const next = useCallback(() => go(current + 1), [current, go]);
   const prev = useCallback(() => go(current - 1), [current, go]);
+
+  // Rolagem suave (Lenis) só no portfólio; com "reduzir movimento", a rolagem normal.
+  useEffect(() => {
+    if (presenting) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({ duration: 1.05, autoRaf: true });
+    lenisRef.current = lenis;
+    return () => {
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, [presenting]);
 
   // Navegação por teclado no modo apresentação.
   useEffect(() => {
@@ -128,7 +166,10 @@ function PortfolioPage() {
         if (index >= 0) go(index);
         return;
       }
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const target = document.getElementById(id);
+      if (!target) return;
+      if (lenisRef.current) lenisRef.current.scrollTo(target, { offset: NAV_OFFSET });
+      else target.scrollIntoView({ behavior: "smooth", block: "start" });
     },
     [presenting, go],
   );
@@ -140,45 +181,43 @@ function PortfolioPage() {
     });
   }, []);
 
-  const chapterNodes = [
-    <IntroChapter
-      key="intro"
-      onNext={() => (presenting ? next() : scrollTo("sobre"))}
-      onAward={() => scrollTo("premio")}
-    />,
-    <AboutChapter key="sobre" />,
-    <AwardChapter key="premio" />,
-    <TimelineChapter key="trajetoria" />,
-    <ExperienceChapter key="experiencia" />,
-    <DoingChapter key="atuacao" />,
-    <SkillsChapter key="tecnologias" />,
-    <ProjectsChapter key="projetos" />,
-    <PracticeChapter key="pratica" />,
-    <EducationTechChapter key="educacao" />,
-    <ClassroomDynamicsChapter key="dinamicas" />,
-    <AiChapter key="ia" />,
-    <FormationChapter key="formacao" />,
-    <ImpactChapter key="impacto" />,
-    <TestimonialsChapter key="depoimentos" />,
-    <FutureChapter key="futuro" />,
-    <ContactChapter key="contato" />,
-  ];
+  const chapterNodes: Record<string, ReactNode> = {
+    intro: (
+      <IntroChapter
+        key="intro"
+        onNext={() => (presenting ? next() : scrollTo("sobre"))}
+        onAward={() => scrollTo("premio")}
+      />
+    ),
+    sobre: <AboutChapter key="sobre" />,
+    premio: <AwardChapter key="premio" />,
+    trajetoria: <TimelineChapter key="trajetoria" />,
+    experiencia: <ExperienceChapter key="experiencia" />,
+    atuacao: <DoingChapter key="atuacao" />,
+    tecnologias: <SkillsChapter key="tecnologias" />,
+    projetos: <ProjectsChapter key="projetos" />,
+    pratica: <PracticeChapter key="pratica" />,
+    educacao: <EducationTechChapter key="educacao" />,
+    dinamicas: <ClassroomDynamicsChapter key="dinamicas" />,
+    ia: <AiChapter key="ia" />,
+    formacao: <FormationChapter key="formacao" />,
+    impacto: <ImpactChapter key="impacto" />,
+    depoimentos: <TestimonialsChapter key="depoimentos" />,
+    futuro: <FutureChapter key="futuro" />,
+    contato: <ContactChapter key="contato" />,
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <TopNav
-        presenting={presenting}
-        onTogglePresenting={togglePresenting}
-        onNavigate={scrollTo}
-      />
+      <TopNav presenting={presenting} onTogglePresenting={togglePresenting} onNavigate={scrollTo} />
 
-      <main className={presenting ? "h-[100svh] overflow-hidden pt-24 pb-24" : "pt-24"}>
+      <main className={presenting ? "h-[100svh] overflow-hidden pt-24 pb-24" : undefined}>
         {presenting ? (
           <div key={current} className="presenting animate-in fade-in h-full duration-500">
-            {chapterNodes[current]}
+            {chapterNodes[chapters[current]!.id]}
           </div>
         ) : (
-          chapterNodes
+          webChapterIds.map((id) => chapterNodes[id])
         )}
       </main>
 
@@ -192,7 +231,7 @@ function PortfolioPage() {
         />
       ) : (
         <footer className="border-t border-border px-6 py-10 text-center text-sm text-muted-foreground md:text-base">
-          Huiatã Ribeiro — Tecnologia • Educação • Inteligência Artificial
+          Huiatã Ribeiro · Instrutor de Informática no SENAI · Senador Canedo, GO
         </footer>
       )}
     </div>

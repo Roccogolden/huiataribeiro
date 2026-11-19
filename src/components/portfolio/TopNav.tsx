@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Menu, Monitor, ScrollText, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+/** Itens do menu na ordem em que aparecem na página do portfólio. */
 const menu = [
   { id: "sobre", label: "Sobre" },
   { id: "premio", label: "Prêmio" },
-  { id: "trajetoria", label: "Trajetória" },
-  { id: "experiencia", label: "Experiência" },
   { id: "projetos", label: "Projetos" },
-  { id: "tecnologias", label: "Tecnologias" },
+  { id: "educacao", label: "Em sala" },
+  { id: "experiencia", label: "Experiência" },
   { id: "formacao", label: "Formação" },
   { id: "contato", label: "Contato" },
 ] as const;
@@ -55,7 +55,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
             onClick={onTogglePresenting}
             aria-pressed={presenting}
             className={cn(
-              "inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors md:text-base",
+              "hidden items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold whitespace-nowrap transition-colors md:inline-flex md:text-base",
               presenting
                 ? "bg-primary text-primary-foreground"
                 : "border border-border hover:bg-secondary",

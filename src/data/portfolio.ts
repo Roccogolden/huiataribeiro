@@ -36,12 +36,31 @@ export const chapters: readonly Chapter[] = [
   { id: "contato", index: "17", label: "CONTATO" },
 ];
 
+/**
+ * Ordem enxuta para quem rola a página no celular ou no computador.
+ * O modo apresentação continua com os 17 capítulos, na ordem de `chapters`.
+ */
+export const webChapterIds: readonly string[] = [
+  "intro",
+  "sobre",
+  "premio",
+  "projetos",
+  "educacao",
+  "dinamicas",
+  "impacto",
+  "experiencia",
+  "formacao",
+  "tecnologias",
+  "depoimentos",
+  "contato",
+];
+
 export const profile = {
   name: "Huiatã Ribeiro Coutinho",
-  role: "Instrutor de Informática — Educação Profissional | Docente Mentor | Técnico em TI",
-  tagline: "Transformando tecnologia em conhecimento, experiências e soluções.",
-  closing:
-    "O conhecimento ganha valor quando transforma pessoas e cria novas possibilidades.",
+  role: "Instrutor de Informática no SENAI e docente mentor de mais de 70 professores da rede estadual de Goiás.",
+  tagline:
+    "Ensino desenvolvimento de sistemas com projetos reais: as turmas criam aplicativos que vão para o ar.",
+  closing: "O conhecimento ganha valor quando transforma pessoas e cria novas possibilidades.",
   location: "Senador Canedo — GO",
   phone: "(62) 98618-4295",
   email: "huiataribeiro@gmail.com",
@@ -104,11 +123,13 @@ export interface TimelineStep {
 export const timeline: readonly TimelineStep[] = [
   {
     title: "2011 – 2013 · Redes de Computadores",
-    description: "Tecnólogo na Faculdade Estácio de Sá de Goiás (FESGO) e primeiras atuações em TI.",
+    description:
+      "Tecnólogo na Faculdade Estácio de Sá de Goiás (FESGO) e primeiras atuações em TI.",
   },
   {
     title: "2011 – 2015 · Base técnica",
-    description: "Call center, servidores de impressão e suporte Helpdesk na SEGPLAN/Fund. Pró-Cerrado.",
+    description:
+      "Call center, servidores de impressão e suporte Helpdesk na SEGPLAN/Fund. Pró-Cerrado.",
   },
   {
     title: "2017 – 2022 · Hardware e garantia",
@@ -116,11 +137,13 @@ export const timeline: readonly TimelineStep[] = [
   },
   {
     title: "2022 – 2025 · Infraestrutura SENAI",
-    description: "Técnico de Informática III no SENAI Dr. Celso Charuri: parque tecnológico, rede e data center.",
+    description:
+      "Técnico de Informática III no SENAI Dr. Celso Charuri: parque tecnológico, rede e data center.",
   },
   {
     title: "2025 · Sala de aula",
-    description: "Instrutor de Informática III no Profissionaliza Goiás e Docente Mentor da rede estadual.",
+    description:
+      "Instrutor de Informática III no Profissionaliza Goiás e Docente Mentor da rede estadual.",
   },
   {
     title: "2026 – 2027 · Inteligência Artificial",
@@ -218,12 +241,7 @@ export const skills: readonly SkillGroup[] = [
   },
   {
     category: "Infraestrutura e Redes",
-    items: [
-      "Cabeamento estruturado (Furukawa)",
-      "Redes locais (LAN)",
-      "Racks",
-      "Data center",
-    ],
+    items: ["Cabeamento estruturado (Furukawa)", "Redes locais (LAN)", "Racks", "Data center"],
   },
   {
     category: "Suporte Técnico e Hardware",
@@ -261,6 +279,10 @@ export const skills: readonly SkillGroup[] = [
 
 export interface Project {
   readonly name: string;
+  /** Tipo do projeto, em uma linha. */
+  readonly category: string;
+  /** O resultado concreto, que abre o card. */
+  readonly result: string;
   readonly summary: string;
   readonly problem?: string;
   readonly solution?: string;
@@ -271,7 +293,10 @@ export interface Project {
 export const projects: readonly Project[] = [
   {
     name: "Desafio dos R$ 2,00",
-    summary: "Aplicativo gamificado de educação financeira e empreendedorismo criado com as turmas.",
+    category: "App gamificado · Educação financeira",
+    result: "Em menos de 3 semanas, o patrimônio das equipes passou de R$ 1.200.",
+    summary:
+      "Aplicativo gamificado de educação financeira e empreendedorismo criado com as turmas.",
     problem:
       "Ensinar educação financeira e empreendedorismo de forma prática para as turmas do 2º ano do Técnico em Desenvolvimento de Sistemas, na disciplina Projeto de Vida.",
     solution:
@@ -281,7 +306,11 @@ export const projects: readonly Project[] = [
   },
   {
     name: "Cápsula do Tempo",
-    summary: "Cápsula do Tempo — Upgrade 3.0: uma reflexão guiada sobre evolução pessoal ao longo do tempo.",
+    category: "Dinâmica com app · Projeto de Vida",
+    result:
+      "Cada aluno guardou o seu “eu de hoje” numa cápsula digital, que será reaberta em novembro de 2027.",
+    summary:
+      "Cápsula do Tempo — Upgrade 3.0: uma reflexão guiada sobre evolução pessoal ao longo do tempo.",
     problem:
       "Ajudar os alunos a fazer um diagnóstico honesto de si mesmos hoje — reflexões e planos — para comparar com quem eles serão no futuro.",
     solution:
@@ -291,16 +320,30 @@ export const projects: readonly Project[] = [
   },
   {
     name: "Personal Lindy",
-    summary: "Landing page para a Personal Lindy, personal trainer online, com captação de clientes via WhatsApp.",
+    category: "Site · Personal trainer online",
+    result: "Site no ar com domínio próprio e contato direto pelo WhatsApp.",
+    summary:
+      "Landing page para a Personal Lindy, personal trainer online, com captação de clientes via WhatsApp.",
     problem:
       "Dar presença digital profissional a um serviço de personal trainer online, com uma landing page que apresente os treinos personalizados e facilite o contato direto com clientes.",
     solution:
       "Página estruturada no Lovable, com código versionado no GitHub, deploy contínuo na Vercel e também com repositório Git local no PC. Domínio próprio (personallindy.com.br) configurado pela Hostinger. Desenvolvimento apoiado por Claude Code, VS Code (Python) e Antigravity.",
-    tech: ["Lovable", "GitHub", "Vercel", "Hostinger", "Claude Code", "VS Code", "Python", "Antigravity"],
+    tech: [
+      "Lovable",
+      "GitHub",
+      "Vercel",
+      "Hostinger",
+      "Claude Code",
+      "VS Code",
+      "Python",
+      "Antigravity",
+    ],
     url: "https://personallindy.com.br/",
   },
   {
     name: "Reserva Lab",
+    category: "Sistema · Feito pelas turmas",
+    result: "A reserva do laboratório saiu do papel e virou um fluxo digital.",
     summary:
       "Sistema de reserva do laboratório de informática do CEPI Elberto Alves, desenvolvido pelos alunos do 2º ano A e B.",
     problem:
@@ -312,6 +355,8 @@ export const projects: readonly Project[] = [
   },
   {
     name: "Top Burguer",
+    category: "Sistema · Projeto de culminância",
+    result: "Pedido pelo QR Code da mesa e painel da cozinha em tempo real.",
     summary:
       "Simulação de hamburgueria inteligente — projeto de culminância do Técnico em Desenvolvimento de Sistemas.",
     problem:
@@ -355,6 +400,10 @@ export const classroomDynamics: readonly string[] = [
   "Gestão e Descarte de Resíduos na Escola",
   "Lógica de Programação com Python",
 ];
+
+/** Fonte dos resultados abaixo, exibida junto com eles. */
+export const classroomResultsSource =
+  "Fonte: relatório “Experiências Práticas nas aulas do Curso Técnico em Desenvolvimento de Sistemas (SENAI)”, turmas do 1º ano A e B.";
 
 /** Resultados observados com as dinâmicas práticas, conforme o mesmo material. */
 export const classroomResults: readonly Metric[] = [
@@ -402,6 +451,8 @@ export interface Testimonial {
   readonly quote: string;
   readonly author: string;
   readonly relation?: string;
+  /** Curtos e concretos: aparecem em destaque no portfólio. */
+  readonly featured?: boolean;
 }
 
 /** Depoimentos: somente mensagens reais fornecidas pelo usuário. */
@@ -446,18 +497,21 @@ export const testimonials: readonly Testimonial[] = [
     quote:
       "Achei que programação seria difícil demais, mas, em um curso que estava fazendo fora da escola, o professor começou a explicar sobre programação. Na hora, lembrei das aulas do curso técnico no SENAI e consegui fazer alguns comandos. O professor ficou impressionado e me elogiou bastante! Foi muito gratificante ver que realmente aprendi.",
     author: "Bryan",
+    featured: true,
     relation: "1º Ano B · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
       "A aula em que desmontamos e montamos um computador foi incrível! Nunca imaginei que tinha tanta coisa dentro. Agora entendo melhor como tudo funciona junto.",
     author: "Pablo",
+    featured: true,
     relation: "1º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
       "Na aula prática de entrevista de emprego, recebi vários feedbacks sobre meu currículo e minha postura. Segui todas as orientações, ajustei meu currículo e comecei a me candidatar a vagas. Pouco tempo depois, recebi duas propostas de trabalho! Essa experiência me mostrou o quanto essas aulas práticas fazem diferença de verdade.",
     author: "Jordana",
+    featured: true,
     relation: "1º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {

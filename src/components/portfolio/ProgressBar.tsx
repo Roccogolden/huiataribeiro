@@ -11,13 +11,7 @@ export interface ProgressBarProps {
 }
 
 /** Indicador discreto de progresso + controles do modo apresentação. */
-export function ProgressBar({
-  current,
-  onSelect,
-  onPrev,
-  onNext,
-  onFullscreen,
-}: ProgressBarProps) {
+export function ProgressBar({ current, onSelect, onPrev, onNext, onFullscreen }: ProgressBarProps) {
   const chapter = chapters[current]!;
 
   return (

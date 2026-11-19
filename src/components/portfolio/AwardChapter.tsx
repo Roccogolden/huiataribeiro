@@ -2,9 +2,13 @@ import { useState } from "react";
 import { ExternalLink, FileText, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { award } from "@/data/portfolio";
-import posterSrc from "@/assets/premio-top10-anuncio.jpg";
+import { webImage } from "@/lib/responsive-image";
 import cardSrc from "@/assets/premio-top10-cartao.jpg";
+import { AwardMotion } from "./AdobeMotion";
 import { Reveal, SectionShell } from "./primitives";
+
+/** Capa oficial do anúncio (arte do canal Sistema FIEG), em WebP. */
+const poster = webImage("premio-top10-anuncio");
 
 const linkBase =
   "inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-lg";
@@ -36,13 +40,11 @@ function AwardVideo() {
             aria-label={`Assistir ao vídeo "${title}", do canal ${channel}`}
             className="group absolute inset-0 size-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
           >
-            <img
-              src={posterSrc}
-              alt=""
+            {/* Arte oficial animada no After Effects: luz que atravessa o TOP 10 e brilho na estrela. */}
+            <AwardMotion
+              poster={poster.src}
               width={1280}
               height={720}
-              loading="lazy"
-              decoding="async"
               className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
             <span

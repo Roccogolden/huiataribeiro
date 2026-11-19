@@ -2,30 +2,11 @@
  * Fotografias reais do Huiatã, hospedadas no CDN de assets.
  * Centralizadas aqui para que as seções apenas referenciem o slot desejado.
  */
-import foto1 from "@/assets/foto-1.jpg";
-import foto2 from "@/assets/foto-2.jpg";
-import foto3 from "@/assets/foto-3.jpg";
-import foto4 from "@/assets/foto-4.jpg";
-import foto5 from "@/assets/foto-5.jpg";
-import foto6 from "@/assets/foto-6.jpg";
-import foto7 from "@/assets/foto-7.jpg";
-import foto8 from "@/assets/foto-8.jpg";
-import fotoHeroPrincipal from "@/assets/foto-hero-principal.jpg";
-import capaDesafio2Reais from "@/assets/capa-desafio-2reais.jpg";
-import capaPersonalLindy from "@/assets/capa-personal-lindy.jpg";
-import capaTopBurguer from "@/assets/capa-top-burguer.jpg";
-import capaCapsulaDoTempo from "@/assets/capa-capsula-do-tempo.jpg";
-import capaReservaLab from "@/assets/capa-reserva-lab.jpg";
-import fotoSalaManutencao from "@/assets/foto-sala-manutencao.jpg";
-import fotoSalaSelfie from "@/assets/foto-sala-selfie.jpg";
-import fotoSalaDestaque from "@/assets/foto-sala-destaque.jpg";
-import fotoSalaKahoot from "@/assets/foto-sala-kahoot.jpg";
-import fotoJornalCepiNews from "@/assets/foto-jornal-cepi-news.jpg";
-import fotoPalestraNeurodocencia from "@/assets/foto-palestra-neurodocencia.jpg";
-import fotoPalestraPlateia from "@/assets/foto-palestra-plateia.jpg";
-
+import { webImage } from "@/lib/responsive-image";
 export interface PhotoRef {
   readonly src: string;
+  /** Larguras em WebP para o navegador escolher (ver webImage). */
+  readonly srcSet?: string;
   readonly alt: string;
   /** Ponto focal para recortes (mantém o rosto visível). */
   readonly position?: string;
@@ -33,112 +14,112 @@ export interface PhotoRef {
 
 export const photos = {
   hero: {
-    src: fotoHeroPrincipal,
+    ...webImage("foto-hero-principal"),
     alt: "Huiatã Ribeiro com camiseta da Academia de Neurodocência do SENAI",
     position: "50% 15%",
   },
   about: {
-    src: foto6,
+    ...webImage("foto-6"),
     alt: "Huiatã Ribeiro em mirante de vidro com reflexo da paisagem",
     position: "50% 30%",
   },
   classroom: {
-    src: foto1,
+    ...webImage("foto-1"),
     alt: "Huiatã explicando componentes de hardware em aula no SENAI",
     position: "50% 30%",
   },
   teaching: {
-    src: foto2,
+    ...webImage("foto-2"),
     alt: "Huiatã ministrando aula com material impresso em mãos",
     position: "50% 25%",
   },
   candid: {
-    src: foto3,
+    ...webImage("foto-3"),
     alt: "Huiatã sorrindo durante uma atividade em sala",
     position: "50% 30%",
   },
   mentoring: {
-    src: foto4,
+    ...webImage("foto-4"),
     alt: "Huiatã conduzindo aula sobre educação financeira",
     position: "50% 25%",
   },
   academy: {
-    src: foto5,
+    ...webImage("foto-5"),
     alt: "Huiatã no evento da Academia de Neurodocência do Profissionaliza Goiás",
     position: "50% 25%",
   },
   perspective: {
-    src: foto6,
+    ...webImage("foto-6"),
     alt: "Huiatã em mirante de vidro com reflexo da paisagem",
     position: "50% 40%",
   },
   award: {
-    src: foto7,
+    ...webImage("foto-7"),
     alt: "Huiatã segurando o troféu de 1º lugar do Challenge Day SENAI",
     position: "50% 30%",
   },
   event: {
-    src: foto8,
+    ...webImage("foto-8"),
     alt: "Huiatã ao lado do painel da Academia de Neurodocência SENAI FIEG",
     position: "50% 20%",
   },
   desafio2Reais: {
-    src: capaDesafio2Reais,
+    ...webImage("capa-desafio-2reais"),
     alt: "Placar ao vivo do Desafio dos R$ 2,00, com o comparativo entre turmas e o pódio das equipes",
     position: "50% 50%",
   },
   personalLindy: {
-    src: capaPersonalLindy,
+    ...webImage("capa-personal-lindy"),
     alt: "Página inicial do site Personal Lindy, personal trainer online",
     position: "50% 20%",
   },
   topBurguer: {
-    src: capaTopBurguer,
-    alt: "Tela inicial do sistema Top Burguer: \"Do toque à chapa em segundos\", com pedidos em tempo real",
+    ...webImage("capa-top-burguer"),
+    alt: 'Tela inicial do sistema Top Burguer: "Do toque à chapa em segundos", com pedidos em tempo real',
     position: "50% 20%",
   },
   capsulaDoTempo: {
-    src: capaCapsulaDoTempo,
+    ...webImage("capa-capsula-do-tempo"),
     alt: "Case metálico usado para guardar a cápsula do tempo física da turma",
     position: "50% 40%",
   },
   reservaLab: {
-    src: capaReservaLab,
+    ...webImage("capa-reserva-lab"),
     alt: "Tela do sistema de reserva do laboratório de informática do CEPI Elberto Alves",
     position: "50% 20%",
   },
   salaManutencao: {
-    src: fotoSalaManutencao,
+    ...webImage("foto-sala-manutencao"),
     alt: "Huiatã e estudantes fazendo manutenção prática de um notebook em sala de aula",
     position: "50% 25%",
   },
   salaSelfie: {
-    src: fotoSalaSelfie,
+    ...webImage("foto-sala-selfie"),
     alt: "Huiatã em selfie com a turma completa durante a aula",
     position: "50% 55%",
   },
   salaDestaque: {
-    src: fotoSalaDestaque,
+    ...webImage("foto-sala-destaque"),
     alt: "Huiatã com estudantes segurando certificados de Destaque por Desempenho em sala de aula",
     position: "50% 35%",
   },
   salaKahoot: {
-    src: fotoSalaKahoot,
+    ...webImage("foto-sala-kahoot"),
     alt: "Estudante reagindo ao resultado de um quiz Kahoot sobre hardware e software durante a aula",
     position: "50% 30%",
   },
   jornalCepiNews: {
-    src: fotoJornalCepiNews,
+    ...webImage("foto-jornal-cepi-news"),
     alt: "Matéria do jornal CEPI News sobre o curso Técnico em Desenvolvimento de Sistemas, assinada pelo professor Huiatã Ribeiro",
     position: "50% 15%",
   },
   palestraNeurodocencia: {
-    src: fotoPalestraNeurodocencia,
-    alt: "Huiatã palestrando no encerramento da Academia de Neurodocência do SENAI, com o telão \"Da Enxada ao Everest\"",
+    ...webImage("foto-palestra-neurodocencia"),
+    alt: 'Huiatã palestrando no encerramento da Academia de Neurodocência do SENAI, com o telão "Da Enxada ao Everest"',
     position: "30% 40%",
   },
   palestraPlateia: {
-    src: fotoPalestraPlateia,
+    ...webImage("foto-palestra-plateia"),
     alt: "Huiatã palestrando para a plateia de professores da rede estadual de Goiás na Academia de Neurodocência do SENAI",
     position: "20% 45%",
   },

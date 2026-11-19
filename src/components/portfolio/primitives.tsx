@@ -1,17 +1,30 @@
-import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import {
+  createElement,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentProps,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
+import type { PhotoRef } from "@/data/photos";
+
+type RevealTag = "div" | "li" | "article";
 
 /**
- * Revela o conteúdo quando ele entra na viewport.
- * Usa IntersectionObserver (leve) em vez de bibliotecas de animação.
+ * Revela o conteúdo quando ele entra na viewport (IntersectionObserver + CSS).
+ * Use `as="li"` dentro de listas para manter a estrutura certa para leitores de tela.
  */
 export function Reveal({
+  as = "div",
   children,
   delay = 0,
   className,
+  style,
   ...rest
-}: { children: ReactNode; delay?: number } & ComponentProps<"div">) {
-  const ref = useRef<HTMLDivElement | null>(null);
+}: { as?: RevealTag; children: ReactNode; delay?: number } & HTMLAttributes<HTMLElement>) {
+  const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -30,21 +43,21 @@ export function Reveal({
           }
         }
       },
-      { threshold: 0.15 },
+      { threshold: 0.12 },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={cn("reveal", visible && "reveal-in", className)}
-      {...rest}
-    >
-      {children}
-    </div>
+  return createElement(
+    as,
+    {
+      ref,
+      style: { ...style, transitionDelay: `${delay}ms` },
+      className: cn("reveal", visible && "reveal-in", className),
+      ...rest,
+    },
+    children,
   );
 }
 
@@ -54,16 +67,23 @@ export interface SectionShellProps extends Omit<ComponentProps<"section">, "titl
   readonly eyebrow?: string;
   readonly title?: ReactNode;
   readonly lead?: ReactNode;
+  /** Elemento acima do título (ex.: a porta de rede do contato). */
+  readonly before?: ReactNode;
   readonly children: ReactNode;
 }
 
-/** Estrutura comum a todos os capítulos: respiro generoso e hierarquia clara. */
+/**
+ * Estrutura comum aos capítulos. No portfólio a seção tem a altura do conteúdo;
+ * no modo apresentação ela ocupa a tela (regras em `.presenting section`).
+ * O número do capítulo só aparece no modo apresentação.
+ */
 export function SectionShell({
   id,
   index,
   eyebrow,
   title,
   lead,
+  before,
   children,
   className,
   ...rest
@@ -73,22 +93,21 @@ export function SectionShell({
       id={id}
       aria-labelledby={`${id}-title`}
       className={cn(
-        "relative flex min-h-[100svh] w-full flex-col justify-center px-6 py-20 md:px-14 lg:px-24 lg:py-24",
+        "relative flex w-full flex-col justify-center px-6 py-20 md:px-14 lg:px-24 lg:py-28",
         className,
       )}
       {...rest}
     >
       <div className="mx-auto w-full max-w-[1600px]">
-        <Reveal>
-          <p className="eyebrow">
-            {index} {eyebrow ? `— ${eyebrow}` : ""}
-          </p>
-        </Reveal>
+        <p className="eyebrow mb-5 hidden in-[.presenting]:block">
+          {index} {eyebrow ? `— ${eyebrow}` : ""}
+        </p>
+        {before}
         {title ? (
-          <Reveal delay={80}>
+          <Reveal>
             <h2
               id={`${id}-title`}
-              className="mt-5 max-w-5xl text-4xl leading-[1.05] font-semibold md:text-6xl lg:text-7xl"
+              className="max-w-5xl text-4xl leading-[1.05] font-semibold md:text-6xl lg:text-7xl"
             >
               {title}
             </h2>
@@ -99,8 +118,10 @@ export function SectionShell({
           </span>
         )}
         {lead ? (
-          <Reveal delay={140}>
-            <p className="mt-6 max-w-3xl text-lg text-muted-foreground md:text-2xl">{lead}</p>
+          <Reveal delay={80}>
+            <p className="mt-6 max-w-3xl text-lg text-pretty text-muted-foreground md:text-2xl">
+              {lead}
+            </p>
           </Reveal>
         ) : null}
         <div className="mt-12 lg:mt-16">{children}</div>
@@ -110,7 +131,7 @@ export function SectionShell({
 }
 
 /**
- * Exibe uma fotografia real quando `photo` é fornecida.
+ * Exibe uma fotografia real quando `photo` é fornecida (WebP com srcset).
  * Sem foto, mantém um espaço reservado abstrato (nunca rostos genéricos).
  */
 export function PhotoPlaceholder({
@@ -119,13 +140,19 @@ export function PhotoPlaceholder({
   ratio = "portrait",
   photo,
   hideCaption = false,
+  sizes = "(min-width: 1024px) 33vw, 90vw",
+  priority = false,
 }: {
   label: string;
   className?: string;
   ratio?: "portrait" | "landscape" | "square";
-  photo?: { readonly src: string; readonly alt: string; readonly position?: string };
+  photo?: PhotoRef;
   /** Oculta a legenda sobreposta — use quando o nome já aparece em um título logo abaixo. */
   hideCaption?: boolean;
+  /** Largura que a foto ocupa na tela, para o navegador escolher a versão certa. */
+  sizes?: string;
+  /** Foto do topo: carrega primeiro, sem esperar a rolagem. */
+  priority?: boolean;
 }) {
   const ratioClass =
     ratio === "portrait" ? "aspect-[3/4]" : ratio === "square" ? "aspect-square" : "aspect-video";
@@ -134,18 +161,21 @@ export function PhotoPlaceholder({
     return (
       <figure
         className={cn(
-          "surface-glass group relative overflow-hidden rounded-2xl",
+          "group relative overflow-hidden rounded-2xl border border-border bg-card",
           ratioClass,
           className,
         )}
       >
         <img
           src={photo.src}
+          srcSet={photo.srcSet}
+          sizes={photo.srcSet ? sizes : undefined}
           alt={photo.alt}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           decoding="async"
           style={{ objectPosition: photo.position ?? "50% 30%" }}
-          className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
         {hideCaption ? null : (
           <>
@@ -165,7 +195,7 @@ export function PhotoPlaceholder({
   return (
     <figure
       className={cn(
-        "surface-glass relative overflow-hidden rounded-2xl",
+        "relative overflow-hidden rounded-2xl border border-border",
         ratioClass,
         className,
       )}
@@ -181,7 +211,6 @@ export function PhotoPlaceholder({
     </figure>
   );
 }
-
 
 /** Aviso honesto de conteúdo ainda não fornecido (evita dados inventados). */
 export function PendingContent({ children }: { children: ReactNode }) {

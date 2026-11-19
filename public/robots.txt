@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://huiataribeiro-portfolio.vercel.app/sitemap.xml
+Sitemap: https://www.huiataribeiro.com.br/sitemap.xml
