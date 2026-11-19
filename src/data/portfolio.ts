@@ -156,6 +156,7 @@ export const webDesign = {
 export const aboutPoints: readonly string[] = [
   "Instrutor de Informática no SENAI, no Curso Técnico em Desenvolvimento de Sistemas.",
   "Premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás, ciclo 2026/2027), com missão internacional à Itália em 2027.",
+  "3º lugar no Grand Prix SENAI de Inovação 2026 (SAGA SENAI de Inovação), com equipe de estudantes do SENAI Aparecida de Goiânia.",
   "Técnico em TI com mais de 10 anos em suporte, hardware e infraestrutura de redes.",
   "Docente Mentor de mais de 70 professores da rede estadual (Profissionaliza Goiás).",
   "Palestrante convidado no encerramento da Academia de Neurodocência do SENAI (2025), para mais de 200 professores da rede estadual de Goiás.",
@@ -493,7 +494,7 @@ export const education: readonly TimelineStep[] = [
   {
     title: "MBA em Inteligência Artificial com Ênfase em Inovação e Negócios · 2026 – 2027",
     description:
-      "IPOG — Instituto de Pós-Graduação · Em andamento. Módulos concluídos: fundamentos de IA e negócios; IA generativa e engenharia de prompt; IA aplicada a gestão, produtividade, operações e comunicação.",
+      "IPOG — Instituto de Pós-Graduação · Em andamento. Módulos concluídos: fundamentos de IA e negócios; IA generativa e engenharia de prompt; IA aplicada à gestão, à produtividade, às operações e à comunicação.",
   },
   {
     title: "Técnico em Montagem e Manutenção de Computadores · 2022 – 2023",
@@ -504,9 +505,14 @@ export const education: readonly TimelineStep[] = [
     description: "Faculdade Estácio de Sá de Goiás (FESGO) · Concluído.",
   },
   {
+    title: "Certificações internacionais · 2023 – 2026",
+    description:
+      "Wadhwani Foundation: Faculty Orientation Program do curso 21st Century Employability Skills (março de 2026, com validação em cert.wfglobal.org/verify, código iukQWsLaUO). Lightera Academy · Furukawa Electric: treinamento Data Cabling System, com 28 horas (abril de 2023).",
+  },
+  {
     title: "Certificações e desenvolvimento contínuo",
     description:
-      "CRT-01 ativo e mais de 65 certificações na UniIndústria SENAI: Formação Docente I e II, Academia de Neurodocência, Mentoria Pedagógica, IA no dia a dia, Data Cabling System Furukawa, Cloud Computing, Data Science, IoT, LIBRAS, Liderança e NR-5.",
+      "CRT-01 ativo e mais de 65 certificações na UniIndústria SENAI: Formação Docente I e II, Academia de Neurodocência, Mentoria Pedagógica, IA no dia a dia, Cloud Computing, Data Science, IoT, LIBRAS, Liderança e NR-5.",
   },
 ];
 
