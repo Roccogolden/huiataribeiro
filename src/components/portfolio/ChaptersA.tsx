@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ArrowRight, Download, Linkedin, MessageCircle } from "lucide-react";
+import { ArrowDown, ArrowRight, Award, Download, Linkedin, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   aboutPoints,
@@ -23,7 +23,7 @@ const ctaPrimary = cn(
 
 const ctaSecondary = cn(ctaBase, "border border-border hover:bg-secondary");
 
-export function IntroChapter({ onNext }: { onNext: () => void }) {
+export function IntroChapter({ onNext, onAward }: { onNext: () => void; onAward: () => void }) {
   return (
     <section
       id="intro"
@@ -33,7 +33,17 @@ export function IntroChapter({ onNext }: { onNext: () => void }) {
       <div className="mx-auto grid w-full max-w-[1600px] items-center gap-14 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <Reveal>
-            <p className="eyebrow">Portfólio profissional</p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+              <p className="eyebrow">Portfólio profissional</p>
+              <button
+                type="button"
+                onClick={onAward}
+                className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-semibold transition-colors hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-base"
+              >
+                <Award className="size-4 shrink-0 text-accent md:size-5" aria-hidden="true" />
+                Docente TOP 10 · SENAI Goiás 2026/2027
+              </button>
+            </div>
           </Reveal>
           <Reveal delay={80}>
             <h1
@@ -174,7 +184,7 @@ export function TimelineChapter() {
   return (
     <SectionShell
       id="trajetoria"
-      index="03"
+      index="04"
       eyebrow="Trajetória"
       title={<>Minha trajetória</>}
       lead="Uma evolução contínua: da experiência à inovação."
@@ -226,7 +236,7 @@ export function ExperienceChapter() {
   return (
     <SectionShell
       id="experiencia"
-      index="04"
+      index="05"
       eyebrow="Experiência"
       title={
         <>

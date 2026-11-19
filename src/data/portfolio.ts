@@ -8,6 +8,7 @@
  */
 
 import resumeAsset from "@/assets/Huiata-Ribeiro-Curriculo-2026.pdf?url";
+import awardResultAsset from "@/assets/Docente-TOP-10-6a-edicao-resultado-oficial.pdf?url";
 
 export interface Chapter {
   readonly id: string;
@@ -18,20 +19,21 @@ export interface Chapter {
 export const chapters: readonly Chapter[] = [
   { id: "intro", index: "01", label: "INTRO" },
   { id: "sobre", index: "02", label: "SOBRE" },
-  { id: "trajetoria", index: "03", label: "TRAJETÓRIA" },
-  { id: "experiencia", index: "04", label: "EXPERIÊNCIA" },
-  { id: "atuacao", index: "05", label: "ATUAÇÃO" },
-  { id: "tecnologias", index: "06", label: "TECNOLOGIAS" },
-  { id: "projetos", index: "07", label: "PROJETOS" },
-  { id: "pratica", index: "08", label: "PRÁTICA" },
-  { id: "educacao", index: "09", label: "EDUCAÇÃO" },
-  { id: "dinamicas", index: "10", label: "DINÂMICAS" },
-  { id: "ia", index: "11", label: "IA" },
-  { id: "formacao", index: "12", label: "FORMAÇÃO" },
-  { id: "impacto", index: "13", label: "IMPACTO" },
-  { id: "depoimentos", index: "14", label: "DEPOIMENTOS" },
-  { id: "futuro", index: "15", label: "FUTURO" },
-  { id: "contato", index: "16", label: "CONTATO" },
+  { id: "premio", index: "03", label: "DOCENTE TOP 10" },
+  { id: "trajetoria", index: "04", label: "TRAJETÓRIA" },
+  { id: "experiencia", index: "05", label: "EXPERIÊNCIA" },
+  { id: "atuacao", index: "06", label: "ATUAÇÃO" },
+  { id: "tecnologias", index: "07", label: "TECNOLOGIAS" },
+  { id: "projetos", index: "08", label: "PROJETOS" },
+  { id: "pratica", index: "09", label: "PRÁTICA" },
+  { id: "educacao", index: "10", label: "EDUCAÇÃO" },
+  { id: "dinamicas", index: "11", label: "DINÂMICAS" },
+  { id: "ia", index: "12", label: "IA" },
+  { id: "formacao", index: "13", label: "FORMAÇÃO" },
+  { id: "impacto", index: "14", label: "IMPACTO" },
+  { id: "depoimentos", index: "15", label: "DEPOIMENTOS" },
+  { id: "futuro", index: "16", label: "FUTURO" },
+  { id: "contato", index: "17", label: "CONTATO" },
 ];
 
 export const profile = {
@@ -46,9 +48,45 @@ export const profile = {
   credential: "CRT-01 Ativo",
 } as const;
 
+/**
+ * Docente TOP 10 — 6ª edição (ciclo 2026/2027).
+ * Fonte: resultado oficial do Edital nº 006/2026, assinado em 17/11/2026 pelo
+ * Diretor Regional do SENAI Goiás, e o vídeo "Vencedores Docente TOP 10 - 6ª Edição"
+ * do canal Sistema FIEG no YouTube.
+ */
+export const award = {
+  name: "Docente TOP 10",
+  edition: "6ª edição · ciclo 2026/2027",
+  program: "Programa Valorização Docente · SESI SENAI Goiás",
+  unit: "SENAI Aparecida de Goiânia",
+  publishedAt: "17 de novembro de 2026",
+  notice: "Edital nº 006/2026",
+  resultUrl: awardResultAsset,
+  video: {
+    id: "y3RUpArnYE8",
+    title: "Vencedores Docente TOP 10 - 6ª Edição",
+    channel: "Sistema FIEG",
+  },
+  facts: [
+    {
+      label: "Seleção",
+      text: "10 vagas para toda a rede SESI SENAI de Educação em Goiás: 5 para docentes do SESI e 5 para docentes do SENAI, com no máximo 2 por unidade escolar.",
+    },
+    {
+      label: "Critério",
+      text: "Entraram as maiores pontuações totais, depois que a comissão avaliadora analisou a documentação comprobatória de cada inscrição.",
+    },
+    {
+      label: "Prêmio",
+      text: "Missão internacional à Itália em 2027, com visitas técnicas a instituições de educação básica, profissional e superior e à indústria e tecnologia.",
+    },
+  ],
+} as const;
+
 /** Resumo profissional — extraído do currículo. */
 export const aboutPoints: readonly string[] = [
   "Instrutor de Informática no SENAI, no Curso Técnico em Desenvolvimento de Sistemas.",
+  "Premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás, ciclo 2026/2027), com missão internacional à Itália em 2027.",
   "Técnico em TI com mais de 10 anos em suporte, hardware e infraestrutura de redes.",
   "Docente Mentor de mais de 70 professores da rede estadual (Profissionaliza Goiás).",
   "Palestrante convidado no encerramento da Academia de Neurodocência do SENAI (2025), para mais de 200 professores da rede estadual de Goiás.",

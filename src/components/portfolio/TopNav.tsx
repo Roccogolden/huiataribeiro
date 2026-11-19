@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 const menu = [
   { id: "sobre", label: "Sobre" },
+  { id: "premio", label: "Prêmio" },
   { id: "trajetoria", label: "Trajetória" },
   { id: "experiencia", label: "Experiência" },
   { id: "projetos", label: "Projetos" },
@@ -34,7 +35,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
         </button>
 
         {!presenting ? (
-          <nav aria-label="Navegação principal" className="hidden gap-6 lg:flex">
+          <nav aria-label="Navegação principal" className="hidden gap-4 lg:flex xl:gap-6">
             {menu.map((item) => (
               <button
                 key={item.id}

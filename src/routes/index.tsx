@@ -10,6 +10,7 @@ import {
   IntroChapter,
   TimelineChapter,
 } from "@/components/portfolio/ChaptersA";
+import { AwardChapter } from "@/components/portfolio/AwardChapter";
 import {
   DoingChapter,
   PracticeChapter,
@@ -30,7 +31,7 @@ import {
 const SITE_URL = "https://huiataribeiro-portfolio.vercel.app";
 const TITLE = "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial";
 const DESCRIPTION =
-  "Portfólio profissional interativo de Huiatã Ribeiro — instrutor de tecnologia, desenvolvimento de sistemas e inteligência artificial. Trajetória, projetos e competências em formato de apresentação.";
+  "Portfólio profissional de Huiatã Ribeiro — instrutor de tecnologia do SENAI premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás). Trajetória, projetos e competências em formato de apresentação.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,6 +55,7 @@ export const Route = createFileRoute("/")({
           "@type": "Person",
           name: "Huiatã Ribeiro",
           jobTitle: "Instrutor de Tecnologia",
+          award: "Docente TOP 10 — 6ª edição, ciclo 2026/2027 (Programa Valorização Docente, SESI SENAI Goiás)",
           knowsAbout: [
             "Desenvolvimento de Sistemas",
             "Inteligência Artificial",
@@ -139,8 +141,13 @@ function PortfolioPage() {
   }, []);
 
   const chapterNodes = [
-    <IntroChapter key="intro" onNext={() => (presenting ? next() : scrollTo("sobre"))} />,
+    <IntroChapter
+      key="intro"
+      onNext={() => (presenting ? next() : scrollTo("sobre"))}
+      onAward={() => scrollTo("premio")}
+    />,
     <AboutChapter key="sobre" />,
+    <AwardChapter key="premio" />,
     <TimelineChapter key="trajetoria" />,
     <ExperienceChapter key="experiencia" />,
     <DoingChapter key="atuacao" />,

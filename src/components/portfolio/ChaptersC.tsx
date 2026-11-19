@@ -30,7 +30,7 @@ export function EducationTechChapter() {
   return (
     <SectionShell
       id="educacao"
-      index="09"
+      index="10"
       eyebrow="Educação + Tecnologia"
       title={
         <>
@@ -89,7 +89,7 @@ export function ClassroomDynamicsChapter() {
   return (
     <SectionShell
       id="dinamicas"
-      index="10"
+      index="11"
       eyebrow="Dinâmicas em Sala"
       title={
         <>
@@ -125,7 +125,7 @@ export function ClassroomDynamicsChapter() {
 
 export function AiChapter() {
   return (
-    <SectionShell id="ia" index="11" eyebrow="Inteligência Artificial">
+    <SectionShell id="ia" index="12" eyebrow="Inteligência Artificial">
       <div className="max-w-5xl">
         <Reveal>
           <p className="text-3xl font-semibold md:text-5xl">A tecnologia mudou.</p>
@@ -156,7 +156,7 @@ export function AiChapter() {
 
 export function FormationChapter() {
   return (
-    <SectionShell id="formacao" index="12" eyebrow="Formação" title={<>Formação</>}>
+    <SectionShell id="formacao" index="13" eyebrow="Formação" title={<>Formação</>}>
       {education.length === 0 ? (
         <PendingContent>
           Espaço reservado para graduação, pós-graduações, MBA/GMBA, cursos e certificações. Envie os
@@ -243,7 +243,7 @@ const impactProofs = [
 
 export function ImpactChapter() {
   return (
-    <SectionShell id="impacto" index="13" eyebrow="Impacto" title={<>Impacto</>}>
+    <SectionShell id="impacto" index="14" eyebrow="Impacto" title={<>Impacto</>}>
       <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start">
         <div className="grid gap-8 sm:grid-cols-2">
           {metrics.map((metric, i) => (
@@ -284,7 +284,7 @@ export function TestimonialsChapter() {
   const total = testimonials.length;
 
   return (
-    <SectionShell id="depoimentos" index="14" eyebrow="Depoimentos" title={<>Depoimentos</>}>
+    <SectionShell id="depoimentos" index="15" eyebrow="Depoimentos" title={<>Depoimentos</>}>
       {total === 0 ? (
         <PendingContent>
           Área preparada para depoimentos reais. Envie as mensagens (com nome e relação profissional
@@ -325,7 +325,7 @@ export function TestimonialsChapter() {
 
 export function FutureChapter() {
   return (
-    <SectionShell id="futuro" index="15" eyebrow="Futuro" title={<>E agora?</>}>
+    <SectionShell id="futuro" index="16" eyebrow="Futuro" title={<>E agora?</>}>
       <ol className="grid gap-4">
         {futureSteps.map((step, i) => (
           <Reveal key={step} delay={i * 110}>
@@ -363,7 +363,7 @@ export function ContactChapter() {
   const qrWhatsappUrl = `https://api.whatsapp.com/send?phone=55${profile.phone.replace(/\D/g, "")}&text=${qrWhatsappMessage}`;
 
   return (
-    <SectionShell id="contato" index="16" eyebrow="Contato" className="bg-tech-grid">
+    <SectionShell id="contato" index="17" eyebrow="Contato" className="bg-tech-grid">
       <div className="grid items-center gap-10 text-center lg:grid-cols-[1.3fr_0.7fr] lg:text-left">
         <div>
           <Reveal>

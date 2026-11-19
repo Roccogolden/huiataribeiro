@@ -29,7 +29,7 @@ export function DoingChapter() {
   const [active, setActive] = useState(0);
 
   return (
-    <SectionShell id="atuacao" index="05" eyebrow="Atuação" title={<>O que eu faço</>}>
+    <SectionShell id="atuacao" index="06" eyebrow="Atuação" title={<>O que eu faço</>}>
       <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-center">
         <ul className="grid gap-2">
           {doingWords.map((word, i) => (
@@ -69,7 +69,7 @@ export function SkillsChapter() {
   return (
     <SectionShell
       id="tecnologias"
-      index="06"
+      index="07"
       eyebrow="Tecnologias"
       title={
         <>
@@ -106,7 +106,7 @@ export function ProjectsChapter() {
   return (
     <SectionShell
       id="projetos"
-      index="07"
+      index="08"
       eyebrow="Projetos"
       title={
         <>
@@ -170,7 +170,7 @@ export function ProjectsChapter() {
 
 export function PracticeChapter() {
   return (
-    <SectionShell id="pratica" index="08" eyebrow="Tecnologia na prática">
+    <SectionShell id="pratica" index="09" eyebrow="Tecnologia na prática">
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <Reveal>
