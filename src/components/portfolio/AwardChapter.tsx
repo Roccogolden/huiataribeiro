@@ -23,7 +23,7 @@ function AwardVideo() {
 
   return (
     <div className="min-w-0 in-[.presenting]:max-w-[74svh]">
-      <div className="surface-glass relative aspect-video overflow-hidden rounded-2xl">
+      <div className="relative aspect-video overflow-hidden rounded-md bg-card">
         {playing ? (
           <iframe
             className="absolute inset-0 size-full"
@@ -37,7 +37,7 @@ function AwardVideo() {
           <button
             type="button"
             onClick={() => setPlaying(true)}
-            aria-label={`Assistir ao vídeo "${title}", do canal ${channel}`}
+            aria-label={`Assistir ao anúncio: vídeo "${title}", do canal ${channel}`}
             className="group absolute inset-0 size-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
           >
             {/* Arte oficial animada no After Effects: luz que atravessa o TOP 10 e brilho na estrela. */}
@@ -71,15 +71,12 @@ export function AwardChapter() {
       id="premio"
       index="03"
       eyebrow="Reconhecimento"
+      tema="tinta"
       title={
         <>
           Docente TOP 10
           <br />
-          <span className="text-brand-gradient">
-            6ª edição<span className="max-sm:hidden"> · </span>
-            <br className="sm:hidden" />
-            SENAI&nbsp;Goiás
-          </span>
+          <span className="text-brand-gradient">6ª edição, SENAI&nbsp;Goiás</span>
         </>
       }
       lead={
@@ -89,77 +86,73 @@ export function AwardChapter() {
         </>
       }
     >
-      <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-14">
-        <Reveal className="min-w-0 lg:sticky lg:top-32">
-          <AwardVideo />
+      {/* Palco: o vídeo do After Effects ocupa a largura e cresce enquanto entra na tela. */}
+      <div data-anim="palco" className="origin-top overflow-hidden rounded-md">
+        <AwardVideo />
+      </div>
+
+      <dl className="mt-14 grid gap-10 md:grid-cols-3 md:gap-10 lg:mt-20 lg:gap-14 in-[.presenting]:mt-6 in-[.presenting]:gap-6">
+        {award.facts.map((fact, i) => (
+          <Reveal key={fact.label} delay={i * 90} className="border-t border-border pt-6">
+            <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+              {fact.label}
+            </dt>
+            <dd className="mt-3 text-base text-pretty text-muted-foreground md:text-lg">
+              {fact.text}
+            </dd>
+          </Reveal>
+        ))}
+      </dl>
+
+      <div className="mt-14 grid gap-8 lg:mt-20 lg:grid-cols-[1fr_auto] lg:items-end in-[.presenting]:hidden">
+        <Reveal>
+          <figure className="flex items-center gap-5 sm:gap-7">
+            <img
+              src={cardSrc}
+              alt="Tela do anúncio oficial com a foto e o nome de Huiata Ribeiro Coutinho, Docente TOP 10 do SENAI, unidade SENAI Aparecida de Goiânia"
+              width={633}
+              height={349}
+              loading="lazy"
+              decoding="async"
+              className="w-40 shrink-0 rounded-md sm:w-60 md:w-72"
+            />
+            <figcaption className="min-w-0">
+              <p className="font-display text-2xl leading-tight md:text-3xl">
+                Huiatã Ribeiro Coutinho
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground md:text-base">{award.unit}</p>
+              <p className="mt-1 text-sm font-semibold text-accent md:text-base">
+                Missão Itália 2027
+              </p>
+            </figcaption>
+          </figure>
         </Reveal>
-
-        <div className="min-w-0">
-          <Reveal>
-            <figure className="surface-glass flex items-center gap-4 rounded-2xl p-3 sm:gap-6 sm:p-4">
-              <img
-                src={cardSrc}
-                alt="Tela do anúncio oficial com a foto e o nome de Huiata Ribeiro Coutinho, Docente TOP 10 do SENAI, unidade SENAI Aparecida de Goiânia"
-                width={633}
-                height={349}
-                loading="lazy"
-                decoding="async"
-                className="w-40 shrink-0 rounded-xl sm:w-60 md:w-72 in-[.presenting]:md:w-52"
-              />
-              <figcaption className="min-w-0">
-                <p className="text-base font-semibold md:text-xl">Huiatã Ribeiro Coutinho</p>
-                <p className="mt-1 text-sm text-muted-foreground md:text-base">{award.unit}</p>
-                <p className="mt-2 text-sm font-semibold text-accent md:text-base">
-                  Missão Itália 2027
-                </p>
-              </figcaption>
-            </figure>
-          </Reveal>
-
-          <dl className="mt-8 in-[.presenting]:mt-4 divide-y divide-border border-y border-border">
-            {award.facts.map((fact, i) => (
-              <Reveal
-                key={fact.label}
-                delay={i * 90}
-                className="grid gap-1 py-5 sm:grid-cols-[7rem_1fr] sm:gap-6 in-[.presenting]:py-3"
-              >
-                <dt className="text-sm font-semibold tracking-[0.16em] text-accent uppercase">
-                  {fact.label}
-                </dt>
-                <dd className="text-base text-pretty text-muted-foreground md:text-lg">
-                  {fact.text}
-                </dd>
-              </Reveal>
-            ))}
-          </dl>
-
-          <Reveal delay={300} className="in-[.presenting]:hidden">
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={award.resultUrl}
-                target="_blank"
-                rel="noopener"
-                className={cn(linkBase, "border border-border hover:bg-secondary")}
-              >
-                <FileText className="size-5 shrink-0" aria-hidden="true" />
-                Resultado oficial (PDF)
-              </a>
-              <a
-                href={`https://www.youtube.com/watch?v=${award.video.id}`}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={cn(linkBase, "border border-border hover:bg-secondary")}
-                aria-label="Ver o anúncio no YouTube (abre em nova aba)"
-              >
-                <ExternalLink className="size-5 shrink-0" aria-hidden="true" />
-                Ver no YouTube
-              </a>
-            </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              {award.program} · {award.notice} · resultado publicado em {award.publishedAt}
-            </p>
-          </Reveal>
-        </div>
+        <Reveal delay={120}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:justify-end">
+            <a
+              href={award.resultUrl}
+              target="_blank"
+              rel="noopener"
+              className={cn(linkBase, "border border-border hover:border-foreground")}
+            >
+              <FileText className="size-5 shrink-0" aria-hidden="true" />
+              Resultado oficial (PDF)
+            </a>
+            <a
+              href={`https://www.youtube.com/watch?v=${award.video.id}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(linkBase, "border border-border hover:border-foreground")}
+              aria-label="Ver o anúncio no YouTube (abre em nova aba)"
+            >
+              <ExternalLink className="size-5 shrink-0" aria-hidden="true" />
+              Ver no YouTube
+            </a>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground lg:text-right">
+            {award.program} · {award.notice} · resultado publicado em {award.publishedAt}
+          </p>
+        </Reveal>
       </div>
     </SectionShell>
   );

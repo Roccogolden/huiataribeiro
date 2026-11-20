@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Draggable, FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 import { doingWords, projects, skills } from "@/data/portfolio";
 import { photos } from "@/data/photos";
 import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
@@ -42,7 +43,7 @@ export function DoingChapter() {
                 onFocus={() => setActive(i)}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "text-left text-3xl leading-tight font-semibold uppercase transition-colors md:text-5xl lg:text-6xl",
+                  "text-left font-display text-4xl leading-tight transition-colors md:text-6xl lg:text-7xl",
                   active === i ? "text-brand-gradient" : "text-muted-foreground/60",
                 )}
               >
@@ -55,9 +56,11 @@ export function DoingChapter() {
           ))}
         </ul>
         <Reveal delay={120}>
-          <div className="rounded-2xl border border-border p-8">
-            <p className="eyebrow text-[0.7rem]">{doingWords[active]!.title}</p>
-            <p className="mt-4 text-xl leading-snug md:text-3xl">
+          <div className="border-t border-foreground/80 pt-6">
+            <p className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+              {doingWords[active]!.title}
+            </p>
+            <p className="mt-4 font-display text-2xl leading-snug md:text-4xl">
               {doingWords[active]!.description}
             </p>
           </div>
@@ -82,13 +85,15 @@ export function SkillsChapter() {
             delay={(i % 2) * 60}
             className="grid gap-3 border-b border-border py-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:gap-10 in-[.presenting]:py-3"
           >
-            <dt className="text-lg font-semibold md:text-xl">{group.category}</dt>
+            <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase md:pt-1.5">
+              {group.category}
+            </dt>
             <dd>
-              <ul className="flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-x-3 gap-y-1">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground md:text-base"
+                    className="text-lg after:ml-3 after:text-muted-foreground/60 after:content-['/'] last:after:hidden md:text-xl"
                   >
                     {item}
                   </li>
@@ -103,70 +108,116 @@ export function SkillsChapter() {
 }
 
 export function ProjectsChapter() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const barraRef = useRef<HTMLSpanElement>(null);
+
+  // Faixa arrastável com inércia (mouse) por cima da rolagem nativa (dedo, teclado, roda).
+  useGSAP(
+    () => {
+      const track = trackRef.current;
+      if (!track) return;
+      const mm = gsap.matchMedia();
+      mm.add(`${FULL_MOTION} and (pointer: fine)`, () => {
+        const [arraste] = Draggable.create(track, {
+          type: "scrollLeft",
+          inertia: true,
+          edgeResistance: 0.85,
+          dragClickables: false,
+          minimumMovement: 6,
+          cursor: "grab",
+          activeCursor: "grabbing",
+        });
+        return () => arraste?.kill();
+      });
+      return () => mm.revert();
+    },
+    { scope: trackRef },
+  );
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const barra = barraRef.current;
+    if (!track || !barra) return;
+    const atualizar = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const fracao = max > 0 ? track.scrollLeft / max : 1;
+      barra.style.transform = `scaleX(${Math.max(0.08, fracao)})`;
+    };
+    atualizar();
+    track.addEventListener("scroll", atualizar, { passive: true });
+    window.addEventListener("resize", atualizar);
+    return () => {
+      track.removeEventListener("scroll", atualizar);
+      window.removeEventListener("resize", atualizar);
+    };
+  }, []);
+
+  const passo = (direcao: 1 | -1) => {
+    const track = trackRef.current;
+    const card = track?.querySelector("article");
+    if (!track || !card) return;
+    track.scrollBy({
+      left: direcao * (card.getBoundingClientRect().width + 32),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <SectionShell
       id="projetos"
       index="08"
       eyebrow="Projetos"
       title={<>Projetos</>}
-      lead="Sistemas e sites que criei, quase todos com as minhas turmas do Técnico em Desenvolvimento de Sistemas."
+      lead="Sistemas, jogos e sites que criei, quase todos com as minhas turmas do Técnico em Desenvolvimento de Sistemas."
     >
-      <p className="-mt-4 mb-5 text-sm text-muted-foreground md:hidden">
-        Arraste para o lado para ver os {projects.length} projetos.
-      </p>
-      <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-4 md:mx-0 md:grid md:snap-none md:grid-flow-row-dense md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3">
-        {projects.map((project, i) => {
-          const featured = project.featured === true;
-          return (
-            <Reveal
-              as="article"
+      <div
+        ref={trackRef}
+        tabIndex={0}
+        aria-label={`Faixa com ${projects.length} projetos. Arraste ou use as setas para ver mais.`}
+        className="-mx-6 snap-x snap-mandatory scroll-px-6 overflow-x-auto pb-2 [scrollbar-width:none] focus-visible:outline-none md:-mx-14 md:scroll-px-14 lg:-mx-24 lg:scroll-px-24 pointer-fine:snap-none [&::-webkit-scrollbar]:hidden"
+      >
+        {/* Linha interna: o Draggable (scrollLeft) envolve os filhos num div próprio. */}
+        <div className="flex w-max gap-5 px-6 md:px-14 lg:gap-8 lg:px-24">
+          {projects.map((project, i) => (
+            <article
               key={project.name}
-              delay={(i % 3) * 80}
-              className={cn(
-                "group flex h-auto w-[86%] min-w-0 shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border bg-card/40 md:h-full md:w-auto",
-                featured && "md:col-span-2 lg:flex-row",
-              )}
+              className="group flex w-[78vw] shrink-0 snap-start flex-col sm:w-[56vw] lg:w-[34rem] xl:w-[38rem]"
             >
               <PhotoPlaceholder
                 photo={projectCovers[project.name] ?? projectPhotos[i % projectPhotos.length]!}
                 label={project.name}
                 ratio="landscape"
                 hideCaption
-                sizes={
-                  featured
-                    ? "(min-width: 1024px) 26vw, (min-width: 768px) 90vw, 92vw"
-                    : "(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 92vw"
-                }
-                className={cn(
-                  "shrink-0 rounded-none border-0 border-b border-border",
-                  featured && "lg:aspect-auto lg:w-[42%] lg:border-r lg:border-b-0",
-                )}
+                sizes="(min-width: 1280px) 38rem, (min-width: 1024px) 34rem, (min-width: 640px) 56vw, 78vw"
+                className="pointer-events-none select-none"
               />
-              <div className="flex flex-1 flex-col p-6 md:p-8">
-                <p className="text-sm font-semibold text-accent md:text-base">{project.category}</p>
-                <h3 className="mt-2 text-2xl font-semibold md:text-3xl">{project.name}</h3>
-                <p
-                  className={cn(
-                    "mt-4 leading-snug text-pretty",
-                    featured ? "text-xl md:text-3xl" : "text-lg md:text-xl",
-                  )}
-                >
-                  {project.result}
-                </p>
-                <p className="mt-3 text-base text-pretty text-muted-foreground md:text-lg">
+              <div className="flex flex-1 flex-col pt-6">
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-sm font-semibold tracking-wide text-accent">
+                    {project.category}
+                  </p>
+                  <span className="font-display text-xl text-muted-foreground" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mt-2 font-display text-4xl leading-none font-normal md:text-5xl">
+                  {project.name}
+                </h3>
+                <p className="mt-4 text-lg leading-snug text-pretty md:text-xl">{project.result}</p>
+                <p className="mt-3 text-base text-pretty text-muted-foreground">
                   {project.summary}
                 </p>
 
                 {project.problem || project.solution ? (
                   <details className="group/caso mt-5">
-                    <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-full text-base font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+                    <summary className="inline-flex cursor-pointer list-none items-center gap-2 text-base font-semibold focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none [&::-webkit-details-marker]:hidden">
                       Como foi feito
                       <ChevronDown
                         className="size-4 transition-transform group-open/caso:rotate-180"
                         aria-hidden="true"
                       />
                     </summary>
-                    <dl className="mt-4 grid gap-4 text-base md:text-lg">
+                    <dl className="mt-4 grid gap-4 text-base">
                       {project.problem ? (
                         <div>
                           <dt className="font-semibold">O problema</dt>
@@ -187,14 +238,14 @@ export function ProjectsChapter() {
                   </details>
                 ) : null}
 
-                <div className="mt-auto pt-7">
+                <div className="mt-auto pt-6">
                   {project.url ? (
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:scale-[1.03] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                      aria-label={`Ver ${project.name} no ar (abre em nova aba)`}
+                      className="inline-flex items-center gap-2 border-b border-current/40 pb-1 text-base font-semibold transition-colors hover:border-accent hover:text-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                      aria-label={`Ver no ar: ${project.name} (abre em nova aba)`}
                     >
                       Ver no ar
                       <ArrowUpRight className="size-4" aria-hidden="true" />
@@ -204,9 +255,39 @@ export function ProjectsChapter() {
                   )}
                 </div>
               </div>
-            </Reveal>
-          );
-        })}
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10 flex items-center gap-6">
+        <div className="relative h-px flex-1 bg-border" aria-hidden="true">
+          <span
+            ref={barraRef}
+            className="absolute inset-0 origin-left bg-foreground transition-transform duration-150"
+          />
+        </div>
+        <p className="hidden text-sm text-muted-foreground pointer-fine:block">
+          Arraste para ver mais
+        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => passo(-1)}
+            aria-label="Projeto anterior"
+            className="rounded-full border border-border p-3 transition-colors hover:border-foreground"
+          >
+            <ArrowLeft className="size-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => passo(1)}
+            aria-label="Próximo projeto"
+            className="rounded-full border border-border p-3 transition-colors hover:border-foreground"
+          >
+            <ArrowRight className="size-5" aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </SectionShell>
   );
@@ -218,10 +299,10 @@ export function PracticeChapter() {
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <Reveal>
-            <p className="text-4xl leading-tight font-semibold uppercase md:text-6xl">Do código</p>
+            <p className="font-display text-6xl leading-none md:text-8xl">Do código</p>
           </Reveal>
           <Reveal delay={140}>
-            <p className="mt-6 text-4xl leading-tight font-semibold uppercase md:text-6xl">
+            <p className="mt-2 font-display text-6xl leading-none md:text-8xl">
               <span className="text-brand-gradient">à solução</span>
             </p>
           </Reveal>

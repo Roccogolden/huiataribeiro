@@ -67,8 +67,10 @@ export interface SectionShellProps extends Omit<ComponentProps<"section">, "titl
   readonly eyebrow?: string;
   readonly title?: ReactNode;
   readonly lead?: ReactNode;
-  /** Elemento acima do título (ex.: a porta de rede do contato). */
+  /** Elemento acima do título. */
   readonly before?: ReactNode;
+  /** "tinta" deixa a seção escura (preto com texto claro); o padrão é papel. */
+  readonly tema?: "papel" | "tinta";
   readonly children: ReactNode;
 }
 
@@ -84,6 +86,7 @@ export function SectionShell({
   title,
   lead,
   before,
+  tema = "papel",
   children,
   className,
   ...rest
@@ -93,7 +96,8 @@ export function SectionShell({
       id={id}
       aria-labelledby={`${id}-title`}
       className={cn(
-        "relative flex w-full flex-col justify-center px-6 py-20 md:px-14 lg:px-24 lg:py-28",
+        "relative flex w-full flex-col justify-center px-6 py-24 md:px-14 lg:px-24 lg:py-36",
+        tema === "tinta" && "tema-tinta",
         className,
       )}
       {...rest}
@@ -104,14 +108,13 @@ export function SectionShell({
         </p>
         {before}
         {title ? (
-          <Reveal>
-            <h2
-              id={`${id}-title`}
-              className="max-w-5xl text-4xl leading-[1.05] font-semibold md:text-6xl lg:text-7xl"
-            >
-              {title}
-            </h2>
-          </Reveal>
+          <h2
+            id={`${id}-title`}
+            data-anim="titulo"
+            className="max-w-5xl text-5xl leading-[0.98] md:text-7xl lg:text-[5.75rem]"
+          >
+            {title}
+          </h2>
         ) : (
           <span id={`${id}-title`} className="sr-only">
             {eyebrow ?? index}
@@ -119,12 +122,17 @@ export function SectionShell({
         )}
         {lead ? (
           <Reveal delay={80}>
-            <p className="mt-6 max-w-3xl text-lg text-pretty text-muted-foreground md:text-2xl">
+            <p
+              data-shell-lead
+              className="mt-7 max-w-3xl text-lg text-pretty text-muted-foreground md:text-2xl md:leading-snug"
+            >
               {lead}
             </p>
           </Reveal>
         ) : null}
-        <div className="mt-12 lg:mt-16">{children}</div>
+        <div data-shell-corpo className="mt-14 lg:mt-20">
+          {children}
+        </div>
       </div>
     </section>
   );
@@ -160,11 +168,8 @@ export function PhotoPlaceholder({
   if (photo) {
     return (
       <figure
-        className={cn(
-          "group relative overflow-hidden rounded-2xl border border-border bg-card",
-          ratioClass,
-          className,
-        )}
+        data-anim="foto"
+        className={cn("group relative overflow-hidden rounded-2xl bg-card", ratioClass, className)}
       >
         <img
           src={photo.src}
@@ -180,10 +185,10 @@ export function PhotoPlaceholder({
         {hideCaption ? null : (
           <>
             <div
-              className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent"
+              className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent"
               aria-hidden="true"
             />
-            <figcaption className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium text-foreground/90 md:text-base">
+            <figcaption className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium text-white/90 md:text-base">
               {label}
             </figcaption>
           </>

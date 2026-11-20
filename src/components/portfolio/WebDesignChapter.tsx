@@ -17,18 +17,19 @@ export function WebDesignChapter() {
       id="webdesign"
       index="—"
       eyebrow="Web design"
+      tema="tinta"
       title={<>Web design e desenvolvimento</>}
       lead={webDesign.lead}
     >
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:gap-16">
-        <div className="min-w-0">
+        <div className="min-w-0 lg:sticky lg:top-28">
           <Reveal>
             <a
               href={webDesign.url}
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Abrir o portfólio de web design, huiataribeiro.dev (abre em nova aba)"
-              className="block rounded-2xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="block rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <PhotoPlaceholder
                 photo={vitrine}
@@ -69,24 +70,26 @@ export function WebDesignChapter() {
           </dl>
 
           <p className="mt-8 text-base font-semibold text-accent">Clientes com site no ar</p>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-4 border-t border-border">
             {webDesign.clients.map((client, i) => (
-              <Reveal as="li" key={client.name} delay={(i % 2) * 60}>
+              <Reveal as="li" key={client.name} delay={(i % 3) * 60}>
                 <a
                   href={client.url}
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`Ver o site de ${client.name} no ar (abre em nova aba)`}
-                  className="group flex h-full items-start justify-between gap-3 rounded-2xl border border-border p-4 transition-colors hover:bg-secondary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="group flex items-baseline justify-between gap-4 border-b border-border py-4 transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
-                  <span>
-                    <span className="block font-semibold">{client.name}</span>
-                    <span className="mt-1 block text-sm text-muted-foreground">{client.kind}</span>
+                  <span className="font-display text-2xl leading-tight md:text-3xl">
+                    {client.name}
                   </span>
-                  <ArrowUpRight
-                    className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    aria-hidden="true"
-                  />
+                  <span className="flex shrink-0 items-center gap-3 text-sm text-muted-foreground">
+                    <span className="hidden sm:inline">{client.kind}</span>
+                    <ArrowUpRight
+                      className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </span>
                 </a>
               </Reveal>
             ))}

@@ -58,18 +58,24 @@ export function EducationTechChapter() {
       lead="Aulas práticas, projetos e gamificação com turmas do Ensino Médio Técnico."
     >
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-16">
-        <ul className="flex flex-wrap gap-3">
+        <ol className="border-t border-border lg:sticky lg:top-28">
           {classroomTopics.map((item, i) => (
             <Reveal
               as="li"
               key={item}
               delay={i * 40}
-              className="rounded-full border border-border px-5 py-2.5 text-base md:text-xl"
+              className="flex items-baseline gap-5 border-b border-border py-3 md:py-4"
             >
-              {item}
+              <span
+                className="w-7 shrink-0 font-display text-lg text-accent italic"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="font-display text-2xl leading-tight md:text-3xl">{item}</span>
             </Reveal>
           ))}
-        </ul>
+        </ol>
         <div>
           <div className="grid grid-cols-2 gap-4 md:gap-5">
             {classroomPhotos.map(({ label, photo }, i) => (
@@ -88,7 +94,7 @@ export function EducationTechChapter() {
               href={classroomDriveUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-semibold transition-colors hover:bg-secondary"
+              className="mt-6 inline-flex items-center gap-2 border-b border-current/40 pb-1 font-semibold transition-colors hover:border-accent hover:text-accent"
               aria-label="Ver todos os registros das aulas no Google Drive (abre em nova aba)"
             >
               Ver todos os registros das aulas
@@ -110,18 +116,24 @@ export function ClassroomDynamicsChapter() {
       title={<>Dinâmicas que uso em sala</>}
       lead="Atividades práticas com as turmas do 1º ano do Ensino Médio Técnico, usando celulares pessoais e Chromebooks compartilhados."
     >
-      <ul className="flex flex-wrap gap-2.5">
+      <ol className="grid border-t border-border sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3 lg:gap-x-14">
         {classroomDynamics.map((item, i) => (
           <Reveal
             as="li"
             key={item}
-            delay={(i % 6) * 30}
-            className="rounded-full border border-border px-4 py-2 text-base md:text-lg"
+            delay={(i % 3) * 50}
+            className="flex items-baseline gap-4 border-b border-border py-3 text-base md:text-lg"
           >
+            <span
+              className="w-6 shrink-0 font-display text-base text-accent italic"
+              aria-hidden="true"
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
             {item}
           </Reveal>
         ))}
-      </ul>
+      </ol>
       <div className="mt-12 grid grid-cols-3 gap-4 md:gap-6">
         {classroomResults.map((result, i) => (
           <Reveal
@@ -129,7 +141,7 @@ export function ClassroomDynamicsChapter() {
             delay={i * 100}
             className="min-w-0 border-t border-border pt-6"
           >
-            <p className="text-brand-gradient text-4xl leading-none font-semibold text-nowrap md:text-7xl">
+            <p className="text-brand-gradient text-5xl leading-none text-nowrap md:text-8xl">
               <CountUp value={result.value} />
             </p>
             <p className="mt-3 text-sm text-pretty text-muted-foreground md:mt-4 md:text-lg">
@@ -158,7 +170,7 @@ export function AiChapter() {
           </p>
         </Reveal>
         <Reveal delay={320}>
-          <p className="text-brand-gradient mt-8 text-4xl leading-none font-semibold uppercase md:text-7xl lg:text-8xl">
+          <p className="text-brand-gradient mt-8 text-5xl leading-none md:text-8xl lg:text-9xl">
             Inteligência Artificial
           </p>
         </Reveal>
@@ -183,25 +195,36 @@ export function FormationChapter() {
   return (
     <SectionShell id="formacao" index="13" eyebrow="Formação" title={<>Formação</>}>
       {education.length === 0 ? (
-        <PendingContent>
-          Espaço reservado para graduação, pós-graduações, MBA/GMBA, cursos e certificações. Envie
-          os dados do currículo e eles serão exibidos aqui em uma timeline acadêmica.
-        </PendingContent>
+        <PendingContent>Formação em atualização.</PendingContent>
       ) : (
         <ol className="border-t border-border">
-          {education.map((item, i) => (
-            <Reveal
-              as="li"
-              key={item.title}
-              delay={(i % 2) * 60}
-              className="grid gap-2 border-b border-border py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-10 in-[.presenting]:py-4"
-            >
-              <h3 className="text-xl font-semibold text-pretty md:text-2xl">{item.title}</h3>
-              <p className="text-base text-pretty text-muted-foreground md:text-lg">
-                {item.description}
-              </p>
-            </Reveal>
-          ))}
+          {education.map((item, i) => {
+            // "Curso · AAAA – AAAA": o período vira rótulo acima do nome do curso.
+            const corte = item.title.lastIndexOf(" · ");
+            const periodo = corte > 0 ? item.title.slice(corte + 3) : "";
+            const temPeriodo = /\d{4}/.test(periodo);
+            const nome = temPeriodo ? item.title.slice(0, corte) : item.title;
+            return (
+              <Reveal
+                as="li"
+                key={item.title}
+                delay={(i % 2) * 60}
+                className="grid gap-2 border-b border-border py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-10 in-[.presenting]:py-4"
+              >
+                <div>
+                  <p className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                    {temPeriodo ? periodo : "Contínuo"}
+                  </p>
+                  <h3 className="mt-2 font-display text-3xl leading-tight font-normal text-pretty md:text-4xl">
+                    {nome}
+                  </h3>
+                </div>
+                <p className="text-base text-pretty text-muted-foreground md:pt-8 md:text-lg">
+                  {item.description}
+                </p>
+              </Reveal>
+            );
+          })}
         </ol>
       )}
     </SectionShell>
@@ -272,7 +295,7 @@ const impactProofs = [
 
 export function ImpactChapter() {
   return (
-    <SectionShell id="impacto" index="14" eyebrow="Impacto" title={<>Impacto</>}>
+    <SectionShell id="impacto" index="14" eyebrow="Impacto" tema="tinta" title={<>Impacto</>}>
       <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-start">
         <div className="grid grid-cols-2 gap-x-5 md:gap-x-8">
           {metrics.map((metric, i) => (
@@ -281,7 +304,7 @@ export function ImpactChapter() {
               delay={(i % 2) * 90}
               className="min-w-0 border-t border-border py-7 in-[.presenting]:py-4"
             >
-              <p className="text-brand-gradient text-4xl leading-none font-semibold text-nowrap sm:text-6xl md:text-7xl">
+              <p className="text-brand-gradient text-6xl leading-none text-nowrap sm:text-7xl md:text-8xl">
                 <CountUp value={metric.value} />
               </p>
               <p className="mt-3 text-sm text-pretty text-muted-foreground sm:text-lg md:mt-4 md:text-xl">
@@ -316,7 +339,9 @@ function Quote({ item, size = "md" }: { item: Testimonial; size?: "md" | "sm" })
       <blockquote
         className={cn(
           "leading-snug text-pretty",
-          size === "md" ? "text-xl md:text-2xl" : "text-base md:text-lg",
+          size === "md"
+            ? "font-display text-2xl leading-snug lg:text-[1.65rem]"
+            : "text-base md:text-lg",
         )}
       >
         “{item.quote}”
@@ -382,8 +407,8 @@ export function TestimonialsChapter() {
           </div>
 
           {/* Modo apresentação: um depoimento por vez. */}
-          <div className="hidden rounded-2xl border border-border p-10 in-[.presenting]:block">
-            <blockquote className="text-2xl leading-snug md:text-4xl">
+          <div className="hidden border-t border-foreground/80 pt-10 in-[.presenting]:block">
+            <blockquote className="font-display text-3xl leading-snug md:text-5xl">
               “{testimonials[index]!.quote}”
             </blockquote>
             <p className="mt-8 text-lg font-semibold md:text-xl">{testimonials[index]!.author}</p>
@@ -428,7 +453,7 @@ export function FutureChapter() {
             key={step}
             delay={i * 90}
             className={cn(
-              "text-3xl leading-tight font-semibold uppercase md:text-5xl lg:text-6xl",
+              "font-display text-4xl leading-tight md:text-6xl lg:text-7xl",
               i === futureSteps.length - 1 ? "text-brand-gradient" : "text-muted-foreground",
             )}
           >
@@ -469,46 +494,92 @@ export function ContactChapter() {
       id="contato"
       index="17"
       eyebrow="Contato"
+      tema="tinta"
       title={<>Vamos conversar?</>}
       lead="Para aulas, palestras, mentoria de professores ou projetos com tecnologia, me chame no WhatsApp ou mande um e-mail."
     >
-      <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_0.7fr]">
-        <Reveal>
-          <div className="flex flex-wrap items-center gap-3 md:gap-4">
-            {links.map((link) => {
-              const Icon = contactIcons[link.label as keyof typeof contactIcons] ?? Mail;
-              const disabled = !link.url;
-              const primary = link.label === "WhatsApp";
-              return (
-                <a
-                  key={link.label}
-                  href={link.url ?? "#contato"}
-                  aria-disabled={disabled}
-                  title={disabled ? `Link do ${link.label} a ser fornecido` : link.label}
-                  target={link.url?.startsWith("http") ? "_blank" : undefined}
-                  rel={link.url?.startsWith("http") ? "noreferrer noopener" : undefined}
-                  className={cn(
-                    "inline-flex min-h-[52px] items-center gap-3 rounded-full px-7 py-3 text-base font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none md:text-lg",
-                    primary
-                      ? "w-full justify-center bg-primary text-primary-foreground sm:w-auto"
-                      : "border border-border hover:bg-secondary",
-                    disabled && "text-muted-foreground",
-                  )}
-                >
-                  <Icon className="size-5" aria-hidden="true" />
-                  {primary ? "Chamar no WhatsApp" : link.label}
-                </a>
-              );
-            })}
-            <ResumeButton className="min-h-[52px] py-3" />
-          </div>
-        </Reveal>
-        <Reveal delay={120}>
+      <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
+        <div className="min-w-0">
+          {/* Fechamento editorial: o e-mail em tipo grande, como assinatura. */}
+          <Reveal>
+            <a
+              href={`mailto:${profile.email}`}
+              className="group inline-block max-w-full font-display text-[clamp(2rem,6.2vw,5.5rem)] leading-[1.05] break-words transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              aria-label={`Enviar e-mail para ${profile.email}`}
+            >
+              {profile.email}
+              <span
+                className="mt-2 block h-px origin-left bg-current/30 transition-transform duration-500 group-hover:bg-accent"
+                aria-hidden="true"
+              />
+            </a>
+          </Reveal>
+          <Reveal delay={80}>
+            <dl className="mt-12 grid gap-8 sm:grid-cols-3">
+              {links
+                .filter((link) => link.url && link.label !== "E-mail" && link.label !== "Telefone")
+                .map((link) => {
+                  const Icon = contactIcons[link.label as keyof typeof contactIcons] ?? Mail;
+                  const valor =
+                    link.label === "LinkedIn"
+                      ? "/in/huiataribeiro"
+                      : link.label === "WhatsApp" || link.label === "Telefone"
+                        ? profile.phone
+                        : link.label;
+                  const externo = link.url!.startsWith("http");
+                  return (
+                    <div key={link.label}>
+                      <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                        {link.label}
+                      </dt>
+                      <dd className="mt-2">
+                        <a
+                          href={link.url}
+                          target={externo ? "_blank" : undefined}
+                          rel={externo ? "noreferrer noopener" : undefined}
+                          aria-label={`${link.label}: ${valor}${externo ? " (abre em nova aba)" : ""}`}
+                          className="inline-flex items-center gap-2 text-lg transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none md:text-xl"
+                        >
+                          <Icon className="size-4 shrink-0 opacity-70" aria-hidden="true" />
+                          {valor}
+                        </a>
+                      </dd>
+                    </div>
+                  );
+                })}
+              <div>
+                <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                  Base
+                </dt>
+                <dd className="mt-2 text-lg md:text-xl">Senador Canedo · GO</dd>
+              </div>
+            </dl>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <a
+                href={links.find((link) => link.label === "WhatsApp")?.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex min-h-[52px] items-center gap-3 rounded-full bg-primary px-7 py-3 text-base font-semibold text-primary-foreground transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none md:text-lg"
+              >
+                <MessageCircle className="size-5" aria-hidden="true" />
+                Chamar no WhatsApp
+              </a>
+              <ResumeButton
+                label="Baixar currículo em PDF"
+                className="rounded-none border-0 border-b border-current/40 px-0 py-1 font-medium hover:border-accent hover:bg-transparent hover:text-accent md:px-0"
+              />
+            </div>
+          </Reveal>
+        </div>
+        {/* QR só em tela grande (computador e projetor): no celular não há como escanear a própria tela. */}
+        <Reveal delay={120} className="hidden lg:block">
           <a
             href={qrWhatsappUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="mx-auto flex w-fit flex-col items-center gap-3 rounded-3xl bg-white p-5 shadow-lg transition-transform hover:scale-[1.02] md:p-6 lg:mr-0"
+            className="mx-auto flex w-fit flex-col items-center gap-3 rounded-md bg-white p-5 transition-transform hover:scale-[1.02] md:p-6 lg:mr-0"
             aria-label="Escanear QR Code para iniciar uma conversa no WhatsApp (abre em nova aba)"
           >
             <img

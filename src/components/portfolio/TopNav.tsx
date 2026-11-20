@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, Monitor, ScrollText, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -20,29 +20,51 @@ export interface TopNavProps {
   readonly onNavigate: (id: string) => void;
 }
 
-/** Menu discreto do modo portfólio + alternância para o modo apresentação. */
+/**
+ * Barra editorial: transparente e clara sobre o topo escuro; ao rolar, vira papel
+ * sólido com uma linha fina embaixo. No modo apresentação fica sempre escura.
+ */
 export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavProps) {
   const [open, setOpen] = useState(false);
+  const [rolou, setRolou] = useState(false);
+
+  useEffect(() => {
+    const atualizar = () => setRolou(window.scrollY > 48);
+    atualizar();
+    window.addEventListener("scroll", atualizar, { passive: true });
+    return () => window.removeEventListener("scroll", atualizar);
+  }, []);
+
+  const escuro = presenting || (!rolou && !open);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="surface-glass mx-auto flex max-w-[1600px] items-center justify-between gap-4 rounded-none px-5 py-4 md:mt-4 md:rounded-full md:px-8">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+        escuro
+          ? "tema-tinta bg-transparent"
+          : "border-b border-border bg-background/90 backdrop-blur-md",
+        presenting && "bg-background",
+      )}
+    >
+      <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between gap-6 px-6 md:px-14 lg:px-24">
         <button
           type="button"
           onClick={() => onNavigate("intro")}
-          className="font-display text-base font-semibold tracking-[0.2em] uppercase md:text-lg"
+          className="font-display text-2xl leading-none tracking-tight md:text-[1.7rem]"
+          aria-label="Huiatã Ribeiro, voltar ao início"
         >
-          Huiatã<span className="text-primary">.</span>
+          Huiatã <span className="italic">Ribeiro</span>
         </button>
 
         {!presenting ? (
-          <nav aria-label="Navegação principal" className="hidden gap-4 lg:flex xl:gap-6">
+          <nav aria-label="Navegação principal" className="hidden gap-6 lg:flex xl:gap-8">
             {menu.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => onNavigate(item.id)}
-                className="text-base text-muted-foreground transition-colors hover:text-foreground"
+                className="relative text-[0.95rem] text-foreground/75 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-foreground hover:after:scale-x-100"
               >
                 {item.label}
               </button>
@@ -50,16 +72,14 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
           </nav>
         ) : null}
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onTogglePresenting}
             aria-pressed={presenting}
             className={cn(
-              "hidden items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold whitespace-nowrap transition-colors md:inline-flex md:text-base",
-              presenting
-                ? "bg-primary text-primary-foreground"
-                : "border border-border hover:bg-secondary",
+              "hidden items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:border-foreground md:inline-flex",
+              presenting && "border-foreground",
             )}
           >
             {presenting ? (
@@ -76,7 +96,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="rounded-full border border-border p-3 lg:hidden"
+              className="rounded-full border border-border p-2.5 lg:hidden"
             >
               {open ? (
                 <X className="size-5" aria-hidden="true" />
@@ -91,7 +111,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
       {open && !presenting ? (
         <nav
           aria-label="Navegação móvel"
-          className="surface-glass mx-4 mt-2 grid gap-1 rounded-2xl p-4 lg:hidden"
+          className="grid gap-1 border-t border-border bg-background px-6 pt-2 pb-6 lg:hidden"
         >
           {menu.map((item) => (
             <button
@@ -101,7 +121,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
                 onNavigate(item.id);
                 setOpen(false);
               }}
-              className="rounded-xl px-4 py-3 text-left text-lg hover:bg-secondary"
+              className="border-b border-border py-3 text-left font-display text-3xl"
             >
               {item.label}
             </button>

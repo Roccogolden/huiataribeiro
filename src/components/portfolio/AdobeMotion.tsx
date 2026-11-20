@@ -3,11 +3,14 @@ import { cn } from "@/lib/utils";
 import fundoTopo from "@/assets/motion/fundo-topo.mp4";
 import fundoTopoCapa from "@/assets/motion/fundo-topo-capa.webp";
 import premioTop10 from "@/assets/motion/premio-top10.mp4";
+import retratoVivo from "@/assets/motion/retrato-vivo.mp4";
+import retratoVivoCapa from "@/assets/motion/retrato-vivo-capa.webp";
 
 /*
  * Animações feitas no After Effects (projeto em DOCUMENTOS PESSOAIS - HUIATÃ RIBEIRO/portfolio-motion)
  * e comprimidas para a web no Media Encoder:
  * - fundo-topo.mp4: névoa de luz (Fractal Noise + Tint + Desfoque gaussiano), loop perfeito de 8 s.
+ * - retrato-vivo.mp4: a foto real com respiração lenta, luz de sol e vinheta, loop de 10 s.
  * - premio-top10.mp4: a arte oficial do prêmio com aproximação lenta, faixa de luz (CC Light Sweep)
  *   e brilho na estrela (Lens Flare). Toca uma vez e para no último quadro.
  * Com "reduzir movimento" ou economia de dados, só a imagem parada aparece.
@@ -85,5 +88,41 @@ export function AwardMotion({
       className={className}
       {...rest}
     />
+  );
+}
+
+/** Retrato vivo do topo: a capa aparece na hora; o vídeo começa depois da página carregar. */
+export function PortraitMotion({ alt, className }: { alt: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video || !motionAllowed()) return;
+    const start = () => {
+      video.src = retratoVivo;
+      void video.play().catch(() => undefined);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => window.removeEventListener("load", start);
+  }, []);
+
+  // O vídeo é só movimento (sem som nem controles); quem usa leitor de tela recebe a descrição.
+  return (
+    <>
+      <video
+        ref={ref}
+        aria-hidden="true"
+        muted
+        loop
+        playsInline
+        preload="none"
+        poster={retratoVivoCapa}
+        width={720}
+        height={1280}
+        className={className}
+      />
+      <span className="sr-only">{alt}</span>
+    </>
   );
 }

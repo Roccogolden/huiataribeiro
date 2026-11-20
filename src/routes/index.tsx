@@ -1,6 +1,9 @@
+import { cn } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import Lenis from "lenis";
+import { ScrollTrigger, gsap } from "@/lib/gsap";
+import { SiteMotion } from "@/components/portfolio/SiteMotion";
 import { chapters, webChapterIds } from "@/data/portfolio";
 import { TopNav } from "@/components/portfolio/TopNav";
 import { ProgressBar } from "@/components/portfolio/ProgressBar";
@@ -32,7 +35,7 @@ import {
 /** Endereço oficial. Os outros (sem www e .vercel.app) apontam para ele. */
 const SITE_URL = "https://www.huiataribeiro.com.br";
 /** Prévia do link (1200 × 630). Troque o ?v= sempre que a imagem mudar. */
-const OG_IMAGE = `${SITE_URL}/og-image.jpg?v=20261119`;
+const OG_IMAGE = `${SITE_URL}/og-image.jpg?v=20261120`;
 const TITLE = "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial";
 const DESCRIPTION =
   "Portfólio profissional de Huiatã Ribeiro — instrutor de tecnologia do SENAI premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás). Trajetória, projetos e competências em formato de apresentação.";
@@ -111,9 +114,16 @@ function PortfolioPage() {
   useEffect(() => {
     if (presenting) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ duration: 1.05, autoRaf: true });
+    const lenis = new Lenis({ duration: 1.1 });
     lenisRef.current = lenis;
+    // O Lenis avisa o ScrollTrigger a cada quadro, e os dois andam no mesmo relógio do GSAP.
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
     return () => {
+      gsap.ticker.remove(tick);
+      gsap.ticker.lagSmoothing(500, 33);
       lenis.destroy();
       lenisRef.current = null;
     };
@@ -210,7 +220,7 @@ function PortfolioPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className={cn("min-h-screen bg-background text-foreground", presenting && "tema-tinta")}>
       <TopNav presenting={presenting} onTogglePresenting={togglePresenting} onNavigate={scrollTo} />
 
       <main className={presenting ? "h-[100svh] overflow-hidden pt-24 pb-24" : undefined}>
@@ -219,7 +229,7 @@ function PortfolioPage() {
             {chapterNodes[chapters[current]!.id]}
           </div>
         ) : (
-          webChapterIds.map((id) => chapterNodes[id])
+          <SiteMotion>{webChapterIds.map((id) => chapterNodes[id])}</SiteMotion>
         )}
       </main>
 
@@ -232,8 +242,23 @@ function PortfolioPage() {
           onFullscreen={requestFullscreen}
         />
       ) : (
-        <footer className="border-t border-border px-6 py-10 text-center text-sm text-muted-foreground md:text-base">
-          Huiatã Ribeiro · Instrutor de Informática no SENAI · Senador Canedo, GO
+        <footer className="tema-tinta overflow-hidden border-t border-border px-6 pt-10 md:px-14 lg:px-24">
+          <div className="flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between md:text-base">
+            <p>© {new Date().getFullYear()} Huiatã Ribeiro</p>
+            <p>Instrutor de Informática · SENAI · Senador Canedo, GO</p>
+            <a
+              href="#intro"
+              className="w-fit border-b border-current/40 pb-0.5 transition-colors hover:border-accent hover:text-accent"
+            >
+              Voltar ao topo ↑
+            </a>
+          </div>
+          <p
+            className="mt-10 font-display text-[clamp(4.5rem,17vw,17rem)] leading-[0.78] whitespace-nowrap text-foreground/40 select-none"
+            aria-hidden="true"
+          >
+            Huiatã <span className="italic">Ribeiro</span>
+          </p>
         </footer>
       )}
     </div>

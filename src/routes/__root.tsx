@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial" },
       { name: "author", content: "Huiatã Ribeiro" },
-      { name: "theme-color", content: "#0b1120" },
+      { name: "theme-color", content: "#121211" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:site_name", content: "Huiatã Ribeiro" },
       { property: "og:type", content: "website" },
@@ -99,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap",
       },
     ],
   }),
