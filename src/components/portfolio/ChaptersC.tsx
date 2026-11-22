@@ -215,7 +215,7 @@ export function FormationChapter() {
                   <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                     {temPeriodo ? periodo : "Contínuo"}
                   </p>
-                  <h3 className="mt-2 font-display text-3xl leading-tight font-medium tracking-[-0.02em] text-pretty md:text-4xl">
+                  <h3 className="mt-2 font-display text-3xl leading-tight font-medium tracking-[-0.005em] text-pretty md:text-4xl">
                     {nome}
                   </h3>
                 </div>

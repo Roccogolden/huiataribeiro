@@ -2,8 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.huiataribeiro.com.br/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.huiataribeiro.com.br/projetos/logica-quest</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.huiataribeiro.com.br/projetos/desafio-dos-2-reais</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

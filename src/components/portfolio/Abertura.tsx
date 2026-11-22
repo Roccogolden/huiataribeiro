@@ -5,10 +5,10 @@ import { FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 export const CHAVE_ABERTURA = "abertura-vista";
 
 /**
- * Roda no <head>, antes do primeiro desenho: decide se há abertura (não há com "reduzir movimento")
+ * Roda no <head>, antes do primeiro desenho: decide se há abertura (só na página inicial; não há com "reduzir movimento")
  * e qual versão. Se o JavaScript do site falhar, a trava de 6 s libera a página sozinha.
  */
-export const SCRIPT_ABERTURA = `(function(){try{var d=document.documentElement;if(!window.matchMedia||!matchMedia("(prefers-reduced-motion: no-preference)").matches)return;var v=false;try{v=sessionStorage.getItem("${CHAVE_ABERTURA}")==="1"}catch(e){}d.classList.add("abertura-ativa");if(v)d.setAttribute("data-abertura","curta");setTimeout(function(){d.classList.remove("abertura-ativa")},6000)}catch(e){}})();`;
+export const SCRIPT_ABERTURA = `(function(){try{var d=document.documentElement;if(location.pathname!=="/")return;if(!window.matchMedia||!matchMedia("(prefers-reduced-motion: no-preference)").matches)return;var v=false;try{v=sessionStorage.getItem("${CHAVE_ABERTURA}")==="1"}catch(e){}d.classList.add("abertura-ativa");if(v)d.setAttribute("data-abertura","curta");setTimeout(function(){d.classList.remove("abertura-ativa")},6000)}catch(e){}})();`;
 
 /** Evento que avisa o resto da página (rolagem suave) que a abertura terminou. */
 export const FIM_ABERTURA = "abertura-fim";

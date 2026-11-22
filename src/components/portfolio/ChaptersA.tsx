@@ -297,7 +297,7 @@ export function ExperienceChapter() {
                   <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                     {periodo}
                   </p>
-                  <h3 className="mt-2 font-display text-3xl leading-tight font-medium tracking-[-0.02em] md:text-4xl">
+                  <h3 className="mt-2 font-display text-3xl leading-tight font-medium tracking-[-0.005em] md:text-4xl">
                     {nome}
                   </h3>
                 </div>

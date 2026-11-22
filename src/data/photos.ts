@@ -65,38 +65,38 @@ export const photos = {
   },
   desafio2Reais: {
     ...webImage("capa-desafio-2reais"),
-    alt: "Placar ao vivo do Desafio dos R$ 2,00, com o comparativo entre turmas e o pódio das equipes",
+    alt: "Página inicial do Desafio dos R$ 2,00: “Começa pequeno. Pense grande.”, com as metas mensais e o ranking ao vivo",
     position: "50% 50%",
   },
   personalLindy: {
     ...webImage("capa-personal-lindy"),
     alt: "Página inicial do site Personal Lindy, personal trainer online",
-    position: "50% 20%",
+    position: "50% 50%",
   },
   topBurguer: {
     ...webImage("capa-top-burguer"),
     alt: 'Tela inicial do sistema Top Burguer: "Do toque à chapa em segundos", com pedidos em tempo real',
-    position: "50% 20%",
+    position: "50% 50%",
   },
   capsulaDoTempo: {
     ...webImage("capa-capsula-do-tempo"),
-    alt: "Case metálico usado para guardar a cápsula do tempo física da turma",
-    position: "50% 40%",
+    alt: "Tela inicial do Upgrade 3.0, a cápsula do tempo digital, com a escolha de avatar",
+    position: "50% 50%",
   },
   logicaQuest: {
     ...webImage("capa-logica-quest"),
     alt: "Tela inicial do jogo Lógica Quest, com as 10 fases, do Vale dos Padrões ao Núcleo do Sistema",
-    position: "50% 30%",
+    position: "50% 50%",
   },
   laboratorioLogica: {
     ...webImage("capa-laboratorio-logica"),
     alt: "Missão do jogo Laboratório de Lógica, em que o aluno monta uma sequência de comandos",
-    position: "50% 40%",
+    position: "50% 50%",
   },
   reservaLab: {
     ...webImage("capa-reserva-lab"),
     alt: "Tela do sistema de reserva do laboratório de informática do CEPI Elberto Alves",
-    position: "50% 20%",
+    position: "50% 50%",
   },
   salaManutencao: {
     ...webImage("foto-sala-manutencao"),

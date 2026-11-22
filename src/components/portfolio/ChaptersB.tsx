@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { Draggable, FULL_MOTION, gsap, useGSAP } from "@/lib/gsap";
 import { doingWords, projects, skills } from "@/data/portfolio";
 import { photos } from "@/data/photos";
+import { estudoDoProjeto } from "@/data/estudos";
+import { Link } from "@tanstack/react-router";
 import { PhotoPlaceholder, Reveal, SectionShell } from "./primitives";
 
 /** Registros usados como capa dos projetos (fallback quando não há captura real do projeto). */
@@ -200,7 +202,7 @@ export function ProjectsChapter() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="mt-2 font-display text-4xl leading-none font-medium tracking-[-0.02em] md:text-5xl">
+                <h3 className="mt-2 font-display text-4xl leading-none font-medium tracking-[-0.005em] md:text-5xl">
                   {project.name}
                 </h3>
                 <p className="mt-4 text-lg leading-snug text-pretty md:text-xl">{project.result}</p>
@@ -238,7 +240,17 @@ export function ProjectsChapter() {
                   </details>
                 ) : null}
 
-                <div className="mt-auto pt-6">
+                <div className="mt-auto flex flex-wrap items-center gap-x-8 gap-y-3 pt-6">
+                  {estudoDoProjeto(project.name) ? (
+                    <Link
+                      to="/projetos/$slug"
+                      params={{ slug: estudoDoProjeto(project.name)! }}
+                      className="inline-flex items-center gap-2 bg-foreground px-4 py-2 text-base font-semibold text-background transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    >
+                      Estudo de caso
+                      <ArrowRight className="size-4" aria-hidden="true" />
+                    </Link>
+                  ) : null}
                   {project.url ? (
                     <a
                       href={project.url}
