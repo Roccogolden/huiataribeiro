@@ -69,7 +69,9 @@ export function WebDesignChapter() {
             ))}
           </dl>
 
-          <p className="mt-8 text-base font-semibold text-accent">Clientes com site no ar</p>
+          <p className="mt-8 text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+            Clientes com site no ar
+          </p>
           <ul className="mt-4 border-t border-border">
             {webDesign.clients.map((client, i) => (
               <Reveal as="li" key={client.name} delay={(i % 3) * 60}>
@@ -78,7 +80,7 @@ export function WebDesignChapter() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`Ver o site de ${client.name} no ar (abre em nova aba)`}
-                  className="group flex items-baseline justify-between gap-4 border-b border-border py-4 transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="group flex items-baseline justify-between gap-4 border-b border-border py-4 transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <span className="font-display text-2xl leading-tight md:text-3xl">
                     {client.name}

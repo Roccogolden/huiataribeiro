@@ -6,6 +6,7 @@ import { ScrollTrigger, gsap } from "@/lib/gsap";
 import { SiteMotion } from "@/components/portfolio/SiteMotion";
 import { chapters, webChapterIds } from "@/data/portfolio";
 import { TopNav } from "@/components/portfolio/TopNav";
+import { Abertura, FIM_ABERTURA } from "@/components/portfolio/Abertura";
 import { ProgressBar } from "@/components/portfolio/ProgressBar";
 import {
   AboutChapter,
@@ -35,10 +36,10 @@ import {
 /** Endereço oficial. Os outros (sem www e .vercel.app) apontam para ele. */
 const SITE_URL = "https://www.huiataribeiro.com.br";
 /** Prévia do link (1200 × 630). Troque o ?v= sempre que a imagem mudar. */
-const OG_IMAGE = `${SITE_URL}/og-image.jpg?v=20261120`;
+const OG_IMAGE = `${SITE_URL}/og-image.jpg?v=20261122`;
 const TITLE = "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial";
 const DESCRIPTION =
-  "Portfólio profissional de Huiatã Ribeiro — instrutor de tecnologia do SENAI premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás). Trajetória, projetos e competências em formato de apresentação.";
+  "Portfólio de Huiatã Ribeiro, instrutor de Informática do SENAI premiado na 6ª edição do Docente TOP 10 (SESI SENAI Goiás): trajetória, projetos, web design e competências.";
 
 /** Distância entre o topo da tela e o início do capítulo ao navegar pelo menu. */
 const NAV_OFFSET = -32;
@@ -57,7 +58,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
-        content: "Huiatã Ribeiro, instrutor de tecnologia do SENAI, Docente TOP 10 2026/2027",
+        content: "Huiatã Ribeiro, instrutor de Informática do SENAI, Docente TOP 10 2026/2027",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
@@ -121,7 +122,14 @@ function PortfolioPage() {
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
+    // Durante a abertura a página fica parada; a rolagem volta quando a cortina sobe.
+    const voltar = () => lenis.start();
+    if (document.documentElement.classList.contains("abertura-ativa")) {
+      lenis.stop();
+      window.addEventListener(FIM_ABERTURA, voltar, { once: true });
+    }
     return () => {
+      window.removeEventListener(FIM_ABERTURA, voltar);
       gsap.ticker.remove(tick);
       gsap.ticker.lagSmoothing(500, 33);
       lenis.destroy();
@@ -221,6 +229,7 @@ function PortfolioPage() {
 
   return (
     <div className={cn("min-h-screen bg-background text-foreground", presenting && "tema-tinta")}>
+      <Abertura />
       <TopNav presenting={presenting} onTogglePresenting={togglePresenting} onNavigate={scrollTo} />
 
       <main className={presenting ? "h-[100svh] overflow-hidden pt-24 pb-24" : undefined}>
@@ -245,19 +254,19 @@ function PortfolioPage() {
         <footer className="tema-tinta overflow-hidden border-t border-border px-6 pt-10 md:px-14 lg:px-24">
           <div className="flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between md:text-base">
             <p>© {new Date().getFullYear()} Huiatã Ribeiro</p>
-            <p>Instrutor de Informática · SENAI · Senador Canedo, GO</p>
+            <p>Instrutor de Informática · SENAI · Senador Canedo – GO</p>
             <a
               href="#intro"
-              className="w-fit border-b border-current/40 pb-0.5 transition-colors hover:border-accent hover:text-accent"
+              className="w-fit border-b border-current/40 pb-0.5 transition-colors hover:border-current hover:text-muted-foreground"
             >
               Voltar ao topo ↑
             </a>
           </div>
           <p
-            className="mt-10 font-display text-[clamp(4.5rem,17vw,17rem)] leading-[0.78] whitespace-nowrap text-foreground/40 select-none"
+            className="mt-10 font-display text-[clamp(4.5rem,17vw,17rem)] leading-[0.8] font-medium tracking-[-0.05em] whitespace-nowrap text-foreground/40 select-none"
             aria-hidden="true"
           >
-            Huiatã <span className="italic">Ribeiro</span>
+            Huiatã Ribeiro
           </p>
         </footer>
       )}

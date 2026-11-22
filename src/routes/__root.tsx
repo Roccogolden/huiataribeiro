@@ -13,6 +13,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SCRIPT_ABERTURA } from "@/components/portfolio/Abertura";
 
 function NotFoundComponent() {
   return (
@@ -81,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Huiatã Ribeiro | Tecnologia, Educação e Inteligência Artificial" },
       { name: "author", content: "Huiatã Ribeiro" },
-      { name: "theme-color", content: "#121211" },
+      { name: "theme-color", content: "#0a0a0a" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:site_name", content: "Huiatã Ribeiro" },
       { property: "og:type", content: "website" },
@@ -95,13 +96,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
       { rel: "icon", href: "/favicon-16.png", type: "image/png", sizes: "16x16" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap",
-      },
+      // Neue Haas Grotesk pelo Adobe Fonts (kit nlv0ruh): Display nos títulos, Text no corpo.
+      { rel: "preconnect", href: "https://use.typekit.net", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://p.typekit.net", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://use.typekit.net/nlv0ruh.css" },
     ],
+    // Antes do primeiro desenho: decide se a abertura roda e qual versão (ver Abertura.tsx).
+    scripts: [{ children: SCRIPT_ABERTURA }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -111,7 +112,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
+    // A classe da abertura entra pelo script do <head>, antes do React: sem aviso de hidratação.
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

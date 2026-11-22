@@ -169,7 +169,11 @@ export function PhotoPlaceholder({
     return (
       <figure
         data-anim="foto"
-        className={cn("group relative overflow-hidden rounded-2xl bg-card", ratioClass, className)}
+        className={cn(
+          "group relative overflow-hidden rounded-[2px] bg-card",
+          ratioClass,
+          className,
+        )}
       >
         <img
           src={photo.src}
@@ -200,7 +204,7 @@ export function PhotoPlaceholder({
   return (
     <figure
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-border",
+        "relative overflow-hidden rounded-[2px] border border-border",
         ratioClass,
         className,
       )}
@@ -220,7 +224,7 @@ export function PhotoPlaceholder({
 /** Aviso honesto de conteúdo ainda não fornecido (evita dados inventados). */
 export function PendingContent({ children }: { children: ReactNode }) {
   return (
-    <div className="surface-glass rounded-2xl p-8 text-base text-muted-foreground md:text-lg">
+    <div className="surface-glass rounded-[2px] p-8 text-base text-muted-foreground md:text-lg">
       {children}
     </div>
   );

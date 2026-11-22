@@ -44,7 +44,7 @@ export function DoingChapter() {
                 onClick={() => setActive(i)}
                 className={cn(
                   "text-left font-display text-4xl leading-tight transition-colors md:text-6xl lg:text-7xl",
-                  active === i ? "text-brand-gradient" : "text-muted-foreground/60",
+                  active === i ? "text-foreground" : "text-muted-foreground/45",
                 )}
               >
                 {word.title}
@@ -57,7 +57,7 @@ export function DoingChapter() {
         </ul>
         <Reveal delay={120}>
           <div className="border-t border-foreground/80 pt-6">
-            <p className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+            <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {doingWords[active]!.title}
             </p>
             <p className="mt-4 font-display text-2xl leading-snug md:text-4xl">
@@ -85,7 +85,7 @@ export function SkillsChapter() {
             delay={(i % 2) * 60}
             className="grid gap-3 border-b border-border py-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:gap-10 in-[.presenting]:py-3"
           >
-            <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase md:pt-1.5">
+            <dt className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase md:pt-1.5">
               {group.category}
             </dt>
             <dd>
@@ -193,14 +193,14 @@ export function ProjectsChapter() {
               />
               <div className="flex flex-1 flex-col pt-6">
                 <div className="flex items-baseline justify-between gap-4">
-                  <p className="text-sm font-semibold tracking-wide text-accent">
+                  <p className="text-sm font-medium tracking-wide text-muted-foreground">
                     {project.category}
                   </p>
                   <span className="font-display text-xl text-muted-foreground" aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="mt-2 font-display text-4xl leading-none font-normal md:text-5xl">
+                <h3 className="mt-2 font-display text-4xl leading-none font-medium tracking-[-0.02em] md:text-5xl">
                   {project.name}
                 </h3>
                 <p className="mt-4 text-lg leading-snug text-pretty md:text-xl">{project.result}</p>

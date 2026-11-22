@@ -138,47 +138,48 @@
  * Tema escuro único (sem toggle), alto contraste para projeção em Data Show.
  * ========================================================================= */
 
-/* Identidade editorial: papel claro e tinta preta, com um laranja de destaque.
+/* Identidade em preto e branco: branco puro, preto e cinzas. Nenhuma cor de destaque;
+ * a única cor do site vem das fotos reais. "accent" é a própria cor do texto.
  * As seções escuras usam .tema-tinta, que troca só as variáveis. */
 :root,
 .dark {
-  --radius: 0.25rem;
+  --radius: 0.125rem;
 
-  --background: oklch(0.955 0.009 85);
-  --foreground: oklch(0.18 0.004 100);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
 
-  --card: oklch(0.925 0.011 85);
-  --card-foreground: oklch(0.18 0.004 100);
-  --popover: oklch(0.955 0.009 85);
-  --popover-foreground: oklch(0.18 0.004 100);
+  --card: oklch(0.965 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
 
-  --primary: oklch(0.18 0.004 100);
-  --primary-foreground: oklch(0.955 0.009 85);
+  --primary: oklch(0.145 0 0);
+  --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.9 0.012 85);
-  --secondary-foreground: oklch(0.18 0.004 100);
+  --secondary: oklch(0.955 0 0);
+  --secondary-foreground: oklch(0.145 0 0);
 
-  --muted: oklch(0.9 0.012 85);
-  --muted-foreground: oklch(0.45 0.012 85);
+  --muted: oklch(0.955 0 0);
+  --muted-foreground: oklch(0.47 0 0);
 
-  --accent: oklch(0.53 0.16 36);
-  --accent-foreground: oklch(0.98 0.005 85);
+  --accent: oklch(0.145 0 0);
+  --accent-foreground: oklch(1 0 0);
 
-  --destructive: oklch(0.55 0.2 25);
-  --destructive-foreground: oklch(0.98 0.005 85);
+  --destructive: oklch(0.5 0.19 27);
+  --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.18 0.004 100 / 14%);
-  --input: oklch(0.18 0.004 100 / 18%);
-  --ring: oklch(0.53 0.16 36);
+  --border: oklch(0.145 0 0 / 13%);
+  --input: oklch(0.145 0 0 / 18%);
+  --ring: oklch(0.145 0 0);
 
-  --sidebar: oklch(0.955 0.009 85);
-  --sidebar-foreground: oklch(0.18 0.004 100);
-  --sidebar-primary: oklch(0.18 0.004 100);
-  --sidebar-primary-foreground: oklch(0.955 0.009 85);
-  --sidebar-accent: oklch(0.9 0.012 85);
-  --sidebar-accent-foreground: oklch(0.18 0.004 100);
-  --sidebar-border: oklch(0.18 0.004 100 / 14%);
-  --sidebar-ring: oklch(0.53 0.16 36);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.145 0 0);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.955 0 0);
+  --sidebar-accent-foreground: oklch(0.145 0 0);
+  --sidebar-border: oklch(0.145 0 0 / 13%);
+  --sidebar-ring: oklch(0.145 0 0);
 
   --gradient-brand: none;
   --gradient-surface: none;
@@ -187,8 +188,9 @@
 }
 
 @theme inline {
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Inter Tight", "Segoe UI", system-ui, sans-serif;
+  /* Neue Haas Grotesk (Adobe Fonts, kit nlv0ruh): Display nos títulos, Text no corpo. */
+  --font-display: "neue-haas-grotesk-display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "neue-haas-grotesk-text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -231,8 +233,8 @@
   h1,
   h2 {
     font-family: var(--font-display);
-    font-weight: 400 !important;
-    letter-spacing: -0.015em;
+    font-weight: 500 !important;
+    letter-spacing: -0.025em;
   }
 
   h3,
@@ -250,11 +252,11 @@
 /* --- Utilitários semânticos do design system ---------------------------- */
 
 @utility text-brand-gradient {
-  /* Ênfase editorial: itálico da serifa na cor de destaque (sem degradê). */
+  /* Ênfase em dois tons: o mesmo tipo, em cinza (sem itálico, sem cor). */
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--muted-foreground);
 }
 
 @utility surface-glass {
@@ -412,21 +414,21 @@
 
 .tema-tinta,
 .presenting {
-  --background: oklch(0.18 0.004 100);
-  --foreground: oklch(0.955 0.009 85);
-  --card: oklch(0.22 0.005 100);
-  --card-foreground: oklch(0.955 0.009 85);
-  --primary: oklch(0.955 0.009 85);
-  --primary-foreground: oklch(0.18 0.004 100);
-  --secondary: oklch(0.26 0.006 100);
-  --secondary-foreground: oklch(0.955 0.009 85);
-  --muted: oklch(0.26 0.006 100);
-  --muted-foreground: oklch(0.74 0.012 85);
-  --accent: oklch(0.7 0.16 40);
-  --accent-foreground: oklch(0.18 0.004 100);
-  --border: oklch(0.955 0.009 85 / 15%);
-  --input: oklch(0.955 0.009 85 / 20%);
-  --ring: oklch(0.7 0.16 40);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.2 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.985 0 0);
+  --accent-foreground: oklch(0.145 0 0);
+  --border: oklch(0.985 0 0 / 15%);
+  --input: oklch(0.985 0 0 / 20%);
+  --ring: oklch(0.985 0 0);
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -478,6 +480,105 @@
 
 .cortina > * {
   animation: foto-assenta 1.8s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+/* --- Abertura (Abertura.tsx) ---------------------------------------------
+ * A classe html.abertura-ativa entra pelo script do <head>; sem ela (reduzir movimento,
+ * sem JavaScript ou depois da abertura), a cortina nem aparece. */
+
+html:not(.abertura-ativa) .abertura {
+  display: none;
+}
+
+.abertura {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  /* Branca sobre o topo preto: a subida da cortina fica visível e marca a passagem. */
+  background: oklch(1 0 0);
+  color: oklch(0.145 0 0);
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .abertura {
+    padding: 2.25rem 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .abertura {
+    padding: 2.5rem 6rem;
+  }
+}
+
+.abertura-topo,
+.abertura-base {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(0.47 0 0);
+}
+
+.abertura-mascara {
+  display: block;
+  overflow: hidden;
+}
+
+.abertura-item {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.abertura-nome {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(4.25rem, 15vw, 14rem);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  transform-origin: 0% 100%;
+}
+
+.abertura-linha {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.abertura-linha > span {
+  display: block;
+  transform: translateY(110%);
+}
+
+/* Ao recarregar, o nome já começa na tela e só a saída anima. */
+html[data-abertura="curta"] .abertura-linha > span,
+html[data-abertura="curta"] .abertura-item {
+  opacity: 1;
+  transform: none;
+}
+
+/* Enquanto a cortina está na tela, a página não rola e a entrada do topo espera. */
+@media (prefers-reduced-motion: no-preference) {
+  html.abertura-ativa {
+    overflow: hidden;
+  }
+
+  html.abertura-ativa .linha-mascara > span,
+  html.abertura-ativa .cortina,
+  html.abertura-ativa .cortina > *,
+  html.abertura-ativa .enter {
+    animation-play-state: paused;
+  }
 }
 
 /* Linhas dos títulos divididas pelo GSAP (SplitText). */

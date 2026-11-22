@@ -94,7 +94,7 @@ export function AwardChapter() {
       <dl className="mt-14 grid gap-10 md:grid-cols-3 md:gap-10 lg:mt-20 lg:gap-14 in-[.presenting]:mt-6 in-[.presenting]:gap-6">
         {award.facts.map((fact, i) => (
           <Reveal key={fact.label} delay={i * 90} className="border-t border-border pt-6">
-            <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+            <dt className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
               {fact.label}
             </dt>
             <dd className="mt-3 text-base text-pretty text-muted-foreground md:text-lg">
@@ -109,7 +109,7 @@ export function AwardChapter() {
           <figure className="flex items-center gap-5 sm:gap-7">
             <img
               src={cardSrc}
-              alt="Tela do anúncio oficial com a foto e o nome de Huiata Ribeiro Coutinho, Docente TOP 10 do SENAI, unidade SENAI Aparecida de Goiânia"
+              alt="Tela do anúncio oficial com a foto e o nome de Huiatã Ribeiro Coutinho, Docente TOP 10 do SENAI, unidade SENAI Aparecida de Goiânia"
               width={633}
               height={349}
               loading="lazy"

@@ -44,10 +44,10 @@ export function SiteMotion({ children }: { children: ReactNode }) {
         root.querySelectorAll<HTMLElement>('[data-anim="palco"]').forEach((palco) => {
           gsap.fromTo(
             palco,
-            { scale: 0.88, borderRadius: "28px" },
+            { scale: 0.88, borderRadius: "18px" },
             {
               scale: 1,
-              borderRadius: "6px",
+              borderRadius: "0px",
               ease: "none",
               scrollTrigger: { trigger: palco, start: "top bottom", end: "top 25%", scrub: 0.6 },
             },

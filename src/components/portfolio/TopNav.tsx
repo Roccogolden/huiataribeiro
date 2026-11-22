@@ -51,10 +51,10 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
         <button
           type="button"
           onClick={() => onNavigate("intro")}
-          className="font-display text-2xl leading-none tracking-tight md:text-[1.7rem]"
+          className="font-display text-xl leading-none font-medium tracking-[-0.03em] md:text-[1.4rem]"
           aria-label="Huiatã Ribeiro, voltar ao início"
         >
-          Huiatã <span className="italic">Ribeiro</span>
+          Huiatã Ribeiro
         </button>
 
         {!presenting ? (

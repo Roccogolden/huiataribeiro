@@ -62,10 +62,10 @@ export const profile = {
   tagline:
     "Ensino desenvolvimento de sistemas com projetos reais: as turmas criam aplicativos que vão para o ar.",
   closing: "O conhecimento ganha valor quando transforma pessoas e cria novas possibilidades.",
-  location: "Senador Canedo — GO",
+  location: "Senador Canedo – GO",
   phone: "(62) 98618-4295",
   email: "huiataribeiro@gmail.com",
-  credential: "CRT-01 Ativo",
+  credential: "CRT-01 ativo",
 } as const;
 
 /**
@@ -180,7 +180,7 @@ export const timeline: readonly TimelineStep[] = [
   {
     title: "2011 – 2015 · Base técnica",
     description:
-      "Call center, servidores de impressão e suporte Helpdesk na SEGPLAN/Fund. Pró-Cerrado.",
+      "Call center, servidores de impressão e suporte de helpdesk na SEGPLAN/Fundação Pró-Cerrado.",
   },
   {
     title: "2017 – 2022 · Hardware e garantia",
@@ -211,7 +211,7 @@ export const experienceCards: readonly TimelineStep[] = [
   {
     title: "Docente Mentor · Formação Docente",
     description:
-      "Encontros mensais de mentoria por área para mais de 70 professores dos cursos Técnicos em Redes de Computadores e em Desenvolvimento de Sistemas.",
+      "Encontros mensais de mentoria por área para mais de 70 professores dos cursos técnicos em Redes de Computadores e em Desenvolvimento de Sistemas.",
   },
   {
     title: "Acompanhamento pedagógico",
@@ -226,7 +226,7 @@ export const experienceCards: readonly TimelineStep[] = [
   {
     title: "Cabeamento e data center",
     description:
-      "Planejou e executou a organização do cabeamento estruturado em salas de aula, áreas administrativas e data center, elevando a rastreabilidade da infraestrutura.",
+      "Planejamento e execução do cabeamento estruturado em salas de aula, áreas administrativas e data center, com mais rastreabilidade da infraestrutura.",
   },
   {
     title: "PRIMETEK · Dez/2017 – Jun/2022",
@@ -249,7 +249,7 @@ export const doingWords: readonly TimelineStep[] = [
   {
     title: "INFRAESTRUTURA",
     description:
-      "Redes locais, cabeamento estruturado Furukawa, racks, data center e suporte técnico nível 1 e 2.",
+      "Redes locais, cabeamento estruturado Furukawa, racks, data center e suporte técnico de níveis 1 e 2.",
   },
   {
     title: "INTELIGÊNCIA ARTIFICIAL",
@@ -259,7 +259,7 @@ export const doingWords: readonly TimelineStep[] = [
   {
     title: "LIDERANÇA",
     description:
-      "Mais de 10 anos liderando grupos de jovens, com palestras 4 vezes ao ano para públicos de mais de 200 pessoas.",
+      "Mais de 10 anos liderando grupos de jovens, com palestras quatro vezes por ano para públicos de mais de 200 pessoas.",
   },
 ];
 
@@ -297,7 +297,7 @@ export const skills: readonly SkillGroup[] = [
   {
     category: "Suporte Técnico e Hardware",
     items: [
-      "Helpdesk nível 1 e 2",
+      "Helpdesk de níveis 1 e 2",
       "Gestão de chamados",
       "Manutenção preventiva e corretiva",
       "Diagnóstico de falhas",
@@ -354,7 +354,7 @@ export const projects: readonly Project[] = [
     problem:
       "Ensinar educação financeira e empreendedorismo de forma prática para as turmas do 2º ano do Técnico em Desenvolvimento de Sistemas, na disciplina Projeto de Vida.",
     solution:
-      "Aplicativo web gamificado (Ago–Nov): cada dupla recebe um capital inicial de R$ 2,00 e precisa transformá-lo em algo maior através de metas mensais progressivas, lançamentos auditados, sistema de XP e ranking ao vivo entre as turmas 2º TDS A e 2º TDS B. Em menos de 3 semanas, o patrimônio total das equipes já havia ultrapassado R$ 1.200.",
+      "Aplicativo web gamificado (de agosto a novembro): cada dupla recebe um capital inicial de R$ 2,00 e precisa transformá-lo em algo maior por meio de metas mensais progressivas, lançamentos auditados, sistema de XP e ranking ao vivo entre as turmas 2º TDS A e 2º TDS B. Em menos de 3 semanas, o patrimônio total das equipes já havia ultrapassado R$ 1.200.",
     tech: ["Lovable"],
     url: "https://desafio2reais.lovable.app/",
   },
@@ -367,7 +367,7 @@ export const projects: readonly Project[] = [
     problem:
       "Simular, na prática, como a tecnologia resolve os gargalos do atendimento tradicional: filas e espera, erros de comunicação entre atendimento e cozinha, gestão sem dados em tempo real e processos manuais.",
     solution:
-      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves, turmas do 2º ano A e B), sob responsabilidade do professor Huiatã Ribeiro: uma hamburgueria simulada 100% digital, com cardápio e pedidos via QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando metodologias como Design Thinking, Brainstorming e Business Model Canvas.",
+      "Projeto de culminância do Técnico em Desenvolvimento de Sistemas (SENAI, CEPI Elberto Alves Batista, turmas do 2º ano A e B), sob a responsabilidade do professor Huiatã Ribeiro: uma hamburgueria simulada 100% digital, com cardápio e pedidos por QR Code na mesa, painel de pedidos em tempo real na cozinha (KDS) e acompanhamento de status pelo cliente. Os alunos se organizaram em squads (Tech, Experience, Food, Pitch, Design & Marketing, Support), aplicando técnicas como Design Thinking, brainstorming e Business Model Canvas.",
     tech: ["Lovable"],
     url: "https://topburguer.lovable.app/",
   },
@@ -382,7 +382,7 @@ export const projects: readonly Project[] = [
     problem:
       "Lógica de programação é a porta de entrada da área. A ideia foi transformar o conteúdo em jogo: cada conceito vira um obstáculo, e para passar é preciso raciocinar como programador.",
     solution:
-      "O robô Bit atravessa 10 fases, do Vale dos Padrões ao Núcleo do Sistema. Cada portão abre com um desafio em Portugol (114 de lógica em 10 temas e 10 de segurança digital), com explicação na hora e o mesmo programa em Python, Java, C, Lua e outras linguagens. Tem ranking por código de turma, painel do professor com os temas em que a turma mais erra e modo apresentação para feiras. Roda no navegador e instala como aplicativo. Projeto dos estudantes do 1º ano A (matutino) do Colégio João Carneiro, SENAI Senador Canedo, preparado para o Evento de Ciências e Tecnologia de novembro de 2026.",
+      "O robô Bit atravessa 10 fases, do Vale dos Padrões ao Núcleo do Sistema. Cada portão abre com um desafio em Portugol (114 de lógica em 10 temas e 10 de segurança digital), com explicação na hora e o mesmo programa em Python, Java, C, Lua e outras linguagens. Tem ranking por código de turma, painel do professor com os temas em que a turma mais erra e modo apresentação para feiras. Roda no navegador e pode ser instalado como aplicativo. Projeto dos estudantes do 1º ano A (matutino) do Colégio João Carneiro, SENAI Senador Canedo, preparado para o Evento de Ciências e Tecnologia de novembro de 2026.",
     tech: ["JavaScript (Canvas 2D)", "HTML e CSS", "GSAP", "PWA", "Vercel", "Supabase"],
     url: "https://logica-quest-liart.vercel.app/",
   },
@@ -399,9 +399,9 @@ export const projects: readonly Project[] = [
     category: "Sistema · Feito pelas turmas",
     result: "A reserva do laboratório saiu do papel e virou um fluxo digital.",
     summary:
-      "Sistema de reserva do laboratório de informática do CEPI Elberto Alves, desenvolvido pelos alunos do 2º ano A e B.",
+      "Sistema de reserva do laboratório de informática do CEPI Elberto Alves Batista, desenvolvido pelos alunos do 2º ano A e B.",
     problem:
-      "O laboratório de informática do CEPI Elberto Alves era reservado em papel, dificultando o controle e gerando conflitos de agenda.",
+      "O laboratório de informática do CEPI Elberto Alves Batista era reservado em papel, o que dificultava o controle e gerava conflitos de agenda.",
     solution:
       "Sistema digital de reserva de laboratório, desenvolvido pelas turmas do 2º ano A e B do Técnico em Desenvolvimento de Sistemas como projeto das disciplinas de Projetos e Programação de Aplicativos, substituindo o controle em papel por um fluxo digital.",
     tech: ["Lovable"],
@@ -417,7 +417,7 @@ export const projects: readonly Project[] = [
     problem:
       "Ajudar os alunos a fazer um diagnóstico honesto de si mesmos hoje — reflexões e planos — para comparar com quem eles serão no futuro.",
     solution:
-      "Dinâmica estruturada como Upgrade 3.0: cada aluno registra um diagnóstico, reflexões e planos como 'eu de hoje' (agosto/2026), guardados em uma cápsula do tempo digital para serem reabertos como 'eu do futuro' em novembro de 2027. A experiência também ganhou uma versão física: uma cápsula real, assinada pelos alunos, lacrada em um case reforçado para ser reaberta só no futuro. A regra central: não é sobre ser perfeito, é sobre perceber o quanto é possível evoluir.",
+      "Dinâmica estruturada como Upgrade 3.0: cada aluno registra um diagnóstico, reflexões e planos como “eu de hoje” (agosto de 2026), guardados em uma cápsula do tempo digital para serem reabertos como “eu do futuro” em novembro de 2027. A experiência também ganhou uma versão física: uma cápsula real, assinada pelos alunos, lacrada em um case reforçado para ser reaberta só no futuro. A regra central: não é sobre ser perfeito, é sobre perceber o quanto é possível evoluir.",
     tech: ["Lovable"],
     url: "https://upgrade3.lovable.app/",
   },
@@ -430,7 +430,7 @@ export const projects: readonly Project[] = [
     problem:
       "Dar presença digital profissional a um serviço de personal trainer online, com uma landing page que apresente os treinos personalizados e facilite o contato direto com clientes.",
     solution:
-      "Página estruturada no Lovable, com código versionado no GitHub, deploy contínuo na Vercel e também com repositório Git local no PC. Domínio próprio (personallindy.com.br) configurado pela Hostinger. Desenvolvimento apoiado por Claude Code, VS Code (Python) e Antigravity.",
+      "Página feita no Lovable, com código versionado no GitHub, publicação contínua na Vercel e cópia do repositório no computador. Domínio próprio (personallindy.com.br) configurado na Hostinger. Desenvolvimento com apoio de Claude Code, VS Code (Python) e Antigravity.",
     tech: [
       "Lovable",
       "GitHub",
@@ -458,24 +458,24 @@ export const aiAreas: readonly string[] = [
  * do Curso Técnico em Desenvolvimento de Sistemas (Senai)", turmas do 1º ano A e B.
  */
 export const classroomDynamics: readonly string[] = [
-  "Montagem de Computador",
-  "Desafios de Lógica",
-  "Simulações em Grupo",
-  "Segurança da Informação",
-  "Simulação de Prototipagem de Aplicativo",
-  "Montagem de Mini Rede LAN",
+  "Montagem de computador",
+  "Desafios de lógica",
+  "Simulações em grupo",
+  "Segurança da informação",
+  "Simulação de prototipagem de aplicativo",
+  "Montagem de minirrede LAN",
   "Introdução à Internet das Coisas (IoT)",
-  "Conceito dos 3R's",
+  "Conceito dos 3 Rs",
   "Aplicando os 5S",
-  "Programação em Blocos com Scratch e Robótica",
-  "Simulação de Consultoria",
-  "Árvores da Vida",
-  "Estágio, Jovem Aprendiz e Simulação de Entrevista",
-  "Simulação de Comunicação",
-  "Introdução a Banco de Dados",
-  "Programando um Robô Humano",
-  "Gestão e Descarte de Resíduos na Escola",
-  "Lógica de Programação com Python",
+  "Programação em blocos com Scratch e robótica",
+  "Simulação de consultoria",
+  "Árvores da vida",
+  "Estágio, Jovem Aprendiz e simulação de entrevista",
+  "Simulação de comunicação",
+  "Introdução a banco de dados",
+  "Programando um robô humano",
+  "Gestão e descarte de resíduos na escola",
+  "Lógica de programação com Python",
 ];
 
 /** Fonte dos resultados abaixo, exibida junto com eles. */
@@ -494,15 +494,15 @@ export const education: readonly TimelineStep[] = [
   {
     title: "MBA em Inteligência Artificial com Ênfase em Inovação e Negócios · 2026 – 2027",
     description:
-      "IPOG — Instituto de Pós-Graduação · Em andamento. Módulos concluídos: fundamentos de IA e negócios; IA generativa e engenharia de prompt; IA aplicada à gestão, à produtividade, às operações e à comunicação.",
+      "IPOG — Instituto de Pós-Graduação · em andamento. Módulos concluídos: fundamentos de IA e negócios; IA generativa e engenharia de prompt; IA aplicada à gestão, à produtividade, às operações e à comunicação.",
   },
   {
     title: "Técnico em Montagem e Manutenção de Computadores · 2022 – 2023",
-    description: "FATESG — SENAI · Concluído.",
+    description: "FATESG — SENAI · concluído.",
   },
   {
     title: "Tecnólogo em Redes de Computadores · 2011 – 2013",
-    description: "Faculdade Estácio de Sá de Goiás (FESGO) · Concluído.",
+    description: "Faculdade Estácio de Sá de Goiás (FESGO) · concluído.",
   },
   {
     title: "Certificações internacionais · 2023 – 2026",
@@ -541,25 +541,25 @@ export interface Testimonial {
 export const testimonials: readonly Testimonial[] = [
   {
     quote:
-      "Fazer o curso de Desenvolvimento de Sistemas tem sido uma experiência muito boa. Mesmo sem toda a estrutura que o curso precisa, a gente consegue aprender bastante. O professor Huiatã Ribeiro sempre prepara as aulas e ajuda a gente a desenvolver novas habilidades. Nesse tempo de curso, aprendi muitas coisas que vão me ajudar no futuro e na minha entrada no mercado de trabalho.",
+      "Fazer o curso de Desenvolvimento de Sistemas tem sido uma experiência muito boa. Mesmo sem toda a estrutura de que o curso precisa, a gente consegue aprender bastante. O professor Huiatã Ribeiro sempre prepara as aulas e ajuda a gente a desenvolver novas habilidades. Nesse tempo de curso, aprendi muitas coisas que vão me ajudar no futuro e na minha entrada no mercado de trabalho.",
     author: "Nivia Vitória",
     relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
-      "Durante o curso aprendi várias coisas que não fazia ideia que conseguia, com o auxílio do professor Huiatã Ribeiro aprendemos não só a lidar com os desafios dentro de sala de aula, mas também com os desafios da vida, vou sempre levar comigo a certeza de que fazer o curso foi a minha melhor escolha.",
+      "Durante o curso, aprendi várias coisas que eu não fazia ideia de que conseguia. Com o auxílio do professor Huiatã Ribeiro, aprendemos a lidar não só com os desafios dentro da sala de aula, mas também com os desafios da vida. Vou sempre levar comigo a certeza de que fazer o curso foi a minha melhor escolha.",
     author: "Izabelly Ramos",
     relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
-      "Ter a oportunidade de fazer o curso de Desenvolvimento de Sistemas juntamente ao professor Huiatã Ribeiro não foi somente um aprendizado escolar, mas são lições que eu vou levar para vida, ele não é apenas um professor para nossa turma, mas também é um pai. Ele ensina, educa, pega no pé sempre que necessário e é nosso amigo que sempre estará ali caso a gente precise de apoio ou qualquer ajuda. Ter a oportunidade de ter um professor igual a ele foi a melhor coisa que me aconteceu, sou muito grata por tudo.",
+      "Ter a oportunidade de fazer o curso de Desenvolvimento de Sistemas com o professor Huiatã Ribeiro não foi somente um aprendizado escolar: são lições que eu vou levar para a vida. Ele não é apenas um professor para a nossa turma, mas também um pai. Ele ensina, educa, pega no pé sempre que necessário e é nosso amigo, que sempre estará ali caso a gente precise de apoio ou de qualquer ajuda. Ter a oportunidade de ter um professor como ele foi a melhor coisa que me aconteceu. Sou muito grata por tudo.",
     author: "Isadora Gomes Lima",
     relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
-      "Fazer parte do curso de Desenvolvimento de Sistemas está sendo uma experiência muito especial para mim. Além dos conhecimentos que estou aprendendo, também estou aprendendo lições que vou levar para a vida. O professor Huiatã não ensina apenas a matéria, ele se preocupa com cada aluno, incentiva, orienta e sempre procura o melhor para todos nós. Quando precisamos de ajuda, ele está disposto a ouvir e apoiar, e quando é necessário, também nos corrige para que possamos crescer e evoluir. Sua dedicação, paciência e carinho com a turma faz toda a diferença. Sou muito grata pela oportunidade de aprender com um professor tão especial e por tudo o que esse curso está me ensinando.",
+      "Fazer parte do curso de Desenvolvimento de Sistemas está sendo uma experiência muito especial para mim. Além dos conhecimentos que estou aprendendo, também estou aprendendo lições que vou levar para a vida. O professor Huiatã não ensina apenas a matéria, ele se preocupa com cada aluno, incentiva, orienta e sempre procura o melhor para todos nós. Quando precisamos de ajuda, ele está disposto a ouvir e apoiar, e quando é necessário, também nos corrige para que possamos crescer e evoluir. Sua dedicação, sua paciência e seu carinho com a turma fazem toda a diferença. Sou muito grata pela oportunidade de aprender com um professor tão especial e por tudo o que esse curso está me ensinando.",
     author: "Thárcila da Silva Dias",
     relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
@@ -598,36 +598,36 @@ export const testimonials: readonly Testimonial[] = [
   },
   {
     quote:
-      "Entrei no curso técnico em Desenvolvimento de Sistemas no primeiro ano, e hoje já no segundo ano, posso dizer que foi uma das melhores experiências que já tive. Durante esse tempo, aprendi muito mais do que programação e tecnologia. Aprendi a acreditar mais em mim e a enxergar que sou capaz de ir muito além do que imaginava. Grande parte disso eu devo ao professor Huiatã Ribeiro. Ele é um professor incrível, daqueles que realmente se importam com os alunos. Pra mim, ele foi muito mais do que um professor, foi como um pai em vários momentos, sempre incentivando, apoiando e mostrando que eu era capaz de enfrentar qualquer desafio. Sou muito grata por tudo que aprendi nesse curso e por ter tido a oportunidade de conhecer um profissional e ser humano tão especial. Tenho muito carinho e admiração pelo professor Huiatã e pelo curso, que marcaram minha vida de uma forma que vou levar pra sempre.",
+      "Entrei no curso técnico em Desenvolvimento de Sistemas no primeiro ano e, hoje, já no segundo ano, posso dizer que foi uma das melhores experiências que já tive. Durante esse tempo, aprendi muito mais do que programação e tecnologia. Aprendi a acreditar mais em mim e a enxergar que sou capaz de ir muito além do que imaginava. Grande parte disso eu devo ao professor Huiatã Ribeiro. Ele é um professor incrível, daqueles que realmente se importam com os alunos. Para mim, ele foi muito mais do que um professor: foi como um pai em vários momentos, sempre incentivando, apoiando e mostrando que eu era capaz de enfrentar qualquer desafio. Sou muito grata por tudo o que aprendi nesse curso e por ter tido a oportunidade de conhecer um profissional e ser humano tão especial. Tenho muito carinho e admiração pelo professor Huiatã e pelo curso, que marcaram minha vida de uma forma que vou levar para sempre.",
     author: "Adrielly",
     relation: "2º Ano A · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
-      "E o Huiatã não preciso nem falar... O tanto que fez o possível e o impossível, somos eternamente gratos por tudo, por ter nos apoiado, nos ter confiado essa responsabilidade que levava também o seu nome em jogo, nosso professor e paizão, muito obrigada Huiatã, por dar sempre o seu máximo por nós! O carinho que eu e todos temos por você nunca vai mudar! Obrigada por ser um grande professor, amigo e parceiro!",
+      "E do Huiatã nem preciso falar... Ele fez o possível e o impossível, e somos eternamente gratos por tudo: por ter nos apoiado e por ter nos confiado essa responsabilidade, que também colocava o nome dele em jogo. Nosso professor e paizão, muito obrigada, Huiatã, por dar sempre o seu máximo por nós! O carinho que eu e todos temos por você nunca vai mudar! Obrigada por ser um grande professor, amigo e parceiro!",
     author: "Bianca",
     relation: "Aluna · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
-      "Obrigado pela dedicação, pela paciência e por sempre nos incentivar a dar o nosso melhor. Suas aulas vão muito além do conteúdo — elas nos ensinam responsabilidade, trabalho em equipe e confiança. Se não fosse pelo seu apoio, incentivo e confiança em nossa turma, nada disso teria acontecido da mesma forma.",
+      "Obrigada pela dedicação, pela paciência e por sempre nos incentivar a dar o nosso melhor. Suas aulas vão muito além do conteúdo — elas nos ensinam responsabilidade, trabalho em equipe e confiança. Se não fosse pelo seu apoio, incentivo e confiança em nossa turma, nada disso teria acontecido da mesma forma.",
     author: "Anna Beatriz",
     relation: "Aluna · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
   {
     quote:
-      "Agradeço muito a você, professor! Se não fosse pela sua orientação e pelo que nos ensinou, nada disso teria dado certo. Muito obrigado por tudo!",
+      "Agradeço muito a você, professor! Se não fosse pela sua orientação e pelo que nos ensinou, nada disso teria dado certo. Muito obrigada por tudo!",
     author: "Nara",
     relation: "Aluna · Técnico em Desenvolvimento de Sistemas, SENAI",
   },
 ];
 
 export const futureSteps: readonly string[] = [
-  "Educação Profissional",
-  "Inteligência Artificial",
-  "Formação de Docentes",
+  "Educação profissional",
+  "Inteligência artificial",
+  "Formação de docentes",
   "Inovação",
-  "NOVOS PROJETOS",
+  "Novos projetos",
 ];
 
 export interface ContactLink {

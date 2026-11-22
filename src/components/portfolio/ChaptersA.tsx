@@ -38,7 +38,7 @@ export function IntroChapter({ onNext, onAward }: { onNext: () => void; onAward:
                 focusRing,
               )}
             >
-              <span className="size-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              <span className="size-2 shrink-0 bg-accent" aria-hidden="true" />
               Docente TOP 10 · SESI SENAI Goiás · 2026/2027
               <ArrowRight
                 className="size-4 shrink-0 transition-transform group-hover:translate-x-1"
@@ -48,15 +48,13 @@ export function IntroChapter({ onNext, onAward }: { onNext: () => void; onAward:
           </div>
           <h1
             id="intro-title"
-            className="mt-10 text-[clamp(4.5rem,13vw,12rem)] leading-[0.86] tracking-[-0.025em] in-[.presenting]:mt-6 in-[.presenting]:text-[clamp(4rem,8vw,8.5rem)]"
+            className="mt-10 text-[clamp(4.5rem,13vw,12rem)] leading-[0.86] tracking-[-0.05em] in-[.presenting]:mt-6 in-[.presenting]:text-[clamp(4rem,8vw,8.5rem)]"
           >
             <span className="linha-mascara">
               <span style={enterDelay(100)}>Huiatã</span>
             </span>
             <span className="linha-mascara">
-              <span style={enterDelay(200)} className="italic">
-                Ribeiro
-              </span>
+              <span style={enterDelay(200)}>Ribeiro</span>
             </span>
           </h1>
           <div className="mt-10 grid max-w-3xl gap-5">
@@ -104,7 +102,7 @@ export function IntroChapter({ onNext, onAward }: { onNext: () => void; onAward:
                   target="_blank"
                   rel="noreferrer noopener"
                   className={linkEditorial}
-                  aria-label="Visitar perfil LinkedIn de Huiatã Ribeiro (abre em nova aba)"
+                  aria-label="Visitar o perfil de Huiatã Ribeiro no LinkedIn (abre em nova aba)"
                 >
                   <Linkedin className="size-4" aria-hidden="true" />
                   LinkedIn
@@ -140,7 +138,7 @@ export function IntroChapter({ onNext, onAward }: { onNext: () => void; onAward:
             style={enterDelay(900)}
           >
             <span>Instrutor de Informática · SENAI</span>
-            <span>Senador Canedo, GO</span>
+            <span>Senador Canedo – GO</span>
           </figcaption>
         </figure>
       </div>
@@ -206,7 +204,10 @@ export function AboutChapter() {
               delay={(i % 2) * 70}
               className="flex gap-4 border-t border-border py-5 text-base text-pretty sm:text-lg md:gap-5 md:py-6 md:text-xl"
             >
-              <span className="font-display text-xl text-accent italic" aria-hidden="true">
+              <span
+                className="font-display text-xl text-muted-foreground tabular-nums"
+                aria-hidden="true"
+              >
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span>{point}</span>
@@ -293,10 +294,10 @@ export function ExperienceChapter() {
             >
               {cargo ? (
                 <div>
-                  <p className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                  <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                     {periodo}
                   </p>
-                  <h3 className="mt-2 font-display text-3xl leading-tight font-normal md:text-4xl">
+                  <h3 className="mt-2 font-display text-3xl leading-tight font-medium tracking-[-0.02em] md:text-4xl">
                     {nome}
                   </h3>
                 </div>

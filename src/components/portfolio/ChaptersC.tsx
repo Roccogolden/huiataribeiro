@@ -53,7 +53,7 @@ export function EducationTechChapter() {
     <SectionShell
       id="educacao"
       index="10"
-      eyebrow="Educação + Tecnologia"
+      eyebrow="Educação e tecnologia"
       title={<>Em sala de aula</>}
       lead="Aulas práticas, projetos e gamificação com turmas do Ensino Médio Técnico."
     >
@@ -67,7 +67,7 @@ export function EducationTechChapter() {
               className="flex items-baseline gap-5 border-b border-border py-3 md:py-4"
             >
               <span
-                className="w-7 shrink-0 font-display text-lg text-accent italic"
+                className="w-7 shrink-0 font-display text-lg text-muted-foreground tabular-nums"
                 aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
@@ -94,7 +94,7 @@ export function EducationTechChapter() {
               href={classroomDriveUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-6 inline-flex items-center gap-2 border-b border-current/40 pb-1 font-semibold transition-colors hover:border-accent hover:text-accent"
+              className="mt-6 inline-flex items-center gap-2 border-b border-current/40 pb-1 font-semibold transition-colors hover:border-accent hover:text-muted-foreground"
               aria-label="Ver todos os registros das aulas no Google Drive (abre em nova aba)"
             >
               Ver todos os registros das aulas
@@ -112,7 +112,7 @@ export function ClassroomDynamicsChapter() {
     <SectionShell
       id="dinamicas"
       index="11"
-      eyebrow="Dinâmicas em Sala"
+      eyebrow="Dinâmicas em sala"
       title={<>Dinâmicas que uso em sala</>}
       lead="Atividades práticas com as turmas do 1º ano do Ensino Médio Técnico, usando celulares pessoais e Chromebooks compartilhados."
     >
@@ -125,7 +125,7 @@ export function ClassroomDynamicsChapter() {
             className="flex items-baseline gap-4 border-b border-border py-3 text-base md:text-lg"
           >
             <span
-              className="w-6 shrink-0 font-display text-base text-accent italic"
+              className="w-6 shrink-0 font-display text-base text-muted-foreground tabular-nums"
               aria-hidden="true"
             >
               {String(i + 1).padStart(2, "0")}
@@ -141,7 +141,7 @@ export function ClassroomDynamicsChapter() {
             delay={i * 100}
             className="min-w-0 border-t border-border pt-6"
           >
-            <p className="text-brand-gradient text-5xl leading-none text-nowrap md:text-8xl">
+            <p className="font-display font-medium tracking-[-0.045em] text-5xl leading-none text-nowrap md:text-8xl">
               <CountUp value={result.value} />
             </p>
             <p className="mt-3 text-sm text-pretty text-muted-foreground md:mt-4 md:text-lg">
@@ -170,7 +170,7 @@ export function AiChapter() {
           </p>
         </Reveal>
         <Reveal delay={320}>
-          <p className="text-brand-gradient mt-8 text-5xl leading-none md:text-8xl lg:text-9xl">
+          <p className="font-display font-medium tracking-[-0.045em] mt-8 text-5xl leading-none md:text-8xl lg:text-9xl">
             Inteligência Artificial
           </p>
         </Reveal>
@@ -212,10 +212,10 @@ export function FormationChapter() {
                 className="grid gap-2 border-b border-border py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-10 in-[.presenting]:py-4"
               >
                 <div>
-                  <p className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                  <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                     {temPeriodo ? periodo : "Contínuo"}
                   </p>
-                  <h3 className="mt-2 font-display text-3xl leading-tight font-normal text-pretty md:text-4xl">
+                  <h3 className="mt-2 font-display text-3xl leading-tight font-medium tracking-[-0.02em] text-pretty md:text-4xl">
                     {nome}
                   </h3>
                 </div>
@@ -304,7 +304,7 @@ export function ImpactChapter() {
               delay={(i % 2) * 90}
               className="min-w-0 border-t border-border py-7 in-[.presenting]:py-4"
             >
-              <p className="text-brand-gradient text-6xl leading-none text-nowrap sm:text-7xl md:text-8xl">
+              <p className="font-display font-medium tracking-[-0.045em] text-6xl leading-none text-nowrap sm:text-7xl md:text-8xl">
                 <CountUp value={metric.value} />
               </p>
               <p className="mt-3 text-sm text-pretty text-muted-foreground sm:text-lg md:mt-4 md:text-xl">
@@ -314,7 +314,9 @@ export function ImpactChapter() {
           ))}
         </div>
         <div className="min-w-0">
-          <p className="text-base font-semibold text-accent">Registros</p>
+          <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+            Registros
+          </p>
           <div className="mt-4 grid min-w-0 grid-cols-2 gap-3 md:gap-5">
             {impactProofs.map(({ label, photo }, i) => (
               <Reveal key={label} delay={i * 100} className="min-w-0">
@@ -454,7 +456,7 @@ export function FutureChapter() {
             delay={i * 90}
             className={cn(
               "font-display text-4xl leading-tight md:text-6xl lg:text-7xl",
-              i === futureSteps.length - 1 ? "text-brand-gradient" : "text-muted-foreground",
+              i === futureSteps.length - 1 ? "text-foreground" : "text-muted-foreground/60",
             )}
           >
             {step}
@@ -481,7 +483,7 @@ const contactOrder = ["WhatsApp", "E-mail", "LinkedIn", "Telefone"];
  * Usa api.whatsapp.com (não wa.me): em vários aparelhos, o wa.me é aberto como
  * app link direto pelo sistema e o parâmetro de texto acaba sendo descartado.
  */
-const qrWhatsappMessage = encodeURIComponent("Olá Huiatã! Vi sua apresentação e quero conversar.");
+const qrWhatsappMessage = encodeURIComponent("Olá, Huiatã! Vi sua apresentação e quero conversar.");
 
 export function ContactChapter() {
   const qrWhatsappUrl = `https://api.whatsapp.com/send?phone=55${profile.phone.replace(/\D/g, "")}&text=${qrWhatsappMessage}`;
@@ -504,12 +506,12 @@ export function ContactChapter() {
           <Reveal>
             <a
               href={`mailto:${profile.email}`}
-              className="group inline-block max-w-full font-display text-[clamp(2rem,6.2vw,5.5rem)] leading-[1.05] break-words transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              className="group inline-block max-w-full font-display text-[clamp(1.55rem,4.4vw,3.9rem)] leading-[1.05] font-medium tracking-[-0.03em] whitespace-nowrap transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               aria-label={`Enviar e-mail para ${profile.email}`}
             >
               {profile.email}
               <span
-                className="mt-2 block h-px origin-left bg-current/30 transition-transform duration-500 group-hover:bg-accent"
+                className="mt-2 block h-px origin-left bg-current/30 transition-transform duration-500 group-hover:bg-current"
                 aria-hidden="true"
               />
             </a>
@@ -529,7 +531,7 @@ export function ContactChapter() {
                   const externo = link.url!.startsWith("http");
                   return (
                     <div key={link.label}>
-                      <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                      <dt className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                         {link.label}
                       </dt>
                       <dd className="mt-2">
@@ -538,7 +540,7 @@ export function ContactChapter() {
                           target={externo ? "_blank" : undefined}
                           rel={externo ? "noreferrer noopener" : undefined}
                           aria-label={`${link.label}: ${valor}${externo ? " (abre em nova aba)" : ""}`}
-                          className="inline-flex items-center gap-2 text-lg transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none md:text-xl"
+                          className="inline-flex items-center gap-2 text-lg transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none md:text-xl"
                         >
                           <Icon className="size-4 shrink-0 opacity-70" aria-hidden="true" />
                           {valor}
@@ -548,10 +550,10 @@ export function ContactChapter() {
                   );
                 })}
               <div>
-                <dt className="text-sm font-semibold tracking-[0.14em] text-accent uppercase">
+                <dt className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
                   Base
                 </dt>
-                <dd className="mt-2 text-lg md:text-xl">Senador Canedo · GO</dd>
+                <dd className="mt-2 text-lg md:text-xl">Senador Canedo – GO</dd>
               </div>
             </dl>
           </Reveal>
@@ -568,7 +570,7 @@ export function ContactChapter() {
               </a>
               <ResumeButton
                 label="Baixar currículo em PDF"
-                className="rounded-none border-0 border-b border-current/40 px-0 py-1 font-medium hover:border-accent hover:bg-transparent hover:text-accent md:px-0"
+                className="rounded-none border-0 border-b border-current/40 px-0 py-1 font-medium hover:border-accent hover:bg-transparent hover:text-muted-foreground md:px-0"
               />
             </div>
           </Reveal>
