@@ -51,20 +51,20 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
         <button
           type="button"
           onClick={() => onNavigate("intro")}
-          className="font-display text-xl leading-none font-medium tracking-[-0.03em] md:text-[1.4rem]"
+          className="font-display text-xl leading-none font-medium tracking-[-0.03em] whitespace-nowrap md:text-[1.4rem]"
           aria-label="Huiatã Ribeiro, voltar ao início"
         >
           Huiatã Ribeiro
         </button>
 
         {!presenting ? (
-          <nav aria-label="Navegação principal" className="hidden gap-6 lg:flex xl:gap-8">
+          <nav aria-label="Navegação principal" className="hidden gap-6 xl:flex 2xl:gap-8">
             {menu.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => onNavigate(item.id)}
-                className="relative text-[0.95rem] text-foreground/75 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-foreground hover:after:scale-x-100"
+                className="relative text-[0.95rem] whitespace-nowrap text-foreground/75 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-foreground hover:after:scale-x-100"
               >
                 {item.label}
               </button>
@@ -96,7 +96,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="rounded-full border border-border p-2.5 lg:hidden"
+              className="rounded-full border border-border p-2.5 xl:hidden"
             >
               {open ? (
                 <X className="size-5" aria-hidden="true" />
@@ -111,7 +111,7 @@ export function TopNav({ presenting, onTogglePresenting, onNavigate }: TopNavPro
       {open && !presenting ? (
         <nav
           aria-label="Navegação móvel"
-          className="grid gap-1 border-t border-border bg-background px-6 pt-2 pb-6 lg:hidden"
+          className="grid gap-1 border-t border-border bg-background px-6 pt-2 pb-6 xl:hidden"
         >
           {menu.map((item) => (
             <button
